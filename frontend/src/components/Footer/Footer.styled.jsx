@@ -1,8 +1,50 @@
 import styled from "styled-components";
 
+//LIST --------------------------------------------------------------------------------
 
-//FIND US LINKS--------------------------------------------------------------------------------
+export const ListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  margin: 20px;
+  text-transform: uppercase;
+  
+  a {
+    position: relative;
+    color: #fff; /* Text color white */
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 1rem;
 
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      bottom: 10px;
+      background-color: #d3af97;
+
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 250ms ease-in;
+    }
+
+    &:hover {
+      color: #d3af97; /* Change color on hover */
+
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+  }
+`;
 
 //FIND US LINKS--------------------------------------------------------------------------------
 
@@ -48,4 +90,3 @@ export const ContactIcon = ({ link, imgSrc, altText, labelFor, label }) => (
     <ContactLabel htmlFor={labelFor}>{label}</ContactLabel>
   </ContactLink>
 );
-

@@ -6,11 +6,13 @@ export const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   border-radius: 8px;
   width: 100%;
   margin: 20px;
-  text-transform: uppercase;
+  text-transform: uppercase; 
+  @media (min-width: 1000px) {
+    align-items: normal;
+  } 
   
   a {
     position: relative;
@@ -18,13 +20,17 @@ export const ListWrapper = styled.div`
     text-decoration: none;
     padding: 10px 0;
     font-size: 1rem;
+    @media (min-width: 1000px) {
+      margin-right: auto;
+  } 
+
 
     &::after {
       content: "";
       position: absolute;
       left: 0;
       width: 100%;
-      height: 1px;
+      height: 2px;
       bottom: 10px;
       background-color: #d3af97;
 
@@ -72,14 +78,13 @@ const IconImage = styled.img`
   margin-bottom: 5px;
   filter: invert(100%);
   &:hover {
-    transform: scale(1.1);
-    transition: all ease 0.3s;
+    transform: rotate(1080deg) scale(1.3) ;
+    transition: all ease 1s;
   }
 `;
 
 const ContactLabel = styled.label`
   text-align: center;
-  font-family: sans-serif;
   font-size: 0.8rem;
   color: #ffffff; /* Adjust color as needed */
 `;

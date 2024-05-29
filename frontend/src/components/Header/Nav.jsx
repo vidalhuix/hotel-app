@@ -114,6 +114,7 @@ const TextOverlayContainer = styled.div`
 const TextOverlay = styled.div`
   color: #ffffff;
   font-size: 60px;
+  font-family: "Apercu", sans-serif;
   font-weight: bold;
   line-height: 0.9;
   animation: slideDown 1.5s ease-in-out;

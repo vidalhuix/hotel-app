@@ -163,7 +163,7 @@ export const Nav = () => {
       </HeroVideoContainer>
       <TextOverlayContainer>
         <TextOverlay>
-          WELCOME TO <br></br>THE SUNSIDE HOTEL
+          WELCOME TO <br></br> THE SUNSIDE HOTEL
         </TextOverlay>
       </TextOverlayContainer>
     </>

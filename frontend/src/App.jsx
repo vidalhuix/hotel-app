@@ -1,8 +1,12 @@
+import { Booking } from "./components/Booking";
+import { Introduction } from "./components/Introduction";
+
 export const App = () => {
 
   return (
     <>
-      <h1>Welcome to Final Project!</h1>
+      <Booking />
+      <Introduction />
     </>
   );
 };

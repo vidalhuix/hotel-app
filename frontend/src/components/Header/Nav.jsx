@@ -5,6 +5,7 @@ import logo from "../../assets/logo.png";
 import heroVideo from "../../assets/herovideo.mp4";
 
 // Styling for the navigation container
+// 
 const NavContainer = styled.nav`
   padding: 5px;
   margin: 0;
@@ -85,12 +86,13 @@ const Button = styled.button`
 
 // Styling for the container of the hero video
 const HeroVideoContainer = styled.div`
-  position: fixed;
+  position: relative;
   top: 85px;
   left: 0;
   width: 100%;
   height: 80vh;
   overflow: hidden;
+  margin-left:0;
 `;
 
 // Styling for the hero video itself
@@ -102,8 +104,8 @@ const HeroVideo = styled.video`
 
 // Styling for the container of the text overlay
 const TextOverlayContainer = styled.div`
-  position: fixed;
-  top: 50%;
+  position: relative;
+  top: -340px;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1001;
@@ -121,7 +123,7 @@ const TextOverlay = styled.div`
 
   @keyframes slideDown {
     0% {
-      transform: translateY(-100%);
+      transform: translateY(-300%);
       opacity: 0;
     }
     100% {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ContactIcon, FindUsLink, ListWrapper } from "./Footer.styled";
 
 const StyledFooter = styled.footer`
-  position: fixed;
+  position: relative;
   bottom: 0;
   display: flex;
   flex-direction: column;

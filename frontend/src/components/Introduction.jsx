@@ -4,15 +4,24 @@ import styled from "styled-components";
 
 const IntroContainer = styled.div`
   width: 100%;
-  padding: 100px;
+  padding: 60px 40px;
+  overflow: auto;
   text-align: center;
   background-color: #f0f2f0;
   font-family: 'Apercu Pro', sans-serif;  
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  position: relative;
-  top:-116px;
+
+  @media all and (min-width: 744px) {
+
+  }
+
+  @media all and (min-width: 1024px) {
+    padding: 100px;
+    position: relative;
+    top:-116px;
+  }
 `;
 
 // Styling for the introduction highlight text
@@ -32,20 +41,40 @@ const IntroTitle = styled.div`
   color: #44564c;
   letter-spacing: 0;
   text-transform: uppercase;
-  margin-bottom: 26px;
+  margin-bottom: 16px;
   font-family: 'Apercu Pro', sans-serif;  
-  font-size: 72px;
+  font-size: 40px;
   font-weight: 700;
-  line-height: 1em;
+
+  @media all and (min-width: 744px) {
+
+  }
+
+  @media all and (min-width: 1024px) {
+    font-size: 72px;
+    line-height: 1em;
+    margin-bottom: 26px;
+  }
+
+
 `;
 
 // Styling for the introduction details
 const IntroDetails = styled.div`
-  margin-bottom: 26px;
+  margin-bottom: 20px;
   font-size: 18px;
   color:#111112;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.5em;
+
+  @media all and (min-width: 744px) {
+
+  }
+
+  @media all and (min-width: 1024px) {
+    margin-bottom: 26px;
+    font-weight: 400;
+    }
 `;
 
 export const Introduction = () => {

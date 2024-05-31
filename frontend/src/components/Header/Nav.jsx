@@ -13,7 +13,7 @@ const NavContainer = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 1001;
   background-color: #ffffff;
   color: #000000;
   font-family: "Apercu", sans-serif;
@@ -108,18 +108,19 @@ const TextOverlayContainer = styled.div`
   top: -340px;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1001;
+  z-index: 1000;
   text-align: center;
 `;
 
 // Styling for the text overlay
 const TextOverlay = styled.div`
   color: #ffffff;
-  font-size: 60px;
+  font-size: 72px;
+  font-weight: 700;
   font-family: "Apercu", sans-serif;
-  font-weight: bold;
   line-height: 0.9;
   animation: slideDown 1.5s ease-in-out;
+  text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
 
   @keyframes slideDown {
     0% {

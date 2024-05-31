@@ -11,8 +11,8 @@ export const SlideContentBox = ({
   return (
     <ItemContainer>
       <img src={imgSrc} alt={imgAlt} />
-      <h2>{title}</h2>
       <DescriptionContainer>
+        <h2>{title}</h2>
         <p>{description}</p>
         <a href={linkHref}>{linkText}</a>
       </DescriptionContainer>
@@ -40,16 +40,23 @@ const ItemContainer = styled.div`
       transform: scale(1.05);
     }
   }
-
-  h2 {
-    margin: 0;
-    text-transform: uppercase;
-  }
 `;
 
 const DescriptionContainer = styled.div`
   display: inline;
+  padding: 0 50px;
+  @media (min-width: 400px) {
+    padding: 0;
+  }
 
+  h2 {
+    text-align: left;
+    margin: 0;
+    text-transform: uppercase;
+    @media (min-width: 400px) {
+      text-align: left;
+    }
+  }
   p {
     display: inline;
     margin: 0;

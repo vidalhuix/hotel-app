@@ -17,6 +17,7 @@ export const SliderComp = () => {
           perMove: 1,
           autoplay: true,
           gap: 5,
+          interval: 5000,
           pauseOnHover: true,
           resetProgress: false,
           fixedWidth: "25rem",

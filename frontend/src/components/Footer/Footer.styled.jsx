@@ -5,10 +5,12 @@ import styled from "styled-components";
 export const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-radius: 8px;
-  width: 100%;
   margin: 20px;
+  display: flex;
+  align-items: center;
+  /* flex-direction: column;
+  width: 100%;
+  margin: 20px; */
   text-transform: uppercase; 
   @media (min-width: 1000px) {
     align-items: normal;
@@ -72,8 +74,8 @@ const ContactLink = styled.a`
 `;
 
 const IconImage = styled.img`
-  width: 30px; /* Adjust size as needed */
-  height: 40px; /* Adjust size as needed */
+  width: 30px; 
+  height: 40px; 
   margin: 10px; /* Space between image and label */
   margin-bottom: 5px;
   filter: invert(100%);
@@ -86,7 +88,7 @@ const IconImage = styled.img`
 const ContactLabel = styled.label`
   text-align: center;
   font-size: 0.8rem;
-  color: #ffffff; /* Adjust color as needed */
+  color: #ffffff; 
 `;
 
 export const ContactIcon = ({ link, imgSrc, altText, labelFor, label }) => (

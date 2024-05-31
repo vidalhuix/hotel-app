@@ -82,6 +82,8 @@ export const Footer = () => {
 };
 
 const StyledFooter = styled.footer`
+  position: relative;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

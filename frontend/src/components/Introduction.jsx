@@ -12,6 +12,7 @@ const IntroContainer = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   margin-top: 0;
+  margin-bottom: 0;
   position: relative;
   overflow: auto;
 

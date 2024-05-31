@@ -15,7 +15,7 @@ export const SliderComp = () => {
           type: "loop",
           perPage: 3,
           perMove: 1,
-          autoplay: false,
+          autoplay: true,
           gap: 5,
           pauseOnHover: true,
           resetProgress: false,
@@ -32,38 +32,38 @@ export const SliderComp = () => {
             imgSrc="/public/01-slide.jpg"
             imgAlt="Dinner table"
             title="Dinner & Breakfast"
-            description=""
-            linkText="read more"
+            description="Indulge in a gourmet dinner featuring exquisite cuisine, elegant ambiance, and exceptional service."
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
             imgSrc="/public/02-slide.jpg"
-            imgAlt="Dinner table"
-            title="Dinner & Breakfast"
-            description=""
-            linkText="read more"
+            imgAlt="Corporate Meetings"
+            title="Corporate Meetings"
+            description="Celebrate your special day with elegant decor and exceptional service in our grand ballroom."
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
             imgSrc="/public/03-slide.jpg"
-            imgAlt="Dinner table"
-            title="Dinner & Breakfast"
-            description=""
-            linkText="read more"
+            imgAlt="Conferences"
+            title="Conferences"
+            description="Host large-scale conferences with advanced audiovisual equipment and flexible seating arrangements."
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
             imgSrc="/public/04-slide.jpg"
-            imgAlt="Dinner table"
-            title="Dinner & Breakfast"
-            description=""
-            linkText="read more"
+            imgAlt="Family Reunions"
+            title="Family Reunions"
+            description="Reconnect with loved ones in a spacious venue offering activities for all ages."
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -71,9 +71,9 @@ export const SliderComp = () => {
           <SlideContentBox
             imgSrc="/public/05-slide.jpg"
             imgAlt="Dinner table"
-            title="Dinner & Breakfast"
-            description=""
-            linkText="read more"
+            title="Yoga Retreats"
+            description="Relax and rejuvenate with guided yoga sessions and wellness activities in serene surroundings."
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>

@@ -11,9 +11,11 @@ export const SlideContentBox = ({
   return (
     <ItemContainer>
       <img src={imgSrc} alt={imgAlt} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <a href={linkHref}>{linkText}</a>
+      <h2>{title}</h2>
+      <DescriptionContainer>
+        <p>{description}</p>
+        <a href={linkHref}>{linkText}</a>
+      </DescriptionContainer>
     </ItemContainer>
   );
 };
@@ -21,44 +23,48 @@ export const SlideContentBox = ({
 const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   color: white;
   padding: 10px;
   width: 100%;
-  /* @media (min-width: 1000px) {
-    width: 500px;
-  } */
-  
   cursor: pointer;
   text-align: left;
-  
+
   img {
     width: 100%;
     aspect-ratio: 14 / 9;
     object-fit: cover;
     transition: transform 400ms ease-in-out;
-    @media (min-width: 1000px) {
-      /* width: 500px; */
-    }
+
     &:hover {
       transform: scale(1.05);
     }
   }
 
-  h3 {
-    margin: 0.5rem 0;
+  h2 {
+    margin: 0;
+    text-transform: uppercase;
   }
+`;
+
+const DescriptionContainer = styled.div`
+  display: inline;
 
   p {
-    width: 90%;
-    font-size: 0.7rem;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    font-size: 1rem;
+    margin-top: 3px;
   }
 
   a {
-    margin-top: 1rem;
+    display: inline;
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
+    margin-left: 5px;
   }
 
   a:hover {

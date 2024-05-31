@@ -35,6 +35,7 @@ const BookingContainer = styled.div`
     justify-content: space-between;
     padding: 4px 40px 12px 40px;
     align-items: center;
+    box-shadow: 0 3px 60px rgba(0, 0, 0, .05);
   }
 `;
 
@@ -186,7 +187,7 @@ export const Booking = () => {
           <SearchButton>Search</SearchButton>
         </SubBookingContainer>
 
-        <Form>
+        {/* <Form>
           <Label htmlFor="adults">Number of Adults:</Label>
           <NumberInputContainer>
             <NumberButton onClick={() => changeNumber(setAdults, -1)} disabled={adults <= 1}>-</NumberButton>
@@ -200,7 +201,7 @@ export const Booking = () => {
             <Input type="number" id="children" value={children} readOnly />
             <NumberButton onClick={() => changeNumber(setChildren, 1)} disabled={children >= 3}>+</NumberButton>
           </NumberInputContainer>
-        </Form>
+        </Form> */}
       </BookingContainer>
     </>
   )

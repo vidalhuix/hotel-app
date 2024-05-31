@@ -5,22 +5,22 @@ import styled from "styled-components";
 const IntroContainer = styled.div`
   width: 100%;
   padding: 60px 40px;
-  overflow: auto;
   text-align: center;
   background-color: #f0f2f0;
   font-family: 'Apercu Pro', sans-serif;  
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  margin-top: 0;
+  position: relative;
+  overflow: auto;
 
   @media all and (min-width: 744px) {
-
+    top: -146px; 
   }
 
   @media all and (min-width: 1024px) {
     padding: 100px;
-    position: relative;
-    top:-116px;
   }
 `;
 
@@ -55,8 +55,6 @@ const IntroTitle = styled.div`
     line-height: 1em;
     margin-bottom: 26px;
   }
-
-
 `;
 
 // Styling for the introduction details
@@ -87,6 +85,7 @@ export const Introduction = () => {
         When you want to gather your colleagues and make important decisions, celebrate something important, or just leave town for a while. Then our historic charm, fantastic food and well-chosen drinks await ready in our inspiring manor environment.
         </IntroDetails>
       </IntroContainer>
+      
     </>
   )
 }

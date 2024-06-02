@@ -15,7 +15,7 @@ export const SliderComp = () => {
           type: "loop",
           perPage: 3,
           perMove: 1,
-          autoplay: true,
+          autoplay: false,
           gap: 5,
           interval: 5000,
           pauseOnHover: true,

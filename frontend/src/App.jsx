@@ -7,18 +7,19 @@ import { Footer } from "./components/Footer/Footer";
 import { MeetingSection } from "./components/MeetingSection/MeetingSection";
 import { SliderComp } from "./components/MeetingSection/SliderComp";
 import { Reviews } from "./components/Reviews";
+import { BackToTopButton } from "./components/BackToTopButton";
 
 export const App = () => {
   return (
     <Router>
-        <Nav />
-        <Booking />
-        <Introduction />
-        <MeetingSection />
-        <SliderComp />
-        {/* I have added another section because the slider section have the same background as the footer */}
-        <Reviews /> 
-        <Footer />
+      <Nav />
+      <Booking />
+      <Introduction />
+      <MeetingSection />
+      <SliderComp />
+      <Reviews />
+      <BackToTopButton />
+      <Footer />
     </Router>
   );
 };

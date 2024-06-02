@@ -6,7 +6,7 @@ import { Footer } from "./components/Footer/Footer";
 
 import { MeetingSection } from "./components/MeetingSection/MeetingSection";
 import { SliderComp } from "./components/MeetingSection/SliderComp";
-import { Restaurant } from "./components/Restaurant";
+import { Reviews } from "./components/Reviews";
 
 export const App = () => {
   return (
@@ -17,7 +17,7 @@ export const App = () => {
         <MeetingSection />
         <SliderComp />
         {/* I have added another section because the slider section have the same background as the footer */}
-        <Restaurant /> 
+        <Reviews /> 
         <Footer />
     </Router>
   );

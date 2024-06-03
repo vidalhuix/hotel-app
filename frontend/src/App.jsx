@@ -32,7 +32,6 @@ const MainPage = () => {
       <Introduction />
       <MeetingSection />
       <SliderComp />
-      {/* I have added another section because the slider section has the same background as the footer */}
       <Reviews />
       <Footer />
     </div>

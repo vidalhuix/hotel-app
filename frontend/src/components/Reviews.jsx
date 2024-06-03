@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 export const Reviews = () => {
   const [showAll, setShowAll] = useState(false);
@@ -46,8 +46,8 @@ export const Reviews = () => {
     };
 
     updateReviewsToShow();
-    window.addEventListener('resize', updateReviewsToShow);
-    return () => window.removeEventListener('resize', updateReviewsToShow);
+    window.addEventListener("resize", updateReviewsToShow);
+    return () => window.removeEventListener("resize", updateReviewsToShow);
   }, []);
 
   const toggleShowAll = () => {
@@ -56,18 +56,21 @@ export const Reviews = () => {
 
   return (
     <div>
+      <Title>REVIEWS</Title>
       <ReviewContainer>
-        {reviews.slice(0, showAll ? reviews.length : reviewsToShow).map((review, index) => (
-          <ReviewItem key={index}>
-            <Quotes>
-              <ReviewText>{review.text}</ReviewText>
-            </Quotes>
-            <br />
-            <ReviewerInfo>
-              {review.name} - {review.date}
-            </ReviewerInfo>
-          </ReviewItem>
-        ))}
+        {reviews
+          .slice(0, showAll ? reviews.length : reviewsToShow)
+          .map((review, index) => (
+            <ReviewItem key={index}>
+              <Quotes>
+                <ReviewText>{review.text}</ReviewText>
+              </Quotes>
+              <br />
+              <ReviewerInfo>
+                {review.name} - {review.date}
+              </ReviewerInfo>
+            </ReviewItem>
+          ))}
       </ReviewContainer>
       <ReadMoreButton onClick={toggleShowAll}>
         {showAll ? "Show Less" : "Read More"}
@@ -77,6 +80,22 @@ export const Reviews = () => {
 };
 
 // Styled components
+const Title = styled.h3`
+
+  margin: 25px 0 0 0;
+  color: #44554b;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+
+  @media (min-width: 700px) and(max-width: 1200px) {
+    font-size: 55px;
+  }
+  @media (min-width: 1000px) {
+    font-size: 70px;
+  }
+`;
+
 const ReviewContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -86,7 +105,7 @@ const ReviewContainer = styled.div`
   padding: 30px 0;
   border-radius: 8px;
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 0 auto 20px auto;
 `;
 
 const Quotes = styled.div`
@@ -119,7 +138,7 @@ const ReviewItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #44554b;
+  color: #424242;
   border: 0px solid #faf9f9;
   border-radius: 8px;
   height: 100%;
@@ -156,6 +175,8 @@ const ReadMoreButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #b39282;
+    background-color: #44554b;
+    transform: scale(1.05);
+    transition: all ease 0.3s;
   }
 `;

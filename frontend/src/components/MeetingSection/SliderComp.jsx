@@ -15,17 +15,37 @@ export const SliderComp = () => {
           type: "loop",
           perPage: 3,
           perMove: 1,
-          autoplay: false,
-          gap: 5,
-          interval: 5000,
-          pauseOnHover: true,
-          resetProgress: false,
-          fixedWidth: "25rem",
-          heightRatio: 0.3,
+          gap: 10,
+          arrows: 'slider',
+          // autoplay: false,
+          // interval: 5000,
+          // pauseOnHover: true,
+          // fixedWidth: "25rem",
+          // heightRatio: 0.3,
+          speed: 600,
+          pagination: 'slider', // 'slider' or false
+
           focus: "center",
           padding: { left: "2rem", right: "2rem" },
           easing: "cubic-bezier(0.25, 1, 0.5, 1)",
           arrows: true,
+          breakpoints: {
+            991: {
+              // Tablet
+              perPage: 3,
+              gap: '4vw',
+            },
+            767: {
+              // Mobile Landscape
+              perPage: 1,
+              gap: '4vw',
+            },
+            479: {
+              // Mobile Portrait
+              perPage: 1,
+              gap: '4vw',
+            }
+          }
         }}
       >
         <SplideSlide>

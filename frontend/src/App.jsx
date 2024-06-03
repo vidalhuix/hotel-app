@@ -3,13 +3,11 @@ import { Nav } from "./components/Header/Nav";
 import { Login } from "./components/User/Login";
 import { Register } from "./components/User/Register";
 import { Hero } from "./components/Header/Hero";
-import { Booking } from "./components/Booking";
-import { Introduction } from "./components/Introduction";
 import { Footer } from "./components/Footer/Footer";
-
 import { MeetingSection } from "./components/MeetingSection/MeetingSection";
 import { SliderComp } from "./components/MeetingSection/SliderComp";
 import { Reviews } from "./components/Reviews";
+import { BookingSection } from "./components/Booking/BookingSection";
 
 export const App = () => {
   return (
@@ -28,8 +26,7 @@ const MainPage = () => {
   return (
     <div>
       <Hero />
-      <Booking />
-      <Introduction />
+      <BookingSection/>
       <MeetingSection />
       <SliderComp />
       <Reviews />

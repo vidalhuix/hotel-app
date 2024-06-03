@@ -46,14 +46,6 @@ const SubBookingContainer = styled.div`
   width: 100%;
   font-weight: 700;
   padding: 10px 15px;
-  
-  @media all and (min-width: 744px) {
-
-  }
-
-  @media all and (min-width: 1024px) {
-    
-  }
 `;
 
 // Styling for the date and guest selection title
@@ -114,53 +106,6 @@ const SearchButton = styled.button`
   }
 `
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 10px 15px;
-`;
-
-const Label = styled.label`
-  font-size: 16px;
-  font-weight: bold;
-`;
-
-const NumberInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const NumberButton = styled.button`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:#44564c;
-  color:white;
-  cursor: pointer;
-  border: none;
-  padding-top: 0;
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-`;
-
-const Input = styled.input`
-  width: 50px;
-  text-align: center;
-  border: 1px solid #ccc;
-  margin: 0 5px;
-`;
-
 const DateInput = styled.input`
   padding: 5px;
   font-size: 16px;
@@ -176,44 +121,26 @@ export const Booking = () => {
   };
 
   return (
-    <>
-      <BookingContainer>
-        <SubBookingContainer>
-          <SelectTitle>Arrive Date:</SelectTitle>
-          <DateInput type="date" name="date" id="date" required />
-        </SubBookingContainer>
+    <BookingContainer>
+      <SubBookingContainer>
+        <SelectTitle>Arrive Date:</SelectTitle>
+        <DateInput type="date" name="date" id="date" required />
+      </SubBookingContainer>
 
-        <SubBookingContainer>
-          <SelectTitle>Number of guests:</SelectTitle>
-          <SelectBox name="guest" id="guest">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="3">4</option>
-          </SelectBox>
-        </SubBookingContainer>
-        
-        <SubBookingContainer>
-          <SelectTitle>  </SelectTitle>
-          <SearchButton>Search</SearchButton>
-        </SubBookingContainer>
-
-        {/* <Form>
-          <Label htmlFor="adults">Number of Adults:</Label>
-          <NumberInputContainer>
-            <NumberButton onClick={() => changeNumber(setAdults, -1)} disabled={adults <= 1}>-</NumberButton>
-            <Input type="number" id="adults" value={adults} readOnly />
-            <NumberButton onClick={() => changeNumber(setAdults, 1)} disabled={adults >= 4}>+</NumberButton>
-          </NumberInputContainer>
-
-          <Label htmlFor="children">Number of Children:</Label>
-          <NumberInputContainer>
-            <NumberButton onClick={() => changeNumber(setChildren, -1)} disabled={children <= 0}>-</NumberButton>
-            <Input type="number" id="children" value={children} readOnly />
-            <NumberButton onClick={() => changeNumber(setChildren, 1)} disabled={children >= 3}>+</NumberButton>
-          </NumberInputContainer>
-        </Form> */}
-      </BookingContainer>
-    </>
+      <SubBookingContainer>
+        <SelectTitle>Number of guests:</SelectTitle>
+        <SelectBox name="guest" id="guest">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="3">4</option>
+        </SelectBox>
+      </SubBookingContainer>
+      
+      <SubBookingContainer>
+        <SelectTitle>  </SelectTitle>
+        <SearchButton>Search</SearchButton>
+      </SubBookingContainer>
+    </BookingContainer>
   )
 }

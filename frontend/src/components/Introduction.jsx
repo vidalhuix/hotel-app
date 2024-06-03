@@ -81,15 +81,12 @@ const IntroDetails = styled.div`
 
 export const Introduction = () => {
   return (
-    <>
-      <IntroContainer>
-        <IntroHighlight>25 MIN FROM STOCKHOLM</IntroHighlight>
-        <IntroTitle>DISCOVER OUR IDYLL</IntroTitle>
-        <IntroDetails>
-        When you want to gather your colleagues and make important decisions, celebrate something important, or just leave town for a while. Then our historic charm, fantastic food and well-chosen drinks await ready in our inspiring manor environment.
-        </IntroDetails>
-      </IntroContainer>
-      
-    </>
+    <IntroContainer>
+      <IntroHighlight>25 MIN FROM STOCKHOLM</IntroHighlight>
+      <IntroTitle>DISCOVER OUR IDYLL</IntroTitle>
+      <IntroDetails>
+      When you want to gather your colleagues and make important decisions, celebrate something important, or just leave town for a while. Then our historic charm, fantastic food and well-chosen drinks await ready in our inspiring manor environment.
+      </IntroDetails>
+    </IntroContainer>
   )
 }

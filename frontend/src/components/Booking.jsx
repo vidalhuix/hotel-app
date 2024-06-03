@@ -12,37 +12,48 @@ const BookingContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin: 0px auto 0 auto;
+  margin: 0px auto 30px auto;
   font-family: 'Apercu Pro', sans-serif;
   font-size: 16px;
   text-align: left;
   position: relative;
-  top: -100px;
   box-shadow: 0 3px 60px rgba(0, 0, 0, .05);
   box-sizing: border-box;
  
   @media all and (min-width: 744px) {
-    flex-direction: row;
+    flex-direction: column;
     max-width: 900px;
-    text-align: center;
     justify-content: center;
-    padding: 4px 40px 12px 40px;
+    padding: 16px 40px;
+    top: -13em;
+    margin: 0px auto 0px auto;
   }
 
-  @media all and (min-width: 1024px) {
+  @media all and (min-width: 1025px) {
     flex-direction: row;
     max-width: 1200px;
-    justify-content: space-between;
-    padding: 4px 40px 12px 40px;
+    padding: 16px 40px;
     align-items: center;
     box-shadow: 0 3px 60px rgba(0, 0, 0, .05);
+    top: -13em;
+    margin: 0px auto 0px auto;
+    justify-content: space-between;
   }
 `;
 
-// Styling for the date and guest container
+// Styling for the date/guest container
 const SubBookingContainer = styled.div`
+  width: 100%;
   font-weight: 700;
   padding: 10px 15px;
+  
+  @media all and (min-width: 744px) {
+
+  }
+
+  @media all and (min-width: 1024px) {
+    
+  }
 `;
 
 // Styling for the date and guest selection title
@@ -90,17 +101,16 @@ const SearchButton = styled.button`
   color: #fff;
   text-decoration: none;
   
+  
   @media all and (min-width: 744px) {
-    width: 120px;
     height: auto;
   }
 
-  @media all and (min-width: 1024px) {
+  @media all and (min-width: 1025px) {
     width: 120px;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: #0000;
     font-weight: 400;
-    height: auto;
   }
 `
 
@@ -174,14 +184,15 @@ export const Booking = () => {
         </SubBookingContainer>
 
         <SubBookingContainer>
-          <SelectTitle>Choose number of guests:</SelectTitle>
+          <SelectTitle>Number of guests:</SelectTitle>
           <SelectBox name="guest" id="guest">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
+            <option value="3">4</option>
           </SelectBox>
         </SubBookingContainer>
-
+        
         <SubBookingContainer>
           <SelectTitle>  </SelectTitle>
           <SearchButton>Search</SearchButton>

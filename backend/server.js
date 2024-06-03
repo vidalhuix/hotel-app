@@ -12,7 +12,6 @@ mongoose.connect(mongoUrl)
 mongoose.Promise = Promise
 
 const Hotelrooms = mongoose.model("Hotelrooms", {
-  //"id": 1,
   type: String,
   price: String,
   size: String,
@@ -20,8 +19,13 @@ const Hotelrooms = mongoose.model("Hotelrooms", {
   numbers_of_rooms: Number,
   description: String,
   image: String,
-  facilities: [String]
-})
+  facilities: [String],
+  availability: [{
+    startDate: Date,
+    endDate: Date,
+    availableRooms: Number
+  }]
+});
 
 // Defines the port the app will run on. Defaults to 8080, but can be overridden
 // when starting the server. Example command to overwrite PORT env variable value:
@@ -81,6 +85,35 @@ app.get("/hotelrooms/:guestamount", async (req, res) => {
       res.json(suitableRooms);
     } else {
       return res.status(404).json({ error: 'No rooms found' });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get("/hotelrooms/:startdate", async (req, res) => {
+  try {
+    const startDate = req.params.startdate;
+    const start = new Date(startDate);
+    //const end = new Date(endDate);
+
+    console.log(`Start Date: ${start}`);
+
+    const availableRooms = await Hotelrooms.find({
+      $and: [
+        {"availability.startDate": { $lte: start }},
+        {"availability.endDate": { $gte: start }},
+        {"availability.availableRooms": { $gt: 0 }}
+      ]
+    });
+
+    console.log(`Available Rooms: ${JSON.stringify(availableRooms)}`);
+
+    if (availableRooms.length > 0) {
+      res.json(availableRooms);
+    } else {
+      res.status(404).json({ error: 'No rooms found' });
     }
   } catch (error) {
     console.error('Error:', error);

@@ -21,7 +21,7 @@ export const SliderComp = () => {
           // interval: 5000,
           // pauseOnHover: true,
           // fixedWidth: "25rem",
-          // heightRatio: 0.3,
+          // heightRatio: 1,
           speed: 600,
           pagination: 'slider', // 'slider' or false
 
@@ -30,14 +30,19 @@ export const SliderComp = () => {
           easing: "cubic-bezier(0.25, 1, 0.5, 1)",
           arrows: true,
           breakpoints: {
-            991: {
+            1200: {
               // Tablet
               perPage: 3,
               gap: '4vw',
             },
+            991: {
+              // Tablet
+              perPage: 2,
+              gap: '4vw',
+            },
             767: {
               // Mobile Landscape
-              perPage: 1,
+              perPage: 2,
               gap: '4vw',
             },
             479: {
@@ -124,5 +129,14 @@ const SplideContainer = styled.div`
 
   .splide__track {
   height: 400px;
+  @media (min-width: 700px) and(max-width: 1200px) {
+    height: 500px;
+  }
+  @media (min-width: 700px) and(max-width: 1200px) {
+    height: 500px;
+  }
+  @media (min-width: 1501px) {
+    height: 700px;
+  }
 }
 `;

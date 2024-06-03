@@ -9,6 +9,7 @@ import { Footer } from "./components/Footer/Footer";
 
 import { MeetingSection } from "./components/MeetingSection/MeetingSection";
 import { SliderComp } from "./components/MeetingSection/SliderComp";
+import { Reviews } from "./components/Reviews";
 
 export const App = () => {
   return (
@@ -31,6 +32,7 @@ const MainPage = () => {
       <Introduction />
       <MeetingSection />
       <SliderComp />
+      <Reviews />
       <Footer />
     </div>
   );

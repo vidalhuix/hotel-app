@@ -48,7 +48,6 @@ const NavLink = styled(Link)`
   padding: 10px 20px;
   transition: color 0.3s ease;
   color: #000000;
-
   &:hover {
     background-color: #f8f4f4;
     border-radius: 20px;
@@ -93,6 +92,7 @@ const HeroVideoContainer = styled.div`
   height: 80vh;
   overflow: hidden;
   margin-left:0;
+  margin-right:0;
 `;
 
 // Styling for the hero video itself
@@ -105,20 +105,28 @@ const HeroVideo = styled.video`
 // Styling for the container of the text overlay
 const TextOverlayContainer = styled.div`
   position: relative;
-  top: -340px;
+  top: -15em;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   text-align: center;
+
+  @media all and (min-width: 744px) {
+    top: -22em;
+  }
+
+  @media all and (min-width: 1024px) {
+    top: -22em;
+  }
 `;
 
 // Styling for the text overlay
 const TextOverlay = styled.div`
   color: #ffffff;
-  font-size: 72px;
+  font-size: 40px;
+  line-height: 44px;
   font-weight: 700;
   font-family: "Apercu", sans-serif;
-  line-height: 0.9;
   animation: slideDown 1.5s ease-in-out;
   text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
 
@@ -131,6 +139,15 @@ const TextOverlay = styled.div`
       transform: translateY(0);
       opacity: 1;
     }
+  }
+
+  @media all and (min-width: 744px) {
+
+  }
+
+  @media all and (min-width: 1024px) {
+    font-size: 72px;
+    line-height: 1em;
   }
 `;
 

@@ -17,11 +17,14 @@ const IntroContainer = styled.div`
   overflow: auto;
 
   @media all and (min-width: 744px) {
-    top: -146px; 
+    top: -19em; 
+    padding: 160px 40px 60px 40px;
   }
 
   @media all and (min-width: 1024px) {
     padding: 100px;
+    top: -18em; 
+    padding: 160px 40px 60px 40px;
   }
 `;
 

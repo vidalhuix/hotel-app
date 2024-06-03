@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "type": "Standard",
+    "price": "110 euro",
+    "size": "28 kvm",
+    "capacity": 2,
+    "numbers_of_rooms": 6,
+    "description": "Give life a little more space. Take a break from everyday life and let time stand still for a while. Our luxury room has a scandinavian romantic interior style. With fragile lace, porcelain figurines and details.",
+    "image": "https://assets-global.website-files.com/643cf9faa943e87284f8e158/6474a083eba0f5b34d6e3c6a_Standardrum_Sastaholm-%20(2)-min.jpg",
+    "facilities": ["Free WiFi", "Air Conditioning", "Flat Screen TV", "Minibar"],
+    "availabitily": [{
+      "startDate": "2024-06-04T00:00:00Z",
+      "endDate": "2025-06-04T00:00:00Z",
+      "availableRooms": 1
+    }]
+  },
+  {
+    "id": 2,
+    "type": "Luxury",
+    "price": "150 euro",
+    "size": "37 kvm",
+    "capacity": 2,
+    "numbers_of_rooms": 4,
+    "description": "Art deco-inspired rooms with fitted fabrics, wallpaper in period colours, sober lighting and fully tiled bathrooms. Of course you will find a comfortable workplace in these rooms, sometimes you also have to do your must dos.",
+    "image": "https://assets-global.website-files.com/643cf9faa943e87284f8e158/64770379e9280adf60424fa9_Juniorsvit_Shima_Niavarani_Sastaholm-%20(3)-min.jpg",
+    "facilities": ["Free WiFi", "Air Conditioning", "Flat Screen TV", "Minibar", "Working table"],
+    "availabitily": [{
+      "startDate": "2024-06-12T00:00:00Z",
+      "endDate": "2025-06-04T00:00:00Z",
+      "availableRooms": 4
+    }]
+  },
+  {
+    "id": 3,
+    "type": "Premium Suite",
+    "price": "180 euro",
+    "size": "64 kvm",
+    "capacity": 4,
+    "numbers_of_rooms": 2,
+    "description": "In our suites you live extra comfortably with a separate bedroom and a living room. All suites have a double bed and sofa bed which can accommodate three adults or two adults and two children. Perfect when you want to stay with the whole family.",
+    "image": "https://assets-global.website-files.com/643cf9faa943e87284f8e158/6474bd14e98ef21fd5ab2925_Svit_Elin_Rombo_Sastaholm-%20(5)-min.jpg",
+    "facilities": ["Free WiFi", "Air Conditioning", "Flat Screen TV", "Minibar", "Working table", "Jacuzzi", "Balcony"],
+    "availbitily": [{
+      "startDate": "2024-06-8T00:00:00Z",
+      "endDate": "2025-06-04T00:00:00Z",
+      "availableRooms": 2
+    }]
+  }
+]

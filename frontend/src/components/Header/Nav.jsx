@@ -5,6 +5,7 @@ import logo from "../../assets/logo.png";
 import heroVideo from "../../assets/herovideo.mp4";
 
 // Styling for the navigation container
+// 
 const NavContainer = styled.nav`
   padding: 5px;
   margin: 0;
@@ -12,7 +13,7 @@ const NavContainer = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 1001;
   background-color: #ffffff;
   color: #000000;
   font-family: "Apercu", sans-serif;
@@ -47,7 +48,6 @@ const NavLink = styled(Link)`
   padding: 10px 20px;
   transition: color 0.3s ease;
   color: #000000;
-
   &:hover {
     background-color: #f8f4f4;
     border-radius: 20px;
@@ -85,12 +85,14 @@ const Button = styled.button`
 
 // Styling for the container of the hero video
 const HeroVideoContainer = styled.div`
-  position: fixed;
+  position: relative;
   top: 85px;
   left: 0;
   width: 100%;
   height: 80vh;
   overflow: hidden;
+  margin-left:0;
+  margin-right:0;
 `;
 
 // Styling for the hero video itself
@@ -102,32 +104,50 @@ const HeroVideo = styled.video`
 
 // Styling for the container of the text overlay
 const TextOverlayContainer = styled.div`
-  position: fixed;
-  top: 50%;
+  position: relative;
+  top: -15em;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1001;
+  z-index: 1000;
   text-align: center;
+
+  @media all and (min-width: 744px) {
+    top: -22em;
+  }
+
+  @media all and (min-width: 1024px) {
+    top: -22em;
+  }
 `;
 
 // Styling for the text overlay
 const TextOverlay = styled.div`
   color: #ffffff;
-  font-size: 60px;
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
   font-family: "Apercu", sans-serif;
-  font-weight: bold;
-  line-height: 0.9;
   animation: slideDown 1.5s ease-in-out;
+  text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
 
   @keyframes slideDown {
     0% {
-      transform: translateY(-100%);
+      transform: translateY(-300%);
       opacity: 0;
     }
     100% {
       transform: translateY(0);
       opacity: 1;
     }
+  }
+
+  @media all and (min-width: 744px) {
+
+  }
+
+  @media all and (min-width: 1024px) {
+    font-size: 72px;
+    line-height: 1em;
   }
 `;
 

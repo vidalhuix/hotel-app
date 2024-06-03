@@ -9,7 +9,6 @@ import { Footer } from "./components/Footer/Footer";
 
 import { MeetingSection } from "./components/MeetingSection/MeetingSection";
 import { SliderComp } from "./components/MeetingSection/SliderComp";
-import { Restaurant } from "./components/Restaurant";
 
 export const App = () => {
   return (
@@ -32,8 +31,6 @@ const MainPage = () => {
       <Introduction />
       <MeetingSection />
       <SliderComp />
-      {/* I have added another section because the slider section has the same background as the footer */}
-      <Restaurant />
       <Footer />
     </div>
   );

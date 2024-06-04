@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom"; 
 
 // Styling for the booking container  
 const BookingContainer = styled.div`
@@ -113,11 +114,14 @@ const DateInput = styled.input`
 `;
   
 export const Booking = () => {
-  const [adults, setAdults] = useState(0);
-  const [children, setChildren] = useState(0);
+  const [guests, setGuests] = useState(0);
+  const navigate = useNavigate();
 
   const changeNumber = (setter, delta) => {
     setter(prevValue => Math.max(prevValue + delta, 0));
+  }
+  const handleRoomClick = () => {
+    navigate("/hotelrooms");
   };
 
   return (
@@ -139,7 +143,9 @@ export const Booking = () => {
       
       <SubBookingContainer>
         <SelectTitle>  </SelectTitle>
-        <SearchButton>Search</SearchButton>
+        
+        <SearchButton onClick={handleRoomClick}>Search</SearchButton>
+  
       </SubBookingContainer>
     </BookingContainer>
   )

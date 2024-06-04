@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { SlideContentBox } from "./SlideContentBox";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
+import Slide01 from "../../assets/01-slide.jpg";
+
 // Default theme
 import "@splidejs/react-splide/css";
 // import '@splidejs/react-splide/css/sea-green';
@@ -50,7 +52,7 @@ export const SliderComp = () => {
       >
         <SplideSlide>
           <SlideContentBox
-            imgSrc="../../assets/01-slide.jpg"
+            imgSrc={Slide01}
             imgAlt="Dinner table"
             title="Dinner & Breakfast"
             description="Indulge in a gourmet dinner featuring exquisite cuisine, elegant ambiance, and exceptional service."

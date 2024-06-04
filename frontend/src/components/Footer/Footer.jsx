@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import { ContactIcon, FindUsLink, ListWrapper } from "./Footer.styled";
+import hotelLogo from "../../assets/logo-hotel.svg";
+import smile01 from "../../assets/smile-1.svg";
+import smile02 from "../../assets/smile-2.svg";
+import smile03 from "../../assets/smile-3.svg";
 
 export const Footer = () => {
   return (
     <StyledFooter>
       <StyledLogo href="/">
-        <img src="/public/svg/logo-hotel.svg" alt="Logo Hotel Itaca" />
+        <img src={hotelLogo} alt="Logo Hotel Itaca" />
       </StyledLogo>
       <FooterBody>
         <ListWrapper>
@@ -57,21 +61,21 @@ export const Footer = () => {
       <ContactIconWrapper>
         <ContactIcon
           link="/contact/arnau"
-          imgSrc="/public/svg/smile-1.svg"
+          imgSrc={smile01}
           altText="Arnaus's contact icon"
           labelFor="contact-arnau"
           label="Arnau"
         />
         <ContactIcon
           link="/contact/cornelia"
-          imgSrc="/public/svg/smile-2.svg"
+          imgSrc={smile02}
           altText="Cornelia's contact icon"
           labelFor="contact-arnau"
           label="Cornelia"
         />
         <ContactIcon
           link="/contact/jing"
-          imgSrc="/public/svg/smile-3.svg"
+          imgSrc={smile03}
           altText="Jings's contact icon"
           labelFor="contact-jing"
           label="Jing"

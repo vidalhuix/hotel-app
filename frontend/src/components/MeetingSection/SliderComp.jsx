@@ -50,7 +50,7 @@ export const SliderComp = () => {
       >
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/public/01-slide.jpg"
+            imgSrc="../../assets/01-slide.jpg"
             imgAlt="Dinner table"
             title="Dinner & Breakfast"
             description="Indulge in a gourmet dinner featuring exquisite cuisine, elegant ambiance, and exceptional service."

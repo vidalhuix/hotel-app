@@ -9,6 +9,7 @@ import { MeetingSection } from "./components/MeetingSection/MeetingSection";
 import { SliderComp } from "./components/MeetingSection/SliderComp";
 import { Reviews } from "./components/Reviews";
 import { BookingSection } from "./components/Booking/BookingSection";
+import { BackToTopButton } from "./components/BackToTopButton";
 
 export const App = () => {
   return (
@@ -33,6 +34,7 @@ const MainPage = () => {
       <SliderComp />
       <Reviews />
       <Footer />
+      <BackToTopButton />
     </div>
   );
 };

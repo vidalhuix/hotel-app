@@ -131,6 +131,10 @@ export const Nav = () => {
     navigate("/login");
   };
 
+  const handleRoomClick = () => {
+    navigate("/hotelrooms");
+  };
+
   return (
     <NavContainer>
       <NavLeft>
@@ -153,7 +157,7 @@ export const Nav = () => {
         </Link>
       </Logo>
       <NavRight>
-        <Button>Book</Button>
+        <Button onClick={handleRoomClick}>Book</Button>
         <Button onClick={handleLoginClick}>Log In</Button>
       </NavRight>
     </NavContainer>

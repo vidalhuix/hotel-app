@@ -17,11 +17,14 @@ const IntroContainer = styled.div`
   overflow: auto;
 
   @media all and (min-width: 744px) {
-    top: -146px; 
+    top: -19em; 
+    padding: 160px 40px 60px 40px;
   }
 
   @media all and (min-width: 1024px) {
     padding: 100px;
+    top: -18em; 
+    padding: 160px 40px 60px 40px;
   }
 `;
 
@@ -78,15 +81,12 @@ const IntroDetails = styled.div`
 
 export const Introduction = () => {
   return (
-    <>
-      <IntroContainer>
-        <IntroHighlight>25 MIN FROM STOCKHOLM</IntroHighlight>
-        <IntroTitle>DISCOVER OUR IDYLL</IntroTitle>
-        <IntroDetails>
-        When you want to gather your colleagues and make important decisions, celebrate something important, or just leave town for a while. Then our historic charm, fantastic food and well-chosen drinks await ready in our inspiring manor environment.
-        </IntroDetails>
-      </IntroContainer>
-      
-    </>
+    <IntroContainer>
+      <IntroHighlight>25 MIN FROM STOCKHOLM</IntroHighlight>
+      <IntroTitle>DISCOVER OUR IDYLL</IntroTitle>
+      <IntroDetails>
+      When you want to gather your colleagues and make important decisions, celebrate something important, or just leave town for a while. Then our historic charm, fantastic food and well-chosen drinks await ready in our inspiring manor environment.
+      </IntroDetails>
+    </IntroContainer>
   )
 }

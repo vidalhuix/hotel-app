@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import { ContactIcon, FindUsLink, ListWrapper } from "./Footer.styled";
+import hotelLogo from "../../assets/logo-hotel.svg";
+import fbLogo from "../../assets/logo-facebook.svg";
+import insLogo from "../../assets/logo-instagram.svg";
+import goLogo from "../../assets/logo-google-maps.svg";
+import smile01 from "../../assets/smile-1.svg";
+import smile02 from "../../assets/smile-2.svg";
+import smile03 from "../../assets/smile-3.svg";
 
 export const Footer = () => {
   return (
     <StyledFooter>
       <StyledLogo href="/">
-        <img src="/public/svg/logo-hotel.svg" alt="Logo Hotel Itaca" />
+        <img src={hotelLogo} alt="Logo Hotel Itaca" />
       </StyledLogo>
       <FooterBody>
         <ListWrapper>
@@ -27,19 +34,19 @@ export const Footer = () => {
           <ContactIconWrapper>
             <FindUsLink
               link="https://www.facebook.com/"
-              imgSrc="/public/svg/logo-facebook.svg"
+              imgSrc={fbLogo}
               altText="Facebooks icon"
               target="_blank"
             />
             <FindUsLink
               link="https://www.instagram.com/"
-              imgSrc="/public/svg/logo-instagram.svg"
+              imgSrc={insLogo}
               altText="Instagram icon"
               target="_blank"
             />
             <FindUsLink
               link="https://www.google.se/maps/place/Ithaca/@38.4019904,20.6084027,12z/data=!3m1!4b1!4m6!3m5!1s0x135d952249df9f5f:0x6acd8d9ffb56445a!8m2!3d38.4284603!4d20.6764877!16zL20vMGdtZzg?entry=ttu"
-              imgSrc="/public/svg/logo-google-maps.svg"
+              imgSrc={goLogo}
               altText="Google maps icon"
               target="_blank"
             />
@@ -57,21 +64,21 @@ export const Footer = () => {
       <ContactIconWrapper>
         <ContactIcon
           link="/contact/arnau"
-          imgSrc="/public/svg/smile-1.svg"
+          imgSrc={smile01}
           altText="Arnaus's contact icon"
           labelFor="contact-arnau"
           label="Arnau"
         />
         <ContactIcon
           link="/contact/cornelia"
-          imgSrc="/public/svg/smile-2.svg"
+          imgSrc={smile02}
           altText="Cornelia's contact icon"
           labelFor="contact-arnau"
           label="Cornelia"
         />
         <ContactIcon
           link="/contact/jing"
-          imgSrc="/public/svg/smile-3.svg"
+          imgSrc={smile03}
           altText="Jings's contact icon"
           labelFor="contact-jing"
           label="Jing"

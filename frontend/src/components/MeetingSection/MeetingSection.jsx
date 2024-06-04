@@ -18,6 +18,7 @@ export const MeetingSection = () => {
 };
 
 const ContainerMeeting = styled.div`
+ 
   padding-top: 50px;
   padding-bottom:16px;
   text-align: center;

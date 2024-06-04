@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { SlideContentBox } from "./SlideContentBox";
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
+import Slide01 from "../../assets/01-slide.jpg";
+import Slide02 from "../../assets/02-slide.jpg";
+import Slide03 from "../../assets/03-slide.jpg";
+import Slide04 from "../../assets/04-slide.jpg";
+import Slide05 from "../../assets/05-slide.jpg";
+
 // Default theme
 import "@splidejs/react-splide/css";
 // import '@splidejs/react-splide/css/sea-green';
@@ -15,22 +21,42 @@ export const SliderComp = () => {
           type: "loop",
           perPage: 3,
           perMove: 1,
-          autoplay: true,
-          gap: 5,
-          interval: 5000,
-          pauseOnHover: true,
-          resetProgress: false,
-          fixedWidth: "25rem",
-          heightRatio: 0.3,
+          gap: 10,
+          arrows: 'slider',
+          // autoplay: false,
+          // interval: 5000,
+          // pauseOnHover: true,
+          // fixedWidth: "25rem",
+          // heightRatio: 0.3,
+          speed: 600,
+          pagination: 'slider', // 'slider' or false
+
           focus: "center",
           padding: { left: "2rem", right: "2rem" },
           easing: "cubic-bezier(0.25, 1, 0.5, 1)",
           arrows: true,
+          breakpoints: {
+            991: {
+              // Tablet
+              perPage: 3,
+              gap: '4vw',
+            },
+            767: {
+              // Mobile Landscape
+              perPage: 1,
+              gap: '4vw',
+            },
+            479: {
+              // Mobile Portrait
+              perPage: 1,
+              gap: '4vw',
+            }
+          }
         }}
       >
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/public/01-slide.jpg"
+            imgSrc={Slide01}
             imgAlt="Dinner table"
             title="Dinner & Breakfast"
             description="Indulge in a gourmet dinner featuring exquisite cuisine, elegant ambiance, and exceptional service."
@@ -40,7 +66,7 @@ export const SliderComp = () => {
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/public/02-slide.jpg"
+            imgSrc={Slide02}
             imgAlt="Corporate Meetings"
             title="Corporate Meetings"
             description="Celebrate your special day with elegant decor and exceptional service in our grand ballroom."
@@ -50,7 +76,7 @@ export const SliderComp = () => {
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/public/03-slide.jpg"
+            imgSrc={Slide03}
             imgAlt="Conferences"
             title="Conferences"
             description="Host large-scale conferences with advanced audiovisual equipment and flexible seating arrangements."
@@ -60,7 +86,7 @@ export const SliderComp = () => {
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/public/04-slide.jpg"
+            imgSrc={Slide04}
             imgAlt="Family Reunions"
             title="Family Reunions"
             description="Reconnect with loved ones in a spacious venue offering activities for all ages."
@@ -70,7 +96,7 @@ export const SliderComp = () => {
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/public/05-slide.jpg"
+            imgSrc={Slide05}
             imgAlt="Dinner table"
             title="Yoga Retreats"
             description="Relax and rejuvenate with guided yoga sessions and wellness activities in serene surroundings."

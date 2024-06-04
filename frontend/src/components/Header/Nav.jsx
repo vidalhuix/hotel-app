@@ -1,11 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; 
 import styled from "styled-components";
+import { FaAngleDown } from "react-icons/fa";
 import logo from "../../assets/logo.png";
-import heroVideo from "../../assets/herovideo.mp4";
 
-// Styling for the navigation container
-// 
 const NavContainer = styled.nav`
   padding: 5px;
   margin: 0;
@@ -19,30 +17,46 @@ const NavContainer = styled.nav`
   font-family: "Apercu", sans-serif;
   font-size: 16px;
   display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-// Styling for the left side of the navigation bar
 const NavLeft = styled.div`
   display: flex;
   align-items: center;
   flex: 1;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-// Styling for the unordered list in the navigation bar
 const NavList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    display: ${(props) => (props.$show ? "flex" : "none")};
+  }
 `;
 
-// Styling for each item in the navigation bar
 const NavItem = styled.li`
   padding: 10px;
+
+  @media (max-width: 768px) {
+    padding: 10px 0;
+  }
 `;
 
-// Styling for the navigation links
 const NavLink = styled(Link)`
   text-decoration: none;
   padding: 10px 20px;
@@ -50,12 +64,11 @@ const NavLink = styled(Link)`
   color: #000000;
 
   &:hover {
-    background-color: #f8f4f4;
+    background-color: #f0f2f0;
     border-radius: 20px;
   }
 `;
 
-// Styling for the logo in the navigation bar
 const Logo = styled.div`
   flex: 0;
 
@@ -65,16 +78,20 @@ const Logo = styled.div`
   }
 `;
 
-// Styling for the right side of the navigation bar
 const NavRight = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
   flex: 1;
   justify-content: center;
+  margin-top: 0;
+
+  @media (max-width: 768px) {
+    margin-top: -5px;
+    margin-bottom: 5px;
+  }
 `;
 
-// Styling for the buttons in the navigation bar
 const Button = styled.button`
   padding: 10px 20px;
   background-color: #48544c;
@@ -82,93 +99,63 @@ const Button = styled.button`
   border: none;
   border-radius: 20px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    padding: 10px 15px;
+  }
 `;
 
-// Styling for the container of the hero video
-const HeroVideoContainer = styled.div`
-  position: relative;
-  top: 85px;
-  left: 0;
-  width: 100%;
-  height: 80vh;
-  overflow: hidden;
-  margin-left:0;
-`;
+const DropdownIcon = styled(FaAngleDown)`
+  display: none;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: transform 0.5s ease;
 
-// Styling for the hero video itself
-const HeroVideo = styled.video`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-// Styling for the container of the text overlay
-const TextOverlayContainer = styled.div`
-  position: relative;
-  top: -340px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  text-align: center;
-`;
-
-// Styling for the text overlay
-const TextOverlay = styled.div`
-  color: #ffffff;
-  font-size: 72px;
-  font-weight: 700;
-  font-family: "Apercu", sans-serif;
-  line-height: 0.9;
-  animation: slideDown 1.5s ease-in-out;
-  text-shadow: 2px 3px 5px rgba(0,0,0,0.1);
-
-  @keyframes slideDown {
-    0% {
-      transform: translateY(-300%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  @media (max-width: 768px) {
+    display: inline-block;
+    transform: rotate(${(props) => (props.$flipped ? "180deg" : "0deg")});
   }
 `;
 
 export const Nav = () => {
+  const [showNavList, setShowNavList] = useState(false);
+  const [isIconFlipped, setIsIconFlipped] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleNavList = () => {
+    setShowNavList(!showNavList);
+    setIsIconFlipped(!isIconFlipped);
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
   return (
-    <>
-      <NavContainer>
-        <NavLeft>
-          <NavList>
-            <NavItem>
-              <NavLink to="/conference">Conference & Event</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/spa">Spa</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/dining">Dining</NavLink>
-            </NavItem>
-          </NavList>
-        </NavLeft>
-        <Logo>
+    <NavContainer>
+      <NavLeft>
+        <NavList $show={showNavList}>
+          <NavItem>
+            <NavLink to="/conference">Conference & Event</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/spa">Spa</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/dining">Dining</NavLink>
+          </NavItem>
+        </NavList>
+        <DropdownIcon onClick={toggleNavList} $flipped={isIconFlipped ? 1 : 0} />{" "}
+      </NavLeft>
+      <Logo>
+        <Link to="/">
           <img src={logo} alt="Logo" />
-        </Logo>
-        <NavRight>
-          <Button>Book</Button>
-          <Button>Log In</Button>
-        </NavRight>
-      </NavContainer>
-      <HeroVideoContainer>
-        <HeroVideo autoPlay loop muted>
-          <source src={heroVideo} type="video/mp4" />
-        </HeroVideo>
-      </HeroVideoContainer>
-      <TextOverlayContainer>
-        <TextOverlay>
-          WELCOME TO <br></br> THE SUNSIDE HOTEL
-        </TextOverlay>
-      </TextOverlayContainer>
-    </>
+        </Link>
+      </Logo>
+      <NavRight>
+        <Button>Book</Button>
+        <Button onClick={handleLoginClick}>Log In</Button>
+      </NavRight>
+    </NavContainer>
   );
 };

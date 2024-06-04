@@ -45,6 +45,7 @@ const ItemContainer = styled.div`
 const DescriptionContainer = styled.div`
   display: inline;
   padding: 0 50px;
+  opacity: 50%;
   @media (min-width: 400px) {
     padding: 0;
   }
@@ -77,4 +78,6 @@ const DescriptionContainer = styled.div`
   a:hover {
     text-decoration: underline;
   }
+  
+
 `;

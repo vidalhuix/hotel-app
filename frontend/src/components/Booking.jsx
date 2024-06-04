@@ -12,35 +12,38 @@ const BookingContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin: 0px auto 0 auto;
+  margin: 0px auto 30px auto;
   font-family: 'Apercu Pro', sans-serif;
   font-size: 16px;
   text-align: left;
   position: relative;
-  top: -100px;
   box-shadow: 0 3px 60px rgba(0, 0, 0, .05);
   box-sizing: border-box;
  
   @media all and (min-width: 744px) {
-    flex-direction: row;
+    flex-direction: column;
     max-width: 900px;
-    text-align: center;
     justify-content: center;
-    padding: 4px 40px 12px 40px;
+    padding: 16px 40px;
+    top: -13em;
+    margin: 0px auto 0px auto;
   }
 
-  @media all and (min-width: 1024px) {
+  @media all and (min-width: 1025px) {
     flex-direction: row;
     max-width: 1200px;
-    justify-content: space-between;
-    padding: 4px 40px 12px 40px;
+    padding: 16px 40px;
     align-items: center;
     box-shadow: 0 3px 60px rgba(0, 0, 0, .05);
+    top: -13em;
+    margin: 0px auto 0px auto;
+    justify-content: space-between;
   }
 `;
 
-// Styling for the date and guest container
+// Styling for the date/guest container
 const SubBookingContainer = styled.div`
+  width: 100%;
   font-weight: 700;
   padding: 10px 15px;
 `;
@@ -90,66 +93,18 @@ const SearchButton = styled.button`
   color: #fff;
   text-decoration: none;
   
+  
   @media all and (min-width: 744px) {
-    width: 120px;
     height: auto;
   }
 
-  @media all and (min-width: 1024px) {
+  @media all and (min-width: 1025px) {
     width: 120px;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: #0000;
     font-weight: 400;
-    height: auto;
   }
 `
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 10px 15px;
-`;
-
-const Label = styled.label`
-  font-size: 16px;
-  font-weight: bold;
-`;
-
-const NumberInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const NumberButton = styled.button`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:#44564c;
-  color:white;
-  cursor: pointer;
-  border: none;
-  padding-top: 0;
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-`;
-
-const Input = styled.input`
-  width: 50px;
-  text-align: center;
-  border: 1px solid #ccc;
-  margin: 0 5px;
-`;
 
 const DateInput = styled.input`
   padding: 5px;
@@ -166,43 +121,26 @@ export const Booking = () => {
   };
 
   return (
-    <>
-      <BookingContainer>
-        <SubBookingContainer>
-          <SelectTitle>Arrive Date:</SelectTitle>
-          <DateInput type="date" name="date" id="date" required />
-        </SubBookingContainer>
+    <BookingContainer>
+      <SubBookingContainer>
+        <SelectTitle>Arrive Date:</SelectTitle>
+        <DateInput type="date" name="date" id="date" required />
+      </SubBookingContainer>
 
-        <SubBookingContainer>
-          <SelectTitle>Choose number of guests:</SelectTitle>
-          <SelectBox name="guest" id="guest">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </SelectBox>
-        </SubBookingContainer>
-
-        <SubBookingContainer>
-          <SelectTitle>  </SelectTitle>
-          <SearchButton>Search</SearchButton>
-        </SubBookingContainer>
-
-        {/* <Form>
-          <Label htmlFor="adults">Number of Adults:</Label>
-          <NumberInputContainer>
-            <NumberButton onClick={() => changeNumber(setAdults, -1)} disabled={adults <= 1}>-</NumberButton>
-            <Input type="number" id="adults" value={adults} readOnly />
-            <NumberButton onClick={() => changeNumber(setAdults, 1)} disabled={adults >= 4}>+</NumberButton>
-          </NumberInputContainer>
-
-          <Label htmlFor="children">Number of Children:</Label>
-          <NumberInputContainer>
-            <NumberButton onClick={() => changeNumber(setChildren, -1)} disabled={children <= 0}>-</NumberButton>
-            <Input type="number" id="children" value={children} readOnly />
-            <NumberButton onClick={() => changeNumber(setChildren, 1)} disabled={children >= 3}>+</NumberButton>
-          </NumberInputContainer>
-        </Form> */}
-      </BookingContainer>
-    </>
+      <SubBookingContainer>
+        <SelectTitle>Number of guests:</SelectTitle>
+        <SelectBox name="guest" id="guest">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="3">4</option>
+        </SelectBox>
+      </SubBookingContainer>
+      
+      <SubBookingContainer>
+        <SelectTitle>  </SelectTitle>
+        <SearchButton>Search</SearchButton>
+      </SubBookingContainer>
+    </BookingContainer>
   )
 }

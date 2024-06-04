@@ -10,10 +10,12 @@ import { SliderComp } from "./components/MeetingSection/SliderComp";
 import { Reviews } from "./components/Reviews";
 import { BookingSection } from "./components/Booking/BookingSection";
 import { BackToTopButton } from "./components/BackToTopButton";
+import ScrollToTop from "./components/ScrollToTop";
 
 export const App = () => {
   return (
     <Router>
+      <ScrollToTop/>
       <Nav />
       <Routes>
         <Route path="/" element={<MainPage />} />

@@ -84,8 +84,8 @@ const Grid = styled.div`
 `;
 
 const GridItemImg = styled.div`
-  img {
     height: 600px;
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;

@@ -49,11 +49,40 @@ const SubBookingContainer = styled.div`
   padding: 10px 15px;
 `;
 
+const ButtonContainer = styled.div`
+  width: 100%;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  color: white;
+  
+  @media all and (min-width: 744px) {
+    
+  }
+
+  @media all and (min-width: 1025px) {
+    width: 30%;
+    padding: 0 5px;
+    flex-grow: 1;
+  }
+`;
+
 // Styling for the date and guest selection title
 const SelectTitle = styled.div`
   font-family: 'Apercu Pro', sans-serif;
   padding-bottom: 7px;
   color: #111112;
+  text-align: left;
+  font-size:16px;
+  font-weight: 400;
+  line-height: 1.3;
+`;
+
+const ButtonTitle = styled.div`
+  font-family: 'Apercu Pro', sans-serif;
+  padding-bottom: 7px;
+  color: white;
   text-align: left;
   font-size:16px;
   font-weight: 400;
@@ -93,7 +122,6 @@ const SearchButton = styled.button`
   position: relative;
   color: #fff;
   text-decoration: none;
-  
   
   @media all and (min-width: 744px) {
     height: auto;
@@ -141,12 +169,10 @@ export const Booking = () => {
         </SelectBox>
       </SubBookingContainer>
       
-      <SubBookingContainer>
-        <SelectTitle>  </SelectTitle>
-        
+      <ButtonContainer>
+        <ButtonTitle> s </ButtonTitle>
         <SearchButton onClick={handleRoomClick}>Search</SearchButton>
-  
-      </SubBookingContainer>
+      </ButtonContainer>
     </BookingContainer>
   )
 }

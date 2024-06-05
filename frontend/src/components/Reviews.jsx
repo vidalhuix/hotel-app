@@ -102,10 +102,9 @@ const ReviewContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: start;
-  padding: 30px 0;
   border-radius: 8px;
   max-width: 1200px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto;
 `;
 
 const Quotes = styled.div`
@@ -164,9 +163,9 @@ const ReviewerInfo = styled.div`
 
 const ReadMoreButton = styled.button`
   display: block;
-  margin: 20px auto;
+  margin: 20px auto 70px auto;
   padding: 10px 20px;
-  background-color: #d3af97;
+  background-color:#44554b;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -175,7 +174,7 @@ const ReadMoreButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #44554b;
+    background-color: #d3af97;
     transform: scale(1.05);
     transition: all ease 0.3s;
   }

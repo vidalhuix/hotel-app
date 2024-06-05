@@ -150,7 +150,7 @@ app.get("/hotelrooms/:guestamount", async (req, res) => {
   }
 });
 
-app.get("/hotelrooms/booking/:startdate", async (req, res) => {
+/* app.get("/hotelrooms/booking/:startdate", async (req, res) => {
   try {
     const startDate = req.params.startdate;
     const start = new Date(startDate);
@@ -177,7 +177,7 @@ app.get("/hotelrooms/booking/:startdate", async (req, res) => {
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});
+}); */
 
 // This endpoint is used to get room status on the given date
 app.get("/hotelrooms/status/date/:date", async (req, res) => {

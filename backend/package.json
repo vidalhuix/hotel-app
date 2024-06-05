@@ -20,5 +20,7 @@
     "mongoose": "^8.4.1",
     "nodemon": "^3.0.1",
     "v8flags": "^4.0.1"
-  }
+  },
+  "main": "server.js",
+  "keywords": []
 }

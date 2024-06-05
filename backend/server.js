@@ -45,13 +45,6 @@ const Hotelrooms = mongoose.model("Hotelrooms", {
   description: String,
   image: String,
   facilities: [String],
-  availability: [
-    {
-      startDate: Date,
-      endDate: Date,
-      availableRooms: Number,
-    },
-  ],
 });
 
 // Room status model
@@ -200,40 +193,10 @@ app.get("/hotelrooms/:guestamount", async (req, res) => {
   }
 });
 
-/* app.get("/hotelrooms/booking/:startdate", async (req, res) => {
-  try {
-    const startDate = req.params.startdate;
-    const start = new Date(startDate);
-    //const end = new Date(endDate);
-
-    console.log(`Start Date: ${start}`);
-
-    const availableRooms = await Hotelrooms.find({
-      $and: [
-        {"availability.startDate": { $lte: start }},
-        {"availability.endDate": { $gte: start }},
-        {"availability.availableRooms": { $gt: 0 }}
-      ]
-    });
-
-    console.log(`Available Rooms: ${JSON.stringify(availableRooms)}`);
-
-    if (availableRooms.length > 0) {
-      res.json(availableRooms);
-    } else {
-      res.status(404).json({ error: 'No rooms found' });
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}); */
-
 // This endpoint is used to get room status on the given date
 app.get("/hotelrooms/status/date/:date", async (req, res) => {
   try {
     const date = new Date(req.params.date);
-
     const availableRooms = await RoomStatus.find({
       $and: [
         { date: { $eq: date } },
@@ -245,6 +208,43 @@ app.get("/hotelrooms/status/date/:date", async (req, res) => {
       res.json(availableRooms);
     } else {
       res.status(404).json({ error: "No rooms found" });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Endpoint to get room status based on the date and guest amounts
+app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, res) => {
+  try {
+    const date = new Date(req.params.date);
+    const guest = parseInt(req.params.guestamount);
+
+    const rooms = await Hotelrooms.find({ capacity: { $gte: guest } });
+    console.log("Found rooms with sufficient capacity:", rooms);
+
+    const roomIds = rooms.map(room => room.id);
+    const availableRooms = await RoomStatus.find({
+      $and: [
+        {roomId: { $in: roomIds }},
+        {date: { $eq: date } },
+        {status: { $eq: 1 }}
+      ]
+    });
+
+    if (availableRooms.length > 0) {
+      const Roomsdata = availableRooms.map(status => {
+        const room = rooms.find(r => r.id === status.roomId);
+        return {
+          ...room._doc,
+          status: status.status,
+          date: status.date
+        };
+      });
+      res.json(Roomsdata);
+    } else {
+      res.status(404).json({ error: "No rooms foundd" });
     }
   } catch (error) {
     console.error("Error:", error);

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Nav } from "./components/Header/Nav";
 import { Login } from "./components/User/Login";
 import { Register } from "./components/User/Register";
-import { Roomspage } from "./components/Roomspage";
+import { Roomspage } from "./components/Rooms/Roomspage";
 import { Hero } from "./components/Header/Hero";
 import { BookingSection } from "./components/Booking/BookingSection";
 import { MeetingSection } from "./components/MeetingSection/MeetingSection";

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; 
 
 // Styling for the booking container  
-const BookingContainer = styled.div`
+const BookingForm = styled.form`
   width: 70%;
   height: auto;
   z-index: 1;
@@ -69,7 +69,7 @@ const ButtonContainer = styled.div`
 `;
 
 // Styling for the date and guest selection title
-const SelectTitle = styled.div`
+const SelectTitle = styled.label`
   font-family: 'Apercu Pro', sans-serif;
   padding-bottom: 7px;
   color: #111112;
@@ -141,38 +141,47 @@ const DateInput = styled.input`
   width: 100%;
 `;
   
-export const Booking = () => {
-  const [guests, setGuests] = useState(0);
+export const Booking = ({onSearch}) => {
+  const [date, setDate] = useState('');
+  const [guests, setGuests] = useState('1');
   const navigate = useNavigate();
 
-  const changeNumber = (setter, delta) => {
-    setter(prevValue => Math.max(prevValue + delta, 0));
-  }
-  const handleRoomClick = () => {
-    navigate("/hotelrooms");
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      onSearch(date, guests);
+      navigate('/bookingrooms');
   };
 
   return (
-    <BookingContainer>
+    <BookingForm onSubmit={handleSubmit}>
       <SubBookingContainer>
-        <SelectTitle>Arrive Date:</SelectTitle>
-        <DateInput type="date" name="date" id="date" required />
+        <SelectTitle htmlFor="date">Arrive Date:</SelectTitle>
+        <DateInput 
+          type="date" 
+          id="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)} 
+          required />
       </SubBookingContainer>
 
       <SubBookingContainer>
-        <SelectTitle>Number of guests:</SelectTitle>
-        <SelectBox name="guest" id="guest">
+        <SelectTitle htmlFor="guests">Number of guests:</SelectTitle>
+        <SelectBox 
+          id="guest"
+          value={guests}
+          onChange={(e) => setGuests(e.target.value)}
+          required>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
-          <option value="3">4</option>
+          <option value="4">4</option>
         </SelectBox>
       </SubBookingContainer>
       
       <ButtonContainer>
         <ButtonTitle> s </ButtonTitle>
-        <SearchButton onClick={handleRoomClick}>Search</SearchButton>
+        <SearchButton type="submit">Search</SearchButton>
       </ButtonContainer>
-    </BookingContainer>
+    </BookingForm>
   )
 }

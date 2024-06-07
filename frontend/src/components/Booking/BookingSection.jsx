@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Booking } from '../Booking'
 import { Introduction } from '../Introduction'
+import { HotelForm } from "./HotelForm";
 
 const BookingBox = styled.div`
   background-color: #f0f2f0;
@@ -24,10 +25,11 @@ const BookingBox = styled.div`
   }
 `
 
-export const BookingSection = () => {
+export const BookingSection = ({onSearch}) => {
+
   return (
     <BookingBox>
-      <Booking />
+      <HotelForm onSearch={onSearch} />
       <Introduction />
     </BookingBox>
   )

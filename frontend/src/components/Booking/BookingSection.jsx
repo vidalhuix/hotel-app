@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Booking } from '../Booking'
 import { Introduction } from '../Introduction'
-import { HotelForm } from "./HotelForm";
+import { Booking } from './Booking';
 
 const BookingBox = styled.div`
   background-color: #f0f2f0;
@@ -14,7 +13,6 @@ const BookingBox = styled.div`
   box-sizing: border-box;
   top: -3em;
  
-  
   @media all and (min-width: 744px) {
     max-height: 28em;
   }
@@ -26,10 +24,9 @@ const BookingBox = styled.div`
 `
 
 export const BookingSection = ({onSearch}) => {
-
   return (
     <BookingBox>
-      <HotelForm onSearch={onSearch} />
+      <Booking onSearch={onSearch}/>
       <Introduction />
     </BookingBox>
   )

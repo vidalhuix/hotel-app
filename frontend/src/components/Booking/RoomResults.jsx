@@ -46,8 +46,8 @@ const filteredRooms = filterRoomsByType(rooms);
         {filteredRooms.map((room) => (
           <Room>
               <h2>Room: {room.type}</h2>
-              <p>Price: ${room.price}</p>
-              <p>Size: {room.size}</p>
+              <p>Price: {room.price} €</p>
+              <p>Size: {room.size} m2</p>
               <p>Capacity: {room.capacity}</p>
               <p>{room.description}</p>
               <p>Facilities: {room.facilities}</p>

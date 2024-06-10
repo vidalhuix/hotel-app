@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -109,10 +109,32 @@ const SignUpLink = styled(Link)`
   }
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  margin-top: -0.5rem;
+  margin-bottom: 0rem;
+`;
+
+const SuccessMessage = styled.p`
+  color: green;
+  margin-top: -0.5rem;
+  margin-bottom: 0rem;
+`;
+
 export const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    if (location.state && location.state.successMessage) {
+      setSuccessMessage(location.state.successMessage);
+    }
+  }, [location.state]);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -126,10 +148,31 @@ export const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
+
+    try {
+      const response = await fetch("https://sunside-hotel.onrender.com/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("accessToken", data.accessToken);
+        navigate("/user-details");
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Failed to log in. Please try again later.");
+    }
   };
 
   return (
@@ -159,11 +202,13 @@ export const Login = () => {
               maxLength={20}
             />
             <EyeIcon
-              icon={showPassword ? faEye : faEyeSlash}
+              icon={showPassword ? faEyeSlash : faEye}
               onClick={togglePasswordVisibility}
             />
           </InputWrapper>
         </FormGroup>
+        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button type="submit">Log In</Button>
         <SmallText>
           <BoldText>Don't have an account?</BoldText>

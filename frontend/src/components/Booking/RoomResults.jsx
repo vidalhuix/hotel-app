@@ -89,8 +89,7 @@ const GridDescription = styled.div`
 `;
 
 const GridFacility = styled.ul`
-  font-family: 'Apercu Pro', sans-serif;
-  font-size: 16px; 
+  font-size: 14px; 
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 80px;
@@ -99,6 +98,7 @@ const GridFacility = styled.ul`
 
 const FacilityItem = styled.li`
   padding: 8px 0;
+  font-family: 'Apercu Pro', sans-serif;
 `;
 
 export const RoomResults = ({ rooms }) => {

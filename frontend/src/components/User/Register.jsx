@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -109,11 +109,26 @@ const SignInLink = styled(Link)`
   }
 `;
 
+const SuccessMessage = styled.p`
+  color: green;
+  margin-top: -0.5rem;
+  margin-bottom: 0rem;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  margin-top: -0.5rem;
+  margin-bottom: 0rem;
+`;
+
 export const Register = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -131,17 +146,46 @@ export const Register = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const response = await fetch("https://sunside-hotel.onrender.com/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Registration successful:", data);
+        setSuccessMessage("Account created successfully. You can now proceed to log in.");
+        setErrorMessage("");
+        navigate("/login", {
+          state: {
+            successMessage: "Account created successfully. You can now proceed to log in.",
+          },
+        });
+      } else {
+        console.error("Registration failed:", data);
+        setErrorMessage("Registration failed. Please try again.");
+        setSuccessMessage("");
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+      setErrorMessage("Registration failed. Please try again later.");
+      setSuccessMessage("");
+    }
   };
 
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
         <h2>CREATE YOUR ACCOUNT</h2>
+        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <FormGroup>
           <Label htmlFor="name">Name:</Label>
           <Input

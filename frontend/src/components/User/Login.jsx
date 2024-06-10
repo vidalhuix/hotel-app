@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -115,12 +115,26 @@ const ErrorMessage = styled.p`
   margin-bottom: 0rem;
 `;
 
+const SuccessMessage = styled.p`
+  color: green;
+  margin-top: -0.5rem;
+  margin-bottom: 0rem;
+`;
+
 export const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    if (location.state && location.state.successMessage) {
+      setSuccessMessage(location.state.successMessage);
+    }
+  }, [location.state]);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -193,6 +207,7 @@ export const Login = () => {
             />
           </InputWrapper>
         </FormGroup>
+        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button type="submit">Log In</Button>
         <SmallText>

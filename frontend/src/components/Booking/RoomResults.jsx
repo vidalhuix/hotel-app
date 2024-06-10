@@ -101,7 +101,10 @@ const FacilityItem = styled.li`
   font-family: 'Apercu Pro', sans-serif;
 `;
 
-export const RoomResults = ({ rooms }) => {
+export const RoomResults = ({ rooms, checkinDate }) => {
+  const [checkoutDate, setCheckoutDate] = useState('');
+  const navigate = useNavigate();
+
   const filterRoomsByType = (rooms) => {
     const roomMap = new Map();
     rooms.forEach((room) => {
@@ -110,9 +113,9 @@ export const RoomResults = ({ rooms }) => {
         }
     });
     return Array.from(roomMap.values());
-};
+  };
 
-const filteredRooms = filterRoomsByType(rooms);
+  const filteredRooms = filterRoomsByType(rooms);
 
   if (filteredRooms.length === 0) {
     return (
@@ -122,14 +125,30 @@ const filteredRooms = filterRoomsByType(rooms);
     );
   }
 
- /*  const [date, setDate] = useState('');
-  const navigate = useNavigate();
+  const handleBookingSubmit = (e, roomType) => {
+    e.preventDefault();
+      
+    fetch("https://sunside-hotel.onrender.com/hotelrooms/booking/check-availability", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ checkinDate, checkoutDate, roomType }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Available room id:", data.availableRoomId);
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      onSearch(date);
-      navigate('/hotelrooms');
-  }; */
+        navigate("/login", {
+          state: {
+            successMessage: "Room is available under this period. You can book now and log in.",
+          },
+        });
+      })
+      .catch((error) => {
+        console.error('Unavailable:', error);
+      });
+  }; 
 
   return (
     <Container>
@@ -155,14 +174,14 @@ const filteredRooms = filterRoomsByType(rooms);
                   </FacilityItem>
                 ))}
               </GridFacility>
-              <BookingForm>
+              <BookingForm onSubmit={(e) => handleBookingSubmit(e, room.type)}>
                 <SubBookingContainer>
                   <SelectTitle htmlFor="date">Checkout:</SelectTitle>
                   <DateInput 
                     type="date" 
-                    id="date"
-                    //value={date}
-                    // onChange={(e) => setDate(e.target.value)} 
+                    id="checkoutDate"
+                    value={checkoutDate}
+                    onChange={(e) => setCheckoutDate(e.target.value)} 
                     required />
                 </SubBookingContainer>
                     

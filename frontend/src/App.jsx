@@ -6,7 +6,6 @@ import { Register } from "./components/User/Register";
 import { UserPage } from "./components/User/UserPage";
 import { Roomspage } from "./components/Rooms/Roomspage";
 import { Hero } from "./components/Header/Hero";
-import { BookingSection } from "./components/Booking/BookingSection";
 import { MeetingSection } from "./components/MeetingSection/MeetingSection";
 import { SliderComp } from "./components/MeetingSection/SliderComp";
 import { Reviews } from "./components/Reviews";
@@ -18,12 +17,14 @@ import { RoomResults } from './components/Booking/RoomResults';
 
 export const App = () => {
   const [rooms, setRooms] = useState([]);
+  const [checkinDate, setCheckinDate] = useState(null);
 
     const onSearch = (date, guests) => {
       console.log({date})
       fetch(`https://sunside-hotel.onrender.com/hotelrooms/booking/date/${date}/guestamount/${guests}`)
           .then((response) => response.json())
           .then((data) => {
+            setCheckinDate(date);
             setRooms(data);
           })
           .catch((error) => console.error('Error fetching data:', error));
@@ -38,7 +39,7 @@ export const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/hotelrooms" element={<Roomspage/>} />
-        <Route path="/bookingrooms" element={<RoomResults rooms={rooms}/>} />
+        <Route path="/bookingrooms" element={<RoomResults rooms={rooms} checkinDate={checkinDate} />} />
         <Route path="/user-details" element={<UserPage />} />
       </Routes>
     </Router>

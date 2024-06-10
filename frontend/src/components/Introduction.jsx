@@ -12,19 +12,23 @@ const IntroContainer = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: -13%;
   position: relative;
   overflow: auto;
 
   @media all and (min-width: 744px) {
     top: -19em; 
     padding: 160px 40px 60px 40px;
+    height: 30em;
+    margin-bottom: 0;
   }
 
-  @media all and (min-width: 1024px) {
+  @media all and (min-width: 1025px) {
     padding: 100px;
     top: -18em; 
     padding: 160px 40px 60px 40px;
+    height: 36em;
+    margin-bottom: 0;
   }
 `;
 

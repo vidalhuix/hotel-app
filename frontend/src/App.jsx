@@ -13,7 +13,6 @@ import { Reviews } from "./components/Reviews";
 import { Footer } from "./components/Footer/Footer";
 import { BackToTopButton } from "./components/BackToTopButton";
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
-import { BookingSection } from "./components/Booking/BookingSection";
 import { RoomResults } from './components/Booking/RoomResults';
 
 export const App = () => {

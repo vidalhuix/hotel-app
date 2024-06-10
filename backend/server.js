@@ -252,6 +252,48 @@ app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, r
   }
 });
 
+// Endpoint to check room status based on the check-in date and check-out date and room type
+app.post("/hotelrooms/booking/check-availability", async (req, res) => {
+  try {
+    const requestData = req.body;
+    const checkinDate = new Date(requestData.checkinDate);
+    const checkoutDate = new Date(requestData.checkoutDate);
+    const roomType = requestData.roomType;
+
+    // Fetch all rooms with the give roomType
+    const rooms = await Hotelrooms.find({ type: { $eq: roomType } });
+    
+    // Loop throught each room to check the status of each day btw checkinDate and checkoutDate is 1. 
+    // If so, return 200 ok. Otherwise continue to check the next room.
+    // If the loop finishes and no room is found, return 404
+    for (let room of rooms) {
+      for (let date = checkinDate; date <= checkoutDate; date.setDate(date.getDate() + 1)) {
+        const roomStatusDoc = await RoomStatus.findOne({
+          $and: [
+            {roomId: { $eq: room.id }},
+            {date: { $eq: date } }
+          ]
+        });
+
+        if (roomStatusDoc.status === 0)
+        {
+          break;
+        } else if (date.getTime() === checkoutDate.getTime())
+        {
+          return res.status(200).json({ availableRoomId: room.id });
+        }
+      }
+    }
+    return res.status(404).json({ error: "No available room for the given type and period" });
+
+  } catch (error) {
+    console.error("Failed to check availability:", error);
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+});
+
+
+
 // Registration endpoint to create a new user
 app.post("/users", async (req, res) => {
   try {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"; 
 
 // Styling for the booking container  
@@ -143,8 +143,15 @@ const DateInput = styled.input`
   
 export const Booking = ({onSearch}) => {
   const [date, setDate] = useState('');
+  const [minDate, setMinDate] = useState('');
   const [guests, setGuests] = useState('1');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
+    setMinDate(today);
+    setDate(today);
+  }, []);
 
   const handleSubmit = (e) => {
       e.preventDefault();
@@ -160,6 +167,7 @@ export const Booking = ({onSearch}) => {
           type="date" 
           id="date"
           value={date}
+          min={minDate}
           onChange={(e) => setDate(e.target.value)} 
           required />
       </SubBookingContainer>

@@ -3,13 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Nav } from "./components/Header/Nav";
 import { Login } from "./components/User/Login";
 import { Register } from "./components/User/Register";
-import { Roomspage } from "./components/Roomspage";
 import { UserPage } from "./components/User/UserPage";
+import { Roomspage } from "./components/Rooms/Roomspage";
 import { Hero } from "./components/Header/Hero";
-import { Footer } from "./components/Footer/Footer";
+import { BookingSection } from "./components/Booking/BookingSection";
 import { MeetingSection } from "./components/MeetingSection/MeetingSection";
 import { SliderComp } from "./components/MeetingSection/SliderComp";
 import { Reviews } from "./components/Reviews";
+import { Footer } from "./components/Footer/Footer";
+import { BackToTopButton } from "./components/BackToTopButton";
+import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
 import { BookingSection } from "./components/Booking/BookingSection";
 import { RoomResults } from './components/Booking/RoomResults';
 
@@ -28,6 +31,7 @@ export const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/" element={<MainPage onSearch={onSearch} />} />
@@ -50,6 +54,7 @@ const MainPage = ({onSearch}) => {
       <SliderComp />
       <Reviews />
       <Footer />
+      <BackToTopButton />
     </div>
   );
 };

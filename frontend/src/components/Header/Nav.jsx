@@ -143,10 +143,10 @@ export const Nav = () => {
             <NavLink to="/conference">Conference & Event</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/spa">Spa</NavLink>
+            <NavLink to="/hotelrooms">Rooms</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/dining">Dining</NavLink>
+            <NavLink to="/About">About</NavLink>
           </NavItem>
         </NavList>
         <DropdownIcon onClick={toggleNavList} $flipped={isIconFlipped ? 1 : 0} />{" "}

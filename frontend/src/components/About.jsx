@@ -70,11 +70,10 @@ export const AboutUs = () => {
 };
 
 const Container = styled.div`
-  background-color: #44554b;
+  background-color: var(--color-darkgreen);
   height: 100%;
   color: white;
   min-height: 100vh;
-  /* background-image: linear-gradient(180deg, #444d55, white); */
 `;
 const ContactContainer = styled.div`
   max-width: 1000px;
@@ -126,6 +125,7 @@ const Front = styled.div`
     object-fit: cover;
     border-radius: 50%;
     transition: 500 linear;
+    box-shadow: 17px 32px 13px 0px rgba(0, 0, 0, 0.12);
   }
 `;
 const Back = styled.div`
@@ -135,8 +135,9 @@ const Back = styled.div`
   backface-visibility: hidden;
   transform: rotateY(180deg);
   background-color: white;
-  color: #44554b;
+  color: var(--color-darkgreen);
   border-radius: 50%;
+  box-shadow: 17px 32px 13px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,5 +149,12 @@ const Back = styled.div`
     margin: 5px;
     filter: invert(27%) sepia(2%) saturate(3272%) hue-rotate(92deg)
       brightness(102%) contrast(81%);
+    transition: transform 250ms ease-in;
+
+    &:hover {
+      filter: invert(81%) sepia(17%) saturate(543%) hue-rotate(339deg)
+        brightness(90%) contrast(83%); /* Change color on hover */
+      transform: scale(1.1);
+    }
   }
 `;

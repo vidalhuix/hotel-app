@@ -12,8 +12,9 @@ import { Reviews } from "./components/Reviews";
 import { Footer } from "./components/Footer/Footer";
 import { BackToTopButton } from "./components/BackToTopButton";
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
-import { BookingSection } from "./components/Booking/BookingSection";
+import { AboutUs } from "./components/About";
 import { RoomResults } from './components/Booking/RoomResults';
+
 
 export const App = () => {
   const [rooms, setRooms] = useState([]);
@@ -37,6 +38,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<MainPage onSearch={onSearch} />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/dining" element={<AboutUs />} />
         <Route path="/register" element={<Register />} />
         <Route path="/hotelrooms" element={<Roomspage/>} />
         <Route path="/bookingrooms" element={<RoomResults rooms={rooms} checkinDate={checkinDate} />} />

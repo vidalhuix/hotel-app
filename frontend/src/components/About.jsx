@@ -84,6 +84,19 @@ const ContactContainer = styled.div`
   margin: auto;
   padding: 150px 10px;
   text-align: center;
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-300%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @media all and (min-width: 744px) {
+
+  }
 `;
 const CardsContainer = styled.div`
   max-width: 1000px;

@@ -14,6 +14,7 @@ import { BackToTopButton } from "./components/BackToTopButton";
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
 import { AboutUs } from "./components/About";
 import { RoomResults } from './components/Booking/RoomResults';
+import { BookingSection } from './components/Booking/BookingSection';
 
 
 export const App = () => {

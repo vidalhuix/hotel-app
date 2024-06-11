@@ -259,8 +259,7 @@ app.post("/hotelrooms/booking/check-availability", async (req, res) => {
     const checkinDate = new Date(requestData.checkinDate);
     const checkoutDate = new Date(requestData.checkoutDate);
     const roomType = requestData.roomType;
-
-    // Fetch all rooms with the give roomType
+    
     const rooms = await Hotelrooms.find({ type: { $eq: roomType } });
     
     // Loop throught each room to check the status of each day btw checkinDate and checkoutDate is 1. 
@@ -291,8 +290,6 @@ app.post("/hotelrooms/booking/check-availability", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error", details: error.message });
   }
 });
-
-
 
 // Registration endpoint to create a new user
 app.post("/users", async (req, res) => {

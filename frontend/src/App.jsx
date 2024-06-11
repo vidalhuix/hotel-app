@@ -15,7 +15,7 @@ import ScrollToTop from "./components/ScrollToTop"; //this component makes all p
 import { AboutUs } from "./components/About";
 import { RoomResults } from './components/Booking/RoomResults';
 import { BookingSection } from './components/Booking/BookingSection';
-
+import { BookingConfirm } from './components/Booking/BookingConfirm';
 
 export const App = () => {
   const [rooms, setRooms] = useState([]);
@@ -43,6 +43,7 @@ export const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/hotelrooms" element={<Roomspage/>} />
         <Route path="/bookingrooms" element={<RoomResults rooms={rooms} checkinDate={checkinDate} />} />
+        <Route path="/bookingconfirm" element={<BookingConfirm />} />
         <Route path="/user-details" element={<UserPage />} />
       </Routes>
     </Router>

@@ -127,7 +127,8 @@ export const RoomResults = ({ rooms, checkinDate }) => {
 
   const handleBookingSubmit = (e, roomType) => {
     e.preventDefault();
-      
+    console.log(roomType)
+
     fetch("https://sunside-hotel.onrender.com/hotelrooms/booking/check-availability", {
       method: "POST",
       headers: {
@@ -137,11 +138,14 @@ export const RoomResults = ({ rooms, checkinDate }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Available room id:", data.availableRoomId);
-
-        navigate("/login", {
+        console.log("Available room id:", data.availableRoomId, roomType );
+        navigate("/bookingconfirm", {
           state: {
-            successMessage: "Room is available under this period. You can book now and log in.",
+            successMessage: "Room is available under this period. Please confirm your booking details and register your account.",
+            roomType,
+            checkinDate,
+            checkoutDate,
+            roomId: data.availableRoomId
           },
         });
       })
@@ -197,7 +201,6 @@ export const RoomResults = ({ rooms, checkinDate }) => {
   )
 }
 
-
 const BookingForm = styled.form`
   width: 70%;
   height: 10em;
@@ -229,7 +232,7 @@ const BookingForm = styled.form`
   }
 `;
 
-// Styling for the date/guest container
+// Styling for the date container
 const SubBookingContainer = styled.div`
   width: 100%;
   font-weight: 700;
@@ -255,7 +258,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-// Styling for the date and guest selection title
+// Styling for the date selection title
 const SelectTitle = styled.label`
   font-family: 'Apercu Pro', sans-serif;
   padding-bottom: 7px;
@@ -276,7 +279,7 @@ const ButtonTitle = styled.div`
   line-height: 1.3;
 `;
 
-// Styling for the search button
+// Styling for the book now button
 const SearchButton = styled.button`
   padding: 10px 15px;
   letter-spacing: 0;

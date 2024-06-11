@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; 
 
@@ -102,8 +102,21 @@ const FacilityItem = styled.li`
 `;
 
 export const RoomResults = ({ rooms, checkinDate }) => {
-  const [checkoutDate, setCheckoutDate] = useState('');
+  //const [checkoutDate, setCheckoutDate] = useState('');
   const navigate = useNavigate();
+
+  const getNextDay = (date) => {
+    const nextDay = new Date(date);
+    nextDay.setDate(nextDay.getDate() + 1);
+    return nextDay.toISOString().split('T')[0]; // Format the date to YYYY-MM-DD
+  };
+
+  const [checkoutDate, setCheckoutDate] = useState(getNextDay(checkinDate));
+
+  useEffect(() => {
+    setCheckoutDate(getNextDay(checkinDate));
+  }, [checkinDate]);
+
 
   const filterRoomsByType = (rooms) => {
     const roomMap = new Map();
@@ -185,6 +198,7 @@ export const RoomResults = ({ rooms, checkinDate }) => {
                     type="date" 
                     id="checkoutDate"
                     value={checkoutDate}
+                    min={checkoutDate}
                     onChange={(e) => setCheckoutDate(e.target.value)} 
                     required />
                 </SubBookingContainer>

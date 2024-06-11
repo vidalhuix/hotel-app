@@ -9,6 +9,8 @@ import { MainPage } from "./components/MainPage";
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
 import { RoomResults } from "./components/Booking/RoomResults";
 import { AboutUs } from "./components/About";
+import { ConferenceEvent } from './components/ConferenceEvent';
+
 
 export const App = () => {
   const [rooms, setRooms] = useState([]);
@@ -37,6 +39,7 @@ export const App = () => {
         <Route path="/hotelrooms" element={<Roomspage />} />
         <Route path="/bookingrooms" element={<RoomResults rooms={rooms} />} />
         <Route path="/user-details" element={<UserPage />} />
+        <Route path="/conference-event" element={<ConferenceEvent />} />
       </Routes>
     </Router>
   );

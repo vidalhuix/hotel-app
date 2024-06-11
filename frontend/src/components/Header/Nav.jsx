@@ -99,7 +99,6 @@ const NavLink = styled(Link)`
   color: #000000;
 
   &:hover {
-    background-color: #f0f2f0;
     border-radius: 20px;
   }
 `;
@@ -177,7 +176,7 @@ export const Nav = () => {
       <NavLeft>
         <NavList $show={showNavList}>
           <NavItem>
-            <NavLink to="/conference">Conference & Event</NavLink>
+            <NavLink to="/conference-event">Conference & Event</NavLink>
           </NavItem>
           <NavItem>
             <NavLink to="/hotelrooms">Rooms</NavLink>

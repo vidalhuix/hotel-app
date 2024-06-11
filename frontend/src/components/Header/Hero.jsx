@@ -33,16 +33,15 @@ const TextOverlayContainer = styled.div`
 `;
 
 const TextOverlay = styled.div`
-  color: #ffffff;
+  color: #ffffff24;
   font-size: 40px;
   line-height: 44px;
   font-weight: 700;
   font-family: "Apercu", sans-serif;
   animation: slideDown 1.5s ease-in-out;
-  text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
   @keyframes slideDown {
     0% {
-      transform: translateY(-300%);
+      transform: translateY(-100%);
       opacity: 0;
     }
     100% {

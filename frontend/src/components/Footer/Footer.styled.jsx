@@ -8,14 +8,11 @@ export const ListWrapper = styled.div`
   margin: 20px;
   display: flex;
   align-items: center;
-  /* flex-direction: column;
-  width: 100%;
-  margin: 20px; */
-  text-transform: uppercase; 
+  text-transform: uppercase;
   @media (min-width: 1000px) {
     align-items: normal;
-  } 
-  
+  }
+
   a {
     position: relative;
     color: #fff; /* Text color white */
@@ -24,8 +21,7 @@ export const ListWrapper = styled.div`
     font-size: 1rem;
     @media (min-width: 1000px) {
       margin-right: auto;
-  } 
-
+    }
 
     &::after {
       content: "";
@@ -43,14 +39,12 @@ export const ListWrapper = styled.div`
 
     &:hover {
       color: #d3af97; /* Change color on hover */
-
     }
 
     &:hover::after {
       transform: scaleX(1);
       transform-origin: left;
     }
-
   }
 `;
 
@@ -58,11 +52,18 @@ export const ListWrapper = styled.div`
 
 export const FindUsLink = ({ link, imgSrc, altText, labelFor, label }) => (
   <ContactLink href={link}>
-    <IconImage src={imgSrc} alt={altText} />
+    <IconImage className="no-rotate" src={imgSrc} alt={altText} />
   </ContactLink>
 );
 
 //CONTACT LINKS--------------------------------------------------------------------------------
+
+export const ContactIcon = ({ link, imgSrc, altText, labelFor, label }) => (
+  <ContactLink href={link}>
+    <IconImage src={imgSrc} alt={altText} />
+    <ContactLabel htmlFor={labelFor}>{label}</ContactLabel>
+  </ContactLink>
+);
 
 const ContactLink = styled.a`
   display: flex;
@@ -71,29 +72,33 @@ const ContactLink = styled.a`
   align-items: center;
   text-decoration: none;
   color: inherit;
+
+  .no-rotate{
+    &:hover{
+      transform: rotate(0deg);
+      filter: invert(81%) sepia(17%) saturate(543%) hue-rotate(339deg);
+    transform: scale(1.3);
+    }
+  }
 `;
 
 const IconImage = styled.img`
-  width: 30px; 
-  height: 40px; 
+  width: 30px;
+  height: 40px;
   margin: 10px; /* Space between image and label */
   margin-bottom: 5px;
   filter: invert(100%);
+  transition: transform 250ms ease-in;
+
   &:hover {
-    transform: rotate(1080deg) scale(1.3) ;
-    transition: all ease 1s;
+
+      brightness(90%) contrast(83%); /* Change color on hover */
+    transform: rotate(360deg);
   }
 `;
 
 const ContactLabel = styled.label`
   text-align: center;
   font-size: 0.8rem;
-  color: #ffffff; 
+  color: #ffffff;
 `;
-
-export const ContactIcon = ({ link, imgSrc, altText, labelFor, label }) => (
-  <ContactLink href={link}>
-    <IconImage src={imgSrc} alt={altText} />
-    <ContactLabel htmlFor={labelFor}>{label}</ContactLabel>
-  </ContactLink>
-);

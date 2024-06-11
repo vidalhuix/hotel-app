@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; 
 
@@ -101,7 +101,23 @@ const FacilityItem = styled.li`
   font-family: 'Apercu Pro', sans-serif;
 `;
 
-export const RoomResults = ({ rooms }) => {
+export const RoomResults = ({ rooms, checkinDate }) => {
+  //const [checkoutDate, setCheckoutDate] = useState('');
+  const navigate = useNavigate();
+
+  const getNextDay = (date) => {
+    const nextDay = new Date(date);
+    nextDay.setDate(nextDay.getDate() + 1);
+    return nextDay.toISOString().split('T')[0]; // Format the date to YYYY-MM-DD
+  };
+
+  const [checkoutDate, setCheckoutDate] = useState(getNextDay(checkinDate));
+
+  useEffect(() => {
+    setCheckoutDate(getNextDay(checkinDate));
+  }, [checkinDate]);
+
+
   const filterRoomsByType = (rooms) => {
     const roomMap = new Map();
     rooms.forEach((room) => {
@@ -110,9 +126,9 @@ export const RoomResults = ({ rooms }) => {
         }
     });
     return Array.from(roomMap.values());
-};
+  };
 
-const filteredRooms = filterRoomsByType(rooms);
+  const filteredRooms = filterRoomsByType(rooms);
 
   if (filteredRooms.length === 0) {
     return (
@@ -122,14 +138,34 @@ const filteredRooms = filterRoomsByType(rooms);
     );
   }
 
- /*  const [date, setDate] = useState('');
-  const navigate = useNavigate();
+  const handleBookingSubmit = (e, roomType) => {
+    e.preventDefault();
+    console.log(roomType)
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      onSearch(date);
-      navigate('/hotelrooms');
-  }; */
+    fetch("https://sunside-hotel.onrender.com/hotelrooms/booking/check-availability", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ checkinDate, checkoutDate, roomType }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Available room id:", data.availableRoomId, roomType );
+        navigate("/bookingconfirm", {
+          state: {
+            successMessage: "Room is available under this period. Please confirm your booking details and register your account.",
+            roomType,
+            checkinDate,
+            checkoutDate,
+            roomId: data.availableRoomId
+          },
+        });
+      })
+      .catch((error) => {
+        console.error('Unavailable:', error);
+      });
+  }; 
 
   return (
     <Container>
@@ -155,14 +191,15 @@ const filteredRooms = filterRoomsByType(rooms);
                   </FacilityItem>
                 ))}
               </GridFacility>
-              <BookingForm>
+              <BookingForm onSubmit={(e) => handleBookingSubmit(e, room.type)}>
                 <SubBookingContainer>
                   <SelectTitle htmlFor="date">Checkout:</SelectTitle>
                   <DateInput 
                     type="date" 
-                    id="date"
-                    //value={date}
-                    // onChange={(e) => setDate(e.target.value)} 
+                    id="checkoutDate"
+                    value={checkoutDate}
+                    min={checkoutDate}
+                    onChange={(e) => setCheckoutDate(e.target.value)} 
                     required />
                 </SubBookingContainer>
                     
@@ -177,7 +214,6 @@ const filteredRooms = filterRoomsByType(rooms);
     </Container>
   )
 }
-
 
 const BookingForm = styled.form`
   width: 70%;
@@ -210,7 +246,7 @@ const BookingForm = styled.form`
   }
 `;
 
-// Styling for the date/guest container
+// Styling for the date container
 const SubBookingContainer = styled.div`
   width: 100%;
   font-weight: 700;
@@ -236,7 +272,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-// Styling for the date and guest selection title
+// Styling for the date selection title
 const SelectTitle = styled.label`
   font-family: 'Apercu Pro', sans-serif;
   padding-bottom: 7px;
@@ -257,7 +293,7 @@ const ButtonTitle = styled.div`
   line-height: 1.3;
 `;
 
-// Styling for the search button
+// Styling for the book now button
 const SearchButton = styled.button`
   padding: 10px 15px;
   letter-spacing: 0;

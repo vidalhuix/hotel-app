@@ -73,7 +73,7 @@ export const Footer = () => {
           link="/contact/cornelia"
           imgSrc={smile02}
           altText="Cornelia's contact icon"
-          labelFor="contact-arnau"
+          labelFor="contact-cornelia"
           label="Cornelia"
         />
         <ContactIcon

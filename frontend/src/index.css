@@ -4,8 +4,10 @@
 
   --app-fontfamily: 'Apercu', sans-serif;
 
-  --color0: #44554B;
-  --color1: #D3AF97;
+  --color-darkgreen: #44554B;
+  --color-gold: #D3AF97;
+  --color-white: #ffffff;
+  --color-black: #333;
 }
 
 *{

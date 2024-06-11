@@ -63,15 +63,15 @@ export const Hero = () => {
   return (
     <>
       <HeroVideoContainer>
-        <HeroVideo autoPlay loop muted>
+        <HeroVideo autoPlay loop muted >
           <source src={heroVideo} type="video/mp4" />
         </HeroVideo>
       </HeroVideoContainer>
-      <TextOverlayContainer>
-        <TextOverlay>
+      <TextOverlayContainer id="booking-section">
+        <TextOverlay >
           WELCOME TO <br /> THE SUNSIDE HOTEL
         </TextOverlay>
-      </TextOverlayContainer>
+      </TextOverlayContainer >
     </>
   );
 };

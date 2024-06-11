@@ -13,7 +13,7 @@ import luxuryRoom3 from "/src/assets/room-luxury3.jpg";
 import { Footer } from "../Footer/Footer.jsx";
 import { BackToTopButton } from "../BackToTopButton.jsx";
 import { RoomsSlide } from "./RoomsSlide.jsx";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { LoadingSpinner } from "../LoadingSpinner.jsx";
 
 export const Roomspage = () => {
   const standardImages = [standardRoom1, standardRoom2, standardRoom3];
@@ -48,8 +48,8 @@ export const Roomspage = () => {
     return (
       <RoomDetails>
         <div className="basic-info">
-          <p>{room.price}</p>
-          <p>{room.size}</p>
+          <p>{room.price} €</p>
+          <p>{room.size} m²</p>
           <p>{room.capacity} 👥</p>
         </div>
         <p>{room.description}</p>

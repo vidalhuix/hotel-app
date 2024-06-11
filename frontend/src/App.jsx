@@ -14,6 +14,7 @@ import { Footer } from "./components/Footer/Footer";
 import { BackToTopButton } from "./components/BackToTopButton";
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
 
+
 import { RoomResults } from './components/Booking/RoomResults';
 import { AboutUs } from "./components/About";
 
@@ -40,8 +41,9 @@ export const App = () => {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/register" element={<Register />} />
         <Route path="/hotelrooms" element={<Roomspage/>} />
-        <Route path="/bookingrooms" element={<RoomResults rooms={rooms}/>} />
         <Route path="/user-details" element={<UserPage />} />
+        <Route path="/bookingrooms" element={<RoomResults rooms={rooms}/>} />
+        <Route path="/events&meetings" element={<MeetingPage />} />
       </Routes>
     </Router>
   );
@@ -51,7 +53,9 @@ const MainPage = ({onSearch}) => {
   return (
     <div>
       <Hero />
-      <BookingSection onSearch={onSearch} />
+      <div id="booking-section">
+        <BookingSection onSearch={onSearch} />
+      </div>
       <MeetingSection />
       <SliderComp />
       <Reviews />

@@ -28,7 +28,7 @@ export const ListWrapper = styled.div`
       position: absolute;
       left: 0;
       width: 100%;
-      height: 2px;
+      height: 1px;
       bottom: 10px;
       background-color: #d3af97;
 

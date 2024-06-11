@@ -17,10 +17,8 @@ export const Footer = () => {
       <FooterBody>
         <ListWrapper>
           <a href="/events&meetings">Events & Meeting</a>
-          <a href="/rooms">Hotel Rooms</a>
+          <a href="/hotelrooms">Hotel Rooms</a>
           <a href="/about">About</a>
-          <a href="/gallery">Gallery</a>
-          <a href="/news">News</a>
         </ListWrapper>
         <NewsLetterContainer>
           <h3>NEWSLETTER</h3>
@@ -63,25 +61,28 @@ export const Footer = () => {
       </FooterBody>
       <ContactIconWrapper>
         <ContactIcon
-          link="/contact/arnau"
+          link='https://arnaus-react-portafolio.netlify.app/'
           imgSrc={smile01}
           altText="Arnaus's contact icon"
           labelFor="contact-arnau"
           label="Arnau"
+          target="_blank"
         />
         <ContactIcon
-          link="/contact/cornelia"
+          link='https://wondrous-sorbet-b71db8.netlify.app/'
           imgSrc={smile02}
           altText="Cornelia's contact icon"
           labelFor="contact-cornelia"
           label="Cornelia"
+          target="_blank"
         />
         <ContactIcon
-          link="/contact/jing"
+          link='https://jinghuang.netlify.app/'
           imgSrc={smile03}
           altText="Jings's contact icon"
           labelFor="contact-jing"
           label="Jing"
+          target="_blank"
         />
       </ContactIconWrapper>
     </StyledFooter>

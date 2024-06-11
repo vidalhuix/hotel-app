@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const LoadingSpinner = () => {
   return (
     <Loading>
-      <div class="loading"></div>
+      <div className="loading"></div>
     </Loading>
   );
 };
@@ -25,7 +25,7 @@ const Loading = styled.div`
     height: 100px;
     border-radius: 50%;
     border: 10px solid #ddd;
-    border-top-color: 44554b;
+    border-top-color: var(--color-gold);
     animation: loading 1s linear infinite;
   }
   @keyframes loading {

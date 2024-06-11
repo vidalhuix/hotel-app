@@ -364,7 +364,6 @@ app.get("/user-details", authenticateUser, async (req, res) => {
     }
 
     res.status(200).json({
-      message: `Hi ${user.name}, welcome!`,
       user: {
         _id: user._id, 
         name: user.name,

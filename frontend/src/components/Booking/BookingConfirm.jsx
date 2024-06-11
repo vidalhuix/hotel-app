@@ -19,15 +19,6 @@ const Container = styled.div`
   }
 `;
 
-const imageContainer = styled.div`
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background: white;
-  }
-`
-
 const SummaryContainer = styled.div`
   displaly: flex;
   flex-direction: column;
@@ -43,16 +34,13 @@ const TextBox = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 6px;
-  
 `
 
-export const BookingConfirm = () => {
+export const BookingConfirm = ({guests}) => {
   const location = useLocation();
   const { successMessage, roomType, checkinDate, checkoutDate, roomId } = location.state || {};
   return (
     <Container>
-      <imageContainer>
-      </imageContainer>
       <SummaryContainer>
         <h2>BOOKING SUMMARY</h2>
         <p>{successMessage}</p>
@@ -80,7 +68,7 @@ export const BookingConfirm = () => {
             alt="Guests"
             style={{ marginRight: "10px", width: "30px", height: "30px" }}
           />  
-          Guest: 2
+          Guest: {guests}
         </TextBox>
       </SummaryContainer>
       <Register/>

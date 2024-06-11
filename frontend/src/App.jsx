@@ -21,6 +21,7 @@ import { BookingSection } from "./components/Booking/BookingSection";
 export const App = () => {
   const [rooms, setRooms] = useState([]);
   const [checkinDate, setCheckinDate] = useState(null);
+  const [guests, setGuests] = useState(1);
 
   const onSearch = (date, guests) => {
     console.log({ date });
@@ -30,7 +31,9 @@ export const App = () => {
       .then((response) => response.json())
       .then((data) => {
         setCheckinDate(date);
+        setGuests(guests);
         setRooms(data);
+        
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
@@ -51,7 +54,7 @@ export const App = () => {
             path="/bookingrooms"
             element={<RoomResults rooms={rooms} checkinDate={checkinDate} />}
           />
-          <Route path="/bookingconfirm" element={<BookingConfirm />} />
+          <Route path="/bookingconfirm" element={<BookingConfirm guests={guests}/>} />
           <Route path="/user-details" element={<UserPage />} />
         </Routes>
       </AuthProvider>

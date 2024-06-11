@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { Register } from "../User/Register";
 import { useLocation } from 'react-router-dom';
+import exit from "../../assets/exit.png";
+import enter from "../../assets/enter.png";
+import guest from "../../assets/guest.png";
 
 const Container = styled.div`
   background-color: #44564c;
@@ -37,9 +40,10 @@ const SummaryContainer = styled.div`
 `
 
 const TextBox = styled.div`
-  displaly: flex;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   margin-top: 6px;
+  
 `
 
 export const BookingConfirm = () => {
@@ -55,12 +59,27 @@ export const BookingConfirm = () => {
         {/* <p>roomId: {roomId}</p> */}
         <h4>Room type: {roomType}</h4> 
         <TextBox>
+          <img
+            src={enter}
+            alt="Check-in"
+            style={{ marginRight: "10px", width: "30px", height: "30px" }}
+          />
           Check-in: {checkinDate} 
         </TextBox>
         <TextBox>
+          <img
+            src={exit}
+            alt="Check-out"
+            style={{ marginRight: "10px", width: "30px", height: "30px" }}
+          />
           Check-out: {checkoutDate}
         </TextBox>
         <TextBox>
+          <img
+            src={guest}
+            alt="Guests"
+            style={{ marginRight: "10px", width: "30px", height: "30px" }}
+          />  
           Guest: 2
         </TextBox>
       </SummaryContainer>

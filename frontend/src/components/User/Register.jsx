@@ -17,7 +17,7 @@ import {
 } from "./UserStyledComponents";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-export const Register = () => {
+export const Register = ({ height = '100vh' }) => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -80,7 +80,7 @@ export const Register = () => {
   };
 
   return (
-    <Container>
+    <Container height={height}>
       <Form onSubmit={handleSubmit}>
         <h2>CREATE YOUR ACCOUNT</h2>
         {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}

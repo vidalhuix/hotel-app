@@ -47,6 +47,8 @@ const SubBookingContainer = styled.div`
   width: 100%;
   font-weight: 700;
   padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ButtonContainer = styled.div`
@@ -144,13 +146,18 @@ const DateInput = styled.input`
 export const Booking = ({onSearch}) => {
   const [date, setDate] = useState('');
   const [minDate, setMinDate] = useState('');
+  const [maxDate, setMaxDate] = useState('');
   const [guests, setGuests] = useState('1');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const today = new Date().toISOString().split('T')[0];
-    setMinDate(today);
-    setDate(today);
+    const today = new Date();
+    const formattedToday = today.toISOString().split('T')[0];
+    const maxDate = new Date(today.setMonth(today.getMonth() + 9));
+    const formattedMaxDate = maxDate.toISOString().split('T')[0];
+    setMinDate(formattedToday);
+    setMaxDate(formattedMaxDate);
+    setDate(formattedToday);
   }, []);
 
   const handleSubmit = (e) => {
@@ -168,6 +175,7 @@ export const Booking = ({onSearch}) => {
           id="date"
           value={date}
           min={minDate}
+          max={maxDate}
           onChange={(e) => setDate(e.target.value)} 
           required />
       </SubBookingContainer>

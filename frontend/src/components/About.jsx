@@ -127,7 +127,6 @@ const ContactContainer = styled.div`
   margin: auto;
   padding: 150px 10px;
   text-align: center;
-
   @media all and (min-width: 744px) {
   }
   a {

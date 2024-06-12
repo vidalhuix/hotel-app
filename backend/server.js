@@ -54,6 +54,16 @@ const RoomStatus = mongoose.model("Roomstatus", {
   status: Number,
 });
 
+//Booking model
+const Bookings = mongoose.model("Bookings",{
+  userId: String,
+  roomId: Number,
+  checkinDate: Date,
+  checkoutDate: Date,
+  guests: Number,
+  price: Number,
+})
+
 // Defines the port the app will run on. Defaults to 8080, but can be overridden
 // when starting the server. Example command to overwrite PORT env variable value:
 // PORT=9000 npm start
@@ -252,6 +262,45 @@ app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, r
   }
 });
 
+// Endpoint to check room status based on the check-in date and check-out date and room type
+app.post("/hotelrooms/booking/check-availability", async (req, res) => {
+  try {
+    const requestData = req.body;
+    const checkinDate = new Date(requestData.checkinDate);
+    const checkoutDate = new Date(requestData.checkoutDate);
+    const roomType = requestData.roomType;
+    
+    const rooms = await Hotelrooms.find({ type: { $eq: roomType } });
+    
+    // Loop throught each room to check the status of each day btw checkinDate and checkoutDate is 1. 
+    // If so, return 200 ok. Otherwise continue to check the next room.
+    // If the loop finishes and no room is found, return 404
+    for (let room of rooms) {
+      for (let date = checkinDate; date <= checkoutDate; date.setDate(date.getDate() + 1)) {
+        const roomStatusDoc = await RoomStatus.findOne({
+          $and: [
+            {roomId: { $eq: room.id }},
+            {date: { $eq: date } }
+          ]
+        });
+
+        if (roomStatusDoc.status === 0)
+        {
+          break;
+        } else if (date.getTime() === checkoutDate.getTime())
+        {
+          return res.status(200).json({ availableRoomId: room.id });
+        }
+      }
+    }
+    return res.status(404).json({ error: "No available room for the given type and period" });
+
+  } catch (error) {
+    console.error("Failed to check availability:", error);
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+});
+
 // Registration endpoint to create a new user
 app.post("/users", async (req, res) => {
   try {
@@ -325,7 +374,6 @@ app.get("/user-details", authenticateUser, async (req, res) => {
     }
 
     res.status(200).json({
-      message: `Hi ${user.name}, welcome!`,
       user: {
         _id: user._id, 
         name: user.name,
@@ -352,6 +400,54 @@ app.delete("/users/:userId", async (req, res) => {
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+//Endpoint to save user's booking information
+app.post('/booking', async (req, res) => {
+  try {
+    const { userId, roomId, checkinDate, checkoutDate, guests, price } = req.body;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    const booking = new Bookings({
+      userId,
+      roomId,
+      checkinDate,
+      checkoutDate,
+      guests,
+      price,
+    });
+    await booking.save();
+    res.send({ message: 'Booking created successfully', booking });
+  } catch (error) {
+    console.error("Error creating booking:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+//Endpoint to get user's booking information
+app.get('/user-bookings', authenticateUser, async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    
+    const userBookings = await Bookings.find({
+      $and: [
+        {userId: { $eq: userId } },
+      ]
+    });
+
+    res.status(200).json(userBookings);
+  } catch (error) {
+    console.error("Error fetching user bookings:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });

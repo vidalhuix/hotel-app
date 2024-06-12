@@ -1,128 +1,26 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  Form,
+  FormGroup,
+  Label,
+  InputWrapper,
+  Input,
+  EyeIcon,
+  Button,
+  SmallText,
+  BoldText,
+  SignInLink,
+  ErrorMessage,
+  SuccessMessage,
+} from "./UserStyledComponents";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { BookingContext } from "../Booking/BookingContext";
 
-const Container = styled.div`
-  background-color: #44564c;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin-top: 85px;
-  width: auto;
-  align-items: center;
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 1rem;
-  display: grid;
-  grid-template-columns: 95px auto;
-  align-items: center;
-`;
-
-const Label = styled.label`
-  margin-bottom: 0.25rem;
-  margin-top: 0.25rem;
-`;
-
-const InputWrapper = styled.div`
-  position: relative;
-`;
-
-const Input = styled.input`
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  padding-right: 30px;
-`;
-
-const EyeIcon = styled(FontAwesomeIcon)`
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 1em;
-  color: #ccc;
-`;
-
-const Button = styled.button`
-  margin-top: 0.5rem;
-  padding: 10px 30px;
-  border-radius: 20px;
-  border: none;
-  background-color: #d3af97;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-
-  &:hover {
-    color: #5a675f;
-    background-color: #fff;
-    transform: scale(1.05);
-    transition: all ease 0.3s;
-  }
-`;
-
-const SmallText = styled.p`
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  text-align: center;
-`;
-
-const BoldText = styled.span`
-  font-weight: bold;
-`;
-
-const SignInLink = styled(Link)`
-  font-weight: normal;
-  color: white;
-  text-decoration: none;
-  margin-left: 5px;
-  position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 0;
-    height: 2px;
-    bottom: -3px;
-    background-color: #d3af97;
-    transition: width 250ms ease-in;
-  }
-
-  &:hover {
-    color: #d3af97;
-  }
-
-  &:hover::after {
-    width: 100%;
-  }
-`;
-
-const SuccessMessage = styled.p`
-  color: green;
-  margin-top: -0.5rem;
-  margin-bottom: 0rem;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  margin-top: -0.5rem;
-  margin-bottom: 0rem;
-`;
-
-export const Register = () => {
+export const Register = ({ height = '100vh' }) => {
   const navigate = useNavigate();
+  const { bookingDetails } = useContext(BookingContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -160,12 +58,33 @@ export const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Registration successful:", data);
-        setSuccessMessage("Account created successfully. You can now proceed to log in.");
+        setSuccessMessage(
+          "Account created successfully. You can now proceed to log in."
+        );
         setErrorMessage("");
+        
+        const { roomId, guests, checkinDate, checkoutDate } = bookingDetails;
+
+        if (roomId && checkinDate)
+        {
+          // Create a booking
+          const bookingResponse = await fetch("https://sunside-hotel.onrender.com/booking", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId: data.id, roomId, guests, checkinDate, checkoutDate }),
+          });
+
+          setSuccessMessage(
+            "Account created successfully and booking confirmed. You can now log in to check booking details."
+          );
+        }
+
         navigate("/login", {
           state: {
-            successMessage: "Account created successfully. You can now proceed to log in.",
+            successMessage:
+              "Account created successfully. You can now proceed to log in",
           },
         });
       } else {
@@ -181,7 +100,7 @@ export const Register = () => {
   };
 
   return (
-    <Container>
+    <Container height={height}>
       <Form onSubmit={handleSubmit}>
         <h2>CREATE YOUR ACCOUNT</h2>
         {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}

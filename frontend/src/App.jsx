@@ -12,18 +12,12 @@ import { SliderComp } from "./components/MeetingSection/SliderComp";
 import { Reviews } from "./components/Reviews";
 import { Footer } from "./components/Footer/Footer";
 import { BackToTopButton } from "./components/BackToTopButton";
-<<<<<<< Arnau
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
-
-=======
-import ScrollToTop from "./components/ScrollToTop";
 import { AboutUs } from "./components/About";
 import { BookingConfirm } from "./components/Booking/BookingConfirm";
 import { RoomResults } from "./components/Booking/RoomResults";
 import { BookingSection } from "./components/Booking/BookingSection";
 import { BookingProvider } from "./components/Booking/BookingContext";
->>>>>>> main
-
 import { RoomResults } from './components/Booking/RoomResults';
 import { AboutUs } from "./components/About";
 
@@ -49,18 +43,6 @@ export const App = () => {
   return (
     <Router>
       <ScrollToTop />
-<<<<<<< Arnau
-      <Nav />
-      <Routes>
-        <Route path="/" element={<MainPage onSearch={onSearch} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/hotelrooms" element={<Roomspage/>} />
-        <Route path="/user-details" element={<UserPage />} />
-        <Route path="/bookingrooms" element={<RoomResults rooms={rooms}/>} />
-      </Routes>
-=======
       <AuthProvider>
         <BookingProvider>
           {" "}
@@ -83,7 +65,6 @@ export const App = () => {
           </Routes>
         </BookingProvider>
       </AuthProvider>
->>>>>>> main
     </Router>
   );
 };

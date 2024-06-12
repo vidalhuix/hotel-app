@@ -16,7 +16,6 @@ export const App = () => {
   const [rooms, setRooms] = useState([]);
 
   const onSearch = (date, guests) => {
-    console.log({ date });
     fetch(
       `https://sunside-hotel.onrender.com/hotelrooms/booking/date/${date}/guestamount/${guests}`
     )

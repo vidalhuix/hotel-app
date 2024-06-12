@@ -59,7 +59,7 @@ export const SliderComp = () => {
             imgAlt="Dinner table"
             title="Dinner & Breakfast"
             description="Indulge in a gourmet dinner featuring exquisite cuisine, elegant ambiance, and exceptional service."
-            linkText="See more"
+            // linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -69,7 +69,7 @@ export const SliderComp = () => {
             imgAlt="Corporate Meetings"
             title="Corporate Meetings"
             description="Celebrate your special day with elegant decor and exceptional service in our grand ballroom."
-            linkText="See more"
+            // linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -79,7 +79,7 @@ export const SliderComp = () => {
             imgAlt="Conferences"
             title="Conferences"
             description="Host large-scale conferences with advanced audiovisual equipment and flexible seating arrangements."
-            linkText="See more"
+            // linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -89,7 +89,7 @@ export const SliderComp = () => {
             imgAlt="Family Reunions"
             title="Family Reunions"
             description="Reconnect with loved ones in a spacious venue offering activities for all ages."
-            linkText="See more"
+            // linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -99,7 +99,7 @@ export const SliderComp = () => {
             imgAlt="Dinner table"
             title="Yoga Retreats"
             description="Relax and rejuvenate with guided yoga sessions and wellness activities in serene surroundings."
-            linkText="See more"
+            // linkText="See more"
             linkHref="#"
           />
         </SplideSlide>

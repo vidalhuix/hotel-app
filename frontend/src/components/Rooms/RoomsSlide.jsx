@@ -3,6 +3,7 @@ import "@splidejs/react-splide/css";
 import styled from "styled-components";
 
 export const RoomsSlide = ({ images }) => {
+  
   return (
     <SplideContainer  className="shift-right">
       <Splide
@@ -11,13 +12,11 @@ export const RoomsSlide = ({ images }) => {
           type: "loop",
           perPage: 1,
           perMove: 1,
-          arrows: "false",
           speed: 600,
-          // gap: 50,
+          focus: 1,
           pagination: "slider",
           padding: { left: "0rem", right: "0rem" },
           easing: "cubic-bezier(0.25, 1, 0.5, 1)",
-          arrows: false,
         }}
       >
         {images.map((image, index) => (

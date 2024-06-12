@@ -1,8 +1,31 @@
+import React, { useState } from "react";
 import LinkedInLogo from "/src/assets/logo-linkedin.svg";
 import GithubLogo from "/src/assets/logo-github.svg";
+import { LoadingSpinner } from "./LoadingSpinner.jsx";
 import styled from "styled-components";
 
 export const AboutUs = () => {
+  const techStack = [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "React",
+    "MongoDB",
+    "Postman",
+    "GitHub",
+    "Authentication",
+    "Express.js",
+    "React Hooks",
+    "Responsiveness",
+    "Web Accessibility",
+    "Styled Components",
+    "Splidejs",
+    "React Router",
+    "Hash Link",
+    "React Icons",
+    "REST API",
+    "Unsplash"
+    ];
   const contactInfo = [
     {
       name: "Arnau Vidal",
@@ -29,26 +52,46 @@ export const AboutUs = () => {
     },
   ];
 
+  const [loading, setLoading] = useState(true);
+  const handleImageLoad = () => setLoading(false);
+  const handleImageError = () => setLoading(false);
+
   return (
     <Container>
       <ContactContainer>
-        <h1>TECHNIGOS BOOTCAMP FINAL PROJECT</h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti,
-          consequuntur a? Voluptas voluptatibus quia pariatur eum unde minima
-          soluta odit, sed et tempora dolore, vel distinctio! Consequatur nemo
-          illo, hic officiis laudantium dicta impedit quos, recusandae
-          temporibus illum sed ipsum! Deserunt temporibus sit repudiandae ullam
-          ipsum cum saepe pariatur dolorem fugiat reprehenderit nostrum
-          dignissimos voluptas necessitatibus mollitia a, reiciendis sint ex eum
-          impedit aperiam, velit in! Velit, asperiores? Earum, necessitatibus!
+        <h1 className="from-left">Final Project</h1>
+        <p className="from-right">
+          This full-stack application, is the last project at{" "}
+          <a href="https://www.technigo.io/web-development-boot-camp">
+            Technigo' Spring 2024 Web Development Bootcamp
+          </a>{" "}
+          ,this is a realistic simulation of an imaginary hotel. It enables
+          users to book one of the available rooms based on their selected
+          arrival and departure dates.
+          <br />
+          To complete a booking, users must register or log in if they already
+          have an account.
+          <br />
+          Once logged in, users can view their registered bookings and delete
+          their accounts if desired.
         </p>
-        <h1>TEAM</h1>
-        <CardsContainer>
+        <ul className="from-left">
+          {techStack.map((tech, index) => (
+            <li key={index}>{tech}</li>
+          ))}
+        </ul>
+        <CardsContainer id="contact"  className="from-bottom">
           {contactInfo.map((contact, index) => (
             <Card key={index}>
               <Front>
-                <img src={contact.imgSrc} alt={`${contact.name} image`} />
+                {loading && <LoadingSpinner />}
+                <img
+                  src={contact.imgSrc}
+                  alt={`${contact.name} image`}
+                  onLoad={handleImageLoad}
+                  onError={handleImageError}
+                  style={{ display: loading ? "none" : "block" }}
+                />
               </Front>
               <Back>
                 <h3>{contact.name}</h3>
@@ -70,9 +113,9 @@ export const AboutUs = () => {
 };
 
 const Container = styled.div`
-  background-color: var(--color-darkgreen);
+  background-color: var(--color-white);
   height: 100%;
-  color: white;
+  color: var(--color-darkgrey);
   min-height: 100vh;
 `;
 const ContactContainer = styled.div`
@@ -84,18 +127,30 @@ const ContactContainer = styled.div`
   margin: auto;
   padding: 150px 10px;
   text-align: center;
-  @keyframes slideDown {
-    0% {
-      transform: translateY(-300%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
   @media all and (min-width: 744px) {
-
+  }
+  a {
+    text-decoration: none;
+    color: var(--color-gold);
+  }
+  p {
+    max-width: 700px;
+    text-align: left;
+  }
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap: 4px;
+    padding: 0;
+    li {
+      font-size: 16px;
+      padding: 2px 6px;
+      color: var(--color-white);
+      background-color: var(--color-gold);
+    }
   }
 `;
 const CardsContainer = styled.div`

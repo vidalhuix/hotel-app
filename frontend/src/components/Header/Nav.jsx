@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FaAngleDown } from "react-icons/fa";
 import logo from "../../assets/logo.png";
+import { HashLink } from "react-router-hash-link";
 
 const NavContainer = styled.nav`
   padding: 5px;
@@ -42,6 +43,40 @@ const NavList = styled.ul`
   padding: 0;
   display: flex;
 
+  a {
+    position: relative;
+    color: var(--color-darkgreen); /* Text color white */
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 1rem;
+    @media (min-width: 1000px) {
+      margin-right: auto;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      bottom: 10px;
+      background-color: #d3af97;
+
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 250ms ease-in;
+    }
+
+    &:hover {
+      color: #d3af97; /* Change color on hover */
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -64,8 +99,26 @@ const NavLink = styled(Link)`
   color: #000000;
 
   &:hover {
-    background-color: #f0f2f0;
     border-radius: 20px;
+  }
+`;
+
+const Button = styled.button`
+  padding: 10px 20px;
+  background-color: #48544c;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #d3af97;
+    transform: scale(1.05);
+    transition: all ease 0.3s;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 15px;
   }
 `;
 
@@ -89,19 +142,6 @@ const NavRight = styled.div`
   @media (max-width: 768px) {
     margin-top: -5px;
     margin-bottom: 5px;
-  }
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  background-color: #48544c;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-
-  @media (max-width: 768px) {
-    padding: 10px 15px;
   }
 `;
 
@@ -131,25 +171,24 @@ export const Nav = () => {
     navigate("/login");
   };
 
-  const handleRoomClick = () => {
-    navigate("/hotelrooms");
-  };
-
   return (
     <NavContainer>
       <NavLeft>
         <NavList $show={showNavList}>
           <NavItem>
-            <NavLink to="/conference">Conference & Event</NavLink>
+            <NavLink to="/conference-event">Conference & Event</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/spa">Spa</NavLink>
+            <NavLink to="/hotelrooms">Rooms</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/dining">Dining</NavLink>
+            <NavLink to="/About">About</NavLink>
           </NavItem>
         </NavList>
-        <DropdownIcon onClick={toggleNavList} $flipped={isIconFlipped ? 1 : 0} />{" "}
+        <DropdownIcon
+          onClick={toggleNavList}
+          $flipped={isIconFlipped ? 1 : 0}
+        />{" "}
       </NavLeft>
       <Logo>
         <Link to="/">
@@ -157,7 +196,9 @@ export const Nav = () => {
         </Link>
       </Logo>
       <NavRight>
-        <Button onClick={handleRoomClick}>Book</Button>
+        <HashLink smooth to='/#booking-section'>
+          <Button>Book</Button>
+        </HashLink>
         <Button onClick={handleLoginClick}>Log In</Button>
       </NavRight>
     </NavContainer>

@@ -25,7 +25,7 @@ const SummaryContainer = styled.div`
   width: 40%;
   margin-top:50px;
   background: white;
-  color:  #44564c;
+  color:  black;
   padding: 30px 40px 70px 50px;
   margin-right: 100px;
 `

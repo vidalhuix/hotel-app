@@ -59,7 +59,7 @@ const SectionDivider = styled.div`
   margin-bottom: 15px;
 `;
 
-export const UserPage = () => {
+export const UserPage = ({ height = '100vh' }) => {
   const { bookingDetails } = useContext(BookingContext);
   const navigate = useNavigate();
   const { accessToken, logout } = useAuth();
@@ -130,7 +130,7 @@ export const UserPage = () => {
   };
 
   return (
-    <Container style={{ marginTop: "30px" }}>
+    <Container height={height} style={{ marginTop: "30px" }}>
       <Content>
         <Heading>BOOKING INFORMATION</Heading>
         {bookingDetails && ( 

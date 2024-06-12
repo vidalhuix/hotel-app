@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { BookingContext } from "../Booking/BookingContext";
 import { useAuth } from "./AuthContext";
-import { Link } from "react-router-dom";
+import {
+  Container,
+  Button,
+  StyledLink,
+  ErrorMessage,
+} from "./UserStyledComponents";
 import styled from "styled-components";
 import exit from "../../assets/exit.png";
 import enter from "../../assets/enter.png";
 import guest from "../../assets/guest.png";
 
-const Container = styled.div`
-  background-color: #44564c;
-  height: 110vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-`;
 const Content = styled.div`
   text-align: center;
 `;
@@ -39,30 +37,17 @@ const UserDetails = styled.div`
   padding-left: 20px;
 `;
 
-const SignUpLink = styled(Link)`
-  font-weight: normal;
-  color: black;
-  text-decoration: none;
-  margin-left: 5px;
-  position: relative;
+const StyledImage = styled.img`
+  margin-bottom: 5px;
+  width: 30px;
+  height: 30px;
+`;
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 0;
-    height: 2px;
-    bottom: -3px;
-    background-color: #d3af97;
-    transition: width 250ms ease-in;
-  }
+const BlackStyledLink = styled(StyledLink)`
+  color: black;
 
   &:hover {
     color: #d3af97;
-  }
-
-  &:hover::after {
-    width: 100%;
   }
 `;
 
@@ -74,30 +59,8 @@ const SectionDivider = styled.div`
   margin-bottom: 15px;
 `;
 
-const Button = styled.button`
-  padding: 10px 30px;
-  border-radius: 20px;
-  border: none;
-  background-color: #d3af97;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-right: ${(props) => (props.$delete ? "1rem" : "0")};
-
-  &:hover {
-    color: #5a675f;
-    background-color: #fff;
-    transform: scale(1.05);
-    transition: all ease 0.3s;
-  }
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
-  margin-bottom: 10px;
-`;
-
 export const UserPage = () => {
+  const { bookingDetails } = useContext(BookingContext);
   const navigate = useNavigate();
   const { accessToken, logout } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
@@ -142,7 +105,7 @@ export const UserPage = () => {
   const handleDeleteAccount = async () => {
     try {
       const response = await fetch(
-        `https://sunside-hotel.onrender.com/users/${userDetails._id}`,
+        `https://sunside-hotel.onrender.com/users/${userDetails?._id}`,
         {
           method: "DELETE",
           headers: {
@@ -166,164 +129,83 @@ export const UserPage = () => {
     }
   };
 
-  const noActiveBooking =
-    !userDetails ||
-    !userDetails.checkIn ||
-    !userDetails.checkOut ||
-    !userDetails.guests;
-
-  let bookingInfo;
-
-  if (noActiveBooking) {
-    bookingInfo = (
-      <div style={{ textAlign: "center", marginTop: "10px" }}>
-        No active booking found.
-      </div>
-    );
-  } else {
-    bookingInfo = (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          marginBottom: "10px",
-        }}
-      >
-        <UserDetails
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginRight: "15px",
-          }}
-        >
-          <img
-            src={enter}
-            alt="Check-in"
-            style={{ marginBottom: "5px", width: "30px", height: "30px" }}
-          />
-          <b>Check-in:</b>
-          <div>{userDetails.checkIn}</div>
-        </UserDetails>
-        <UserDetails
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginRight: "15px",
-          }}
-        >
-          <img
-            src={exit}
-            alt="Check-out"
-            style={{ marginBottom: "5px", width: "30px", height: "30px" }}
-          />
-          <b>Check-out:</b>
-          <div>{userDetails.checkOut}</div>
-        </UserDetails>
-        <UserDetails
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <img
-            src={guest}
-            alt="Guests"
-            style={{ marginBottom: "5px", width: "30px", height: "30px" }}
-          />
-          <b>Guests:</b>
-          <div>{userDetails.guests}</div>
-        </UserDetails>
-      </div>
-    );
-  }
-
   return (
-    <Container>
+    <Container style={{ marginTop: "30px" }}>
       <Content>
         <Heading>BOOKING INFORMATION</Heading>
-        <UserInfoContainer>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "10px",
-            }}
-          >
-            <UserDetails
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                marginRight: "15px",
-              }}
-            >
-              <img
-                src={enter}
-                alt="Check-in"
-                style={{ marginBottom: "5px", width: "30px", height: "30px" }}
-              />
-              <b>Check-in:</b>
-              <div>{noActiveBooking ? "" : userDetails.checkIn}</div>
-            </UserDetails>
-            <UserDetails
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                marginRight: "15px",
-              }}
-            >
-              <img
-                src={exit}
-                alt="Check-out"
-                style={{ marginBottom: "5px", width: "30px", height: "30px" }}
-              />
-              <b>Check-out:</b>
-              <div>{noActiveBooking ? "" : userDetails.checkOut}</div>
-            </UserDetails>
-            <UserDetails
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <img
-                src={guest}
-                alt="Guests"
-                style={{ marginBottom: "5px", width: "30px", height: "30px" }}
-              />
-              <b>Guests:</b>
-              <div>{noActiveBooking ? "" : userDetails.guests}</div>
-            </UserDetails>
-          </div>
-          {noActiveBooking ? (
+        {bookingDetails && ( 
+          <UserInfoContainer>
             <div
-              style={{ textAlign: "center", marginTop: "10px", color: "black" }}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                marginBottom: "10px",
+              }}
             >
-              No active booking found.
+              <UserDetails
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginRight: "15px",
+                }}
+              >
+                <StyledImage src={enter} alt="Check-in" />
+                <b>Check-in:</b>
+                <div>{bookingDetails.checkinDate}</div>
+              </UserDetails>
+              <UserDetails
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginRight: "15px",
+                }}
+              >
+                <StyledImage src={exit} alt="Check-out" />
+                <b>Check-out:</b>
+                <div>{bookingDetails.checkoutDate}</div>
+              </UserDetails>
+              <UserDetails
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <StyledImage src={guest} alt="Guests" />
+                <b>Guests:</b>
+                <div>{bookingDetails.guests}</div>
+              </UserDetails>
             </div>
-          ) : (
             <div style={{ textAlign: "center", marginTop: "10px" }}>
-              <SignUpLink to="/active-booking">Active Booking Link</SignUpLink>
+              <BlackStyledLink to="/active-booking">
+                Click here to cancel your booking
+              </BlackStyledLink>
             </div>
-          )}
-          <SectionDivider />
-          <UserDetails>
-            <b>Name:</b> {userDetails ? userDetails.name : ""}
-          </UserDetails>
-          <UserDetails>
-            <b>Email:</b> {userDetails ? userDetails.email : ""}
-          </UserDetails>
-        </UserInfoContainer>
+            <SectionDivider />
+            <UserDetails>
+              <b>Name:</b> {userDetails ? userDetails.name : ""}
+            </UserDetails>
+            <UserDetails>
+              <b>Email:</b> {userDetails ? userDetails.email : ""}
+            </UserDetails>
+          </UserInfoContainer>
+        )}
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <Button $delete onClick={handleDeleteAccount}>
+        <Button
+          $delete
+          onClick={handleDeleteAccount}
+          style={{ marginRight: "10px", marginTop: "0" }}
+        >
           Delete Account
         </Button>
-        <Button onClick={handleLogout}>Logout</Button>
+        <Button
+          onClick={handleLogout}
+          style={{ marginLeft: "10px", marginTop: "0" }}
+        >
+          Logout
+        </Button>
       </Content>
     </Container>
   );

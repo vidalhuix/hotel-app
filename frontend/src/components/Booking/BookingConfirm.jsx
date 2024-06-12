@@ -1,6 +1,8 @@
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 import { Register } from "../User/Register";
-import { useLocation } from 'react-router-dom';
+import { BookingContext } from "./BookingContext";
 import exit from "../../assets/exit.png";
 import enter from "../../assets/enter.png";
 import guest from "../../assets/guest.png";
@@ -28,7 +30,7 @@ const Container = styled.div`
 `;
 
 const SummaryContainer = styled.div`
-  displaly: flex;
+  display: flex;
   flex-direction: column;
   width: auto;
   margin-top:100px;
@@ -66,23 +68,29 @@ const TextBox = styled.div`
   }
 `
 
-export const BookingConfirm = ({guests}) => {
+export const BookingConfirm = ({ guests }) => {
   const location = useLocation();
-  const { successMessage, roomType, checkinDate, checkoutDate, roomId } = location.state || {};
+  const { successMessage, roomType, checkinDate, checkoutDate, roomId } =
+    location.state || {};
+  const { setBookingDetails } = useContext(BookingContext);
+
+  useEffect(() => {
+    setBookingDetails({ checkinDate, checkoutDate, guests, roomType, roomId });
+  }, [checkinDate, checkoutDate, guests, roomType, roomId, setBookingDetails]);
+
   return (
     <Container>
       <SummaryContainer>
         <h2>BOOKING SUMMARY</h2>
         <p>{successMessage}</p>
-        {/* <p>roomId: {roomId}</p> */}
-        <h4>Room type: {roomType}</h4> 
+        <h4>Room type: {roomType}</h4>
         <TextBox>
           <img
             src={enter}
             alt="Check-in"
             style={{ marginRight: "10px", width: "30px", height: "30px" }}
           />
-          Check-in: {checkinDate} 
+          Check-in: {checkinDate}
         </TextBox>
         <TextBox>
           <img
@@ -97,11 +105,11 @@ export const BookingConfirm = ({guests}) => {
             src={guest}
             alt="Guests"
             style={{ marginRight: "10px", width: "30px", height: "30px" }}
-          />  
+          />
           Guest: {guests}
         </TextBox>
       </SummaryContainer>
       <Register height="30vh"/>
     </Container>
-  )
-}
+  );
+};

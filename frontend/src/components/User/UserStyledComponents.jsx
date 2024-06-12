@@ -80,7 +80,7 @@ export const BoldText = styled.span`
   font-weight: bold;
 `;
 
-export const SignUpLink = styled(Link)`
+export const StyledLink = styled(Link)`
   font-weight: normal;
   color: white;
   text-decoration: none;
@@ -107,32 +107,8 @@ export const SignUpLink = styled(Link)`
   }
 `;
 
-export const SignInLink = styled(Link)`
-  font-weight: normal;
-  color: white;
-  text-decoration: none;
-  margin-left: 5px;
-  position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 0;
-    height: 2px;
-    bottom: -3px;
-    background-color: #d3af97;
-    transition: width 250ms ease-in;
-  }
-
-  &:hover {
-    color: #d3af97;
-  }
-
-  &:hover::after {
-    width: 100%;
-  }
-`;
+export const SignUpLink = styled(StyledLink)``;
+export const SignInLink = styled(StyledLink)``;
 
 export const ErrorMessage = styled.p`
   color: red;

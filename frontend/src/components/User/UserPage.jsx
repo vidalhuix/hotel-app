@@ -60,11 +60,12 @@ const SectionDivider = styled.div`
 `;
 
 export const UserPage = ({ height = '100vh' }) => {
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(BookingContext); // Not used
   const navigate = useNavigate();
   const { accessToken, logout } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
   const [error, setError] = useState("");
+  const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
     if (accessToken) {
@@ -88,6 +89,18 @@ export const UserPage = ({ height = '100vh' }) => {
       if (response.ok) {
         const data = await response.json();
         setUserDetails(data.user);
+
+        // Fetch user booking info
+        const bookingsResponse = await fetch(
+          "https://sunside-hotel.onrender.com/user-bookings",
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        )
+        const bookings = await bookingsResponse.json();
+        setBookings(bookings);
       } else {
         setError("Failed to fetch user details");
       }
@@ -133,7 +146,7 @@ export const UserPage = ({ height = '100vh' }) => {
     <Container height={height} style={{ marginTop: "30px" }}>
       <Content>
         <Heading>BOOKING INFORMATION</Heading>
-        {bookingDetails && ( 
+        {bookings && bookings.map((booking) => ( 
           <UserInfoContainer>
             <div
               style={{
@@ -152,7 +165,7 @@ export const UserPage = ({ height = '100vh' }) => {
               >
                 <StyledImage src={enter} alt="Check-in" />
                 <b>Check-in:</b>
-                <div>{bookingDetails.checkinDate}</div>
+                <div>{new Date(booking.checkinDate).toLocaleDateString("sv-SE")}</div>
               </UserDetails>
               <UserDetails
                 style={{
@@ -164,7 +177,7 @@ export const UserPage = ({ height = '100vh' }) => {
               >
                 <StyledImage src={exit} alt="Check-out" />
                 <b>Check-out:</b>
-                <div>{bookingDetails.checkoutDate}</div>
+                <div>{new Date(booking.checkoutDate).toLocaleDateString("sv-SE")}</div>
               </UserDetails>
               <UserDetails
                 style={{
@@ -175,7 +188,7 @@ export const UserPage = ({ height = '100vh' }) => {
               >
                 <StyledImage src={guest} alt="Guests" />
                 <b>Guests:</b>
-                <div>{bookingDetails.guests}</div>
+                <div>{booking.guests}</div>
               </UserDetails>
             </div>
             <div style={{ textAlign: "center", marginTop: "10px" }}>
@@ -191,7 +204,7 @@ export const UserPage = ({ height = '100vh' }) => {
               <b>Email:</b> {userDetails ? userDetails.email : ""}
             </UserDetails>
           </UserInfoContainer>
-        )}
+        ))}
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button
           $delete

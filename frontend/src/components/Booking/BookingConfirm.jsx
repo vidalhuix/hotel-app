@@ -109,7 +109,7 @@ export const BookingConfirm = ({ guests }) => {
           Guest: {guests}
         </TextBox>
       </SummaryContainer>
-      <Register height="30vh"/>
+      <Register height="30vh" />
     </Container>
   );
 };

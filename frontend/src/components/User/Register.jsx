@@ -58,18 +58,33 @@ export const Register = ({ height = '100vh' }) => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Registration successful:", data);
         setSuccessMessage(
           "Account created successfully. You can now proceed to log in."
         );
         setErrorMessage("");
+        
+        const { roomId, guests, checkinDate, checkoutDate } = bookingDetails;
 
-        console.log("Booking Details:", bookingDetails);
+        if (roomId && checkinDate)
+        {
+          // Create a booking
+          const bookingResponse = await fetch("https://sunside-hotel.onrender.com/booking", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId: data.id, roomId, guests, checkinDate, checkoutDate }),
+          });
+
+          setSuccessMessage(
+            "Account created successfully and booking confirmed. You can now log in to check booking details."
+          );
+        }
 
         navigate("/login", {
           state: {
             successMessage:
-              "Account created successfully. You can now proceed to log in.",
+              "Account created successfully. You can now proceed to log in",
           },
         });
       } else {

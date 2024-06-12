@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
@@ -16,9 +16,11 @@ import {
   SuccessMessage,
 } from "./UserStyledComponents";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { BookingContext } from "../Booking/BookingContext";
 
 export const Register = () => {
   const navigate = useNavigate();
+  const { bookingDetails } = useContext(BookingContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,6 +63,9 @@ export const Register = () => {
           "Account created successfully. You can now proceed to log in."
         );
         setErrorMessage("");
+
+        console.log("Booking Details:", bookingDetails);
+
         navigate("/login", {
           state: {
             successMessage:

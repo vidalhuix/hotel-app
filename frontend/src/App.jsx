@@ -14,9 +14,10 @@ import { Footer } from "./components/Footer/Footer";
 import { BackToTopButton } from "./components/BackToTopButton";
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
 import { AboutUs } from "./components/About";
-import { BookingConfirm } from './components/Booking/BookingConfirm';
+import { BookingConfirm } from "./components/Booking/BookingConfirm";
 import { RoomResults } from "./components/Booking/RoomResults";
 import { BookingSection } from "./components/Booking/BookingSection";
+import { BookingProvider } from "./components/Booking/BookingContext"; // Import BookingProvider
 
 export const App = () => {
   const [rooms, setRooms] = useState([]);
@@ -33,7 +34,6 @@ export const App = () => {
         setCheckinDate(date);
         setGuests(guests);
         setRooms(data);
-        
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
@@ -42,21 +42,27 @@ export const App = () => {
     <Router>
       <ScrollToTop />
       <AuthProvider>
-        {" "}
-        <Nav />
-        <Routes>
-          <Route path="/" element={<MainPage onSearch={onSearch} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dining" element={<AboutUs />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/hotelrooms" element={<Roomspage />} />
-          <Route
-            path="/bookingrooms"
-            element={<RoomResults rooms={rooms} checkinDate={checkinDate} />}
-          />
-          <Route path="/bookingconfirm" element={<BookingConfirm guests={guests}/>} />
-          <Route path="/user-details" element={<UserPage />} />
-        </Routes>
+        <BookingProvider>
+          {" "}
+          {/* Add BookingProvider here */}
+          <Nav />
+          <Routes>
+            <Route path="/" element={<MainPage onSearch={onSearch} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dining" element={<AboutUs />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/hotelrooms" element={<Roomspage />} />
+            <Route
+              path="/bookingrooms"
+              element={<RoomResults rooms={rooms} checkinDate={checkinDate} />}
+            />
+            <Route
+              path="/bookingconfirm"
+              element={<BookingConfirm guests={guests} />}
+            />
+            <Route path="/user-details" element={<UserPage />} />
+          </Routes>
+        </BookingProvider>
       </AuthProvider>
     </Router>
   );

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { BookingContext } from "../Booking/BookingContext";
 import { useAuth } from "./AuthContext";
 import {
   Container,
@@ -59,6 +60,7 @@ const SectionDivider = styled.div`
 `;
 
 export const UserPage = () => {
+  const { bookingDetails } = useContext(BookingContext); // Destructure bookingDetails directly
   const navigate = useNavigate();
   const { accessToken, logout } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
@@ -103,7 +105,7 @@ export const UserPage = () => {
   const handleDeleteAccount = async () => {
     try {
       const response = await fetch(
-        `https://sunside-hotel.onrender.com/users/${userDetails._id}`,
+        `https://sunside-hotel.onrender.com/users/${userDetails?._id}`,
         {
           method: "DELETE",
           headers: {
@@ -131,63 +133,65 @@ export const UserPage = () => {
     <Container style={{ marginTop: "30px" }}>
       <Content>
         <Heading>BOOKING INFORMATION</Heading>
-        <UserInfoContainer>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "10px",
-            }}
-          >
-            <UserDetails
+        {bookingDetails && ( // Check if bookingDetails is not null or undefined
+          <UserInfoContainer>
+            <div
               style={{
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                marginRight: "15px",
+                flexDirection: "row",
+                marginBottom: "10px",
               }}
             >
-              <StyledImage src={enter} alt="Check-in" />
-              <b>Check-in:</b>
-              <div>{userDetails ? userDetails.checkIn : ""}</div>
+              <UserDetails
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginRight: "15px",
+                }}
+              >
+                <StyledImage src={enter} alt="Check-in" />
+                <b>Check-in:</b>
+                <div>{bookingDetails.checkinDate}</div>
+              </UserDetails>
+              <UserDetails
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginRight: "15px",
+                }}
+              >
+                <StyledImage src={exit} alt="Check-out" />
+                <b>Check-out:</b>
+                <div>{bookingDetails.checkoutDate}</div>
+              </UserDetails>
+              <UserDetails
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <StyledImage src={guest} alt="Guests" />
+                <b>Guests:</b>
+                <div>{bookingDetails.guests}</div>
+              </UserDetails>
+            </div>
+            <div style={{ textAlign: "center", marginTop: "10px" }}>
+              <BlackStyledLink to="/active-booking">
+                Click here to cancel your booking
+              </BlackStyledLink>
+            </div>
+            <SectionDivider />
+            <UserDetails>
+              <b>Name:</b> {userDetails ? userDetails.name : ""}
             </UserDetails>
-            <UserDetails
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                marginRight: "15px",
-              }}
-            >
-              <StyledImage src={exit} alt="Check-out" />
-              <b>Check-out:</b>
-              <div>{userDetails ? userDetails.checkOut : ""}</div>
+            <UserDetails>
+              <b>Email:</b> {userDetails ? userDetails.email : ""}
             </UserDetails>
-            <UserDetails
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <StyledImage src={guest} alt="Guests" />
-              <b>Guests:</b>
-              <div>{userDetails ? userDetails.guests : ""}</div>
-            </UserDetails>
-          </div>
-          <div style={{ textAlign: "center", marginTop: "10px" }}>
-            <BlackStyledLink to="/active-booking">
-              Click here to cancel your booking
-            </BlackStyledLink>
-          </div>
-          <SectionDivider />
-          <UserDetails>
-            <b>Name:</b> {userDetails ? userDetails.name : ""}
-          </UserDetails>
-          <UserDetails>
-            <b>Email:</b> {userDetails ? userDetails.email : ""}
-          </UserDetails>
-        </UserInfoContainer>
+          </UserInfoContainer>
+        )}
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button
           $delete

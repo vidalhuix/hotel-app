@@ -14,7 +14,6 @@ import { BackToTopButton } from "../BackToTopButton.jsx";
 import { RoomsSlide } from "./RoomsSlide.jsx";
 import { HashLink } from "react-router-hash-link";
 
-
 export const Roomspage = () => {
   const standardImages = [standardRoom1, standardRoom2, standardRoom3];
   const premiumImages = [premiumRoom1, premiumRoom2, premiumRoom3];
@@ -26,24 +25,46 @@ export const Roomspage = () => {
       price: 110,
       size: 28,
       capacity: 2,
-      description: "Give life a little more space. Take a break from everyday life and let time stand still for a while. Our luxury room has a Scandinavian romantic interior style. With fragile lace, porcelain figurines and details.",
-      facilities: ["Free WiFi", "Air Conditioning", "Flat Screen TV", "Minibar"],
+      description:
+        "Give life a little more space. Take a break from everyday life and let time stand still for a while. Our luxury room has a Scandinavian romantic interior style. With fragile lace, porcelain figurines and details.",
+      facilities: [
+        "Free WiFi",
+        "Air Conditioning",
+        "Flat Screen TV",
+        "Minibar",
+      ],
     },
     {
       type: "Premium Suite",
       price: 180,
       size: 64,
       capacity: 4,
-      description: "In our suites you live extra comfortably with a separate bedroom and a living room. All suites have a double bed and sofa bed which can accommodate three adults or two adults and two children. Perfect when you want to stay with the whole family.",
-      facilities: ["Free WiFi", "Air Conditioning", "Flat Screen TV", "Minibar", "Working table", "Jacuzzi", "Balcony"],
+      description:
+        "In our suites you live extra comfortably with a separate bedroom and a living room. All suites have a double bed and sofa bed which can accommodate three adults or two adults and two children. Perfect when you want to stay with the whole family.",
+      facilities: [
+        "Free WiFi",
+        "Air Conditioning",
+        "Flat Screen TV",
+        "Minibar",
+        "Working table",
+        "Jacuzzi",
+        "Balcony",
+      ],
     },
     {
       type: "Luxury",
       price: 150,
       size: 37,
       capacity: 2,
-      description: "Art deco-inspired rooms with fitted fabrics, wallpaper in period colours, sober lighting and fully tiled bathrooms. Of course you will find a comfortable workplace in these rooms, sometimes you also have to do your must dos.",
-      facilities: ["Free WiFi", "Air Conditioning", "Flat Screen TV", "Minibar", "Working table"],
+      description:
+        "Art deco-inspired rooms with fitted fabrics, wallpaper in period colours, sober lighting and fully tiled bathrooms. Of course you will find a comfortable workplace in these rooms, sometimes you also have to do your must dos.",
+      facilities: [
+        "Free WiFi",
+        "Air Conditioning",
+        "Flat Screen TV",
+        "Minibar",
+        "Working table",
+      ],
     },
   ];
 
@@ -66,7 +87,7 @@ export const Roomspage = () => {
         </div>
         <p>{room.description}</p>
         <p>Facilities: {room.facilities.join(", ")}.</p>
-        <HashLink smooth to='/#booking-section'>
+        <HashLink smooth to="/#booking-section">
           <Button>Book</Button>
         </HashLink>
       </RoomDetails>
@@ -75,7 +96,8 @@ export const Roomspage = () => {
 
   return (
     <RoomsContainer>
-      <Grid>
+      <h2  className="from-right">Our Rooms</h2>
+      <Grid className="from-bottom">
         <RoomsSlide images={standardImages} />
         <GridItem>
           <div>
@@ -90,7 +112,8 @@ export const Roomspage = () => {
         <GridItem className="shift-left">
           <div>
             <h3>Premium Suite</h3>
-            {expandedRoom === "Premium Suite" && renderRoomDetails("Premium Suite")}
+            {expandedRoom === "Premium Suite" &&
+              renderRoomDetails("Premium Suite")}
             <ReadMoreButton onClick={() => toggleRoomDetails("Premium Suite")}>
               {expandedRoom === "Premium Suite" ? "Read less" : "Read more"}
             </ReadMoreButton>
@@ -114,13 +137,20 @@ export const Roomspage = () => {
 };
 
 const RoomsContainer = styled.div`
-  background-color: #44564c;
+  background-color:var(--color-darkgreen);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
   padding-top: 100px;
+
+  h2 {
+    color: var(--color-white);
+    font-size: 40px;
+    line-height: 44px;
+    font-weight: 700;
+    font-family: "Apercu", sans-serif;
+  }
 `;
 
 const Grid = styled.div`

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import eventHero from "/src/assets/event-hero.jpg";
 import eventOffice1 from "/src/assets/event-office1.jpg";
 import eventOffice2 from "/src/assets/event-office2.jpg";
 import eventOffice3 from "/src/assets/event-office3.jpg";
@@ -31,22 +32,38 @@ export const ConferenceEvent = () => {
         price: "500 €",
         size: "50 m²",
         capacity: "30 👥",
-        description: "Perfect for office meetings and corporate events with essential facilities.",
+        description:
+          "Perfect for office meetings and corporate events with essential facilities.",
         facilities: ["Wi-Fi", "Projector", "Whiteboard", "Air Conditioning"],
       },
       Family: {
         price: "1000 €",
         size: "100 m²",
         capacity: "50 👥",
-        description: "Ideal for family gatherings and celebrations with all necessary amenities.",
-        facilities: ["Wi-Fi", "TV", "Play Area", "Air Conditioning", "Catering"],
+        description:
+          "Ideal for family gatherings and celebrations with all necessary amenities.",
+        facilities: [
+          "Wi-Fi",
+          "TV",
+          "Play Area",
+          "Air Conditioning",
+          "Catering",
+        ],
       },
       Wedding: {
         price: "Min 5000 €",
         size: "200m²",
         capacity: "100 👥",
-        description: "A luxurious venue for weddings with top-notch facilities.",
-        facilities: ["Wi-Fi", "Sound System", "Lighting", "Air Conditioning", "Catering", "Decoration"],
+        description:
+          "A luxurious venue for weddings with top-notch facilities.",
+        facilities: [
+          "Wi-Fi",
+          "Sound System",
+          "Lighting",
+          "Air Conditioning",
+          "Catering",
+          "Decoration",
+        ],
       },
     };
 
@@ -62,7 +79,7 @@ export const ConferenceEvent = () => {
         </div>
         <p>{event.description}</p>
         <p>Facilities: {event.facilities.join(", ")}.</p>
-        < HashLink smooth to="/About#contact">
+        <HashLink smooth to="/About#contact">
           <p>Contact us for more information.</p>
         </HashLink>
       </EventDetails>
@@ -71,7 +88,19 @@ export const ConferenceEvent = () => {
 
   return (
     <EventsContainer>
-      <Grid>
+      <Hero>
+        <div>
+          <h2 className="from-top">Conferences & Events at Sunside</h2>
+          <p  className="from-bottom">
+            Experience exceptional conferences and events at Sunside. We cater
+            to corporate meetings, family celebrations, and grand weddings. Let
+            us create memorable experiences in an elegant and professional
+            setting.
+          </p>
+        </div>
+        <img src={eventHero} alt="hero image conference & event" />
+      </Hero>
+      <Grid className="from-bottom">
         <RoomsSlide images={officeImages} />
         <GridItem>
           <div>
@@ -95,7 +124,7 @@ export const ConferenceEvent = () => {
         <RoomsSlide images={weddingImages} />
         <GridItem>
           <div>
-            <h3>Wedding</h3>
+            <h2>Wedding</h2>
             {expandedEvent === "Wedding" && renderEventDetails("Wedding")}
             <ReadMoreButton onClick={() => toggleEventDetails("Wedding")}>
               {expandedEvent === "Wedding" ? "Read less" : "Read more"}
@@ -115,8 +144,63 @@ const EventsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 0px;
   padding-top: 100px;
+`;
+
+const Hero = styled.div`
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  color: var(--color-white);
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  
+  > img {
+    transform-origin: bottom;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 50px;
+    
+    animation: fade-in linear;
+    animation-timeline: view();
+  }
+
+  @keyframes fade-in {
+    from {
+      scale: 0;
+    }
+    to {
+      scale: 2;
+    }
+  }
+
+  div {
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+    margin: auto;
+    bottom: 100px;
+    h2 {
+      font-size: 40px;
+      line-height: 44px;
+      font-weight: 700;
+      font-family: "Apercu", sans-serif;
+      }
+    p {
+      animation: slideTop 1.5s ease-in-out;
+    text-align: center;
+    }
+    }
+
+
+  }
 `;
 
 const Grid = styled.div`

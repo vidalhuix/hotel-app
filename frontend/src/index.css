@@ -2,27 +2,87 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --app-fontfamily: 'Apercu', sans-serif;
+  --app-fontfamily: "Apercu", sans-serif;
 
-  --color-darkgreen: #44554B;
-  --color-gold: #D3AF97;
+  --color-darkgreen: #44554b;
+  --color-gold: #d3af97;
   --color-white: #ffffff;
-  --color-black: #333;
+  --color-black: #000000;
+  --color-darkgrey: #404040;
+  --color-lightgrey: #656565;
 }
 
-*{
+* {
   box-sizing: border-box;
   font-family: var(--app-fontfamily);
 }
 
-html, body {
+html,
+body {
   margin: 0;
   line-height: 1.6;
   justify-content: center;
   align-items: center;
 }
 
+/* animations ---------------------------------------------------- */
 
+.from-top {
+  animation: slideTop 1.5s ease-in-out;
+}
 
+.from-bottom {
+  animation: slideBottom 1.5s ease-in-out;
+}
 
+.from-left {
+  animation: slideLeft 1.5s ease-in-out;
+}
 
+.from-right {
+  animation: slideRight 1.5s ease-in-out;
+}
+
+@keyframes slideTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideBottom {
+  0% {
+    transform: translateY(+100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(+100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

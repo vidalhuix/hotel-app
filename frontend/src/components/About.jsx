@@ -59,8 +59,8 @@ export const AboutUs = () => {
   return (
     <Container>
       <ContactContainer>
-        <h1>FINAL PROJECT</h1>
-        <p>
+        <h1 className="from-left">Final Project</h1>
+        <p className="from-right">
           This full-stack application, is the last project at{" "}
           <a href="https://www.technigo.io/web-development-boot-camp">
             Technigo' Spring 2024 Web Development Bootcamp
@@ -75,15 +75,12 @@ export const AboutUs = () => {
           Once logged in, users can view their registered bookings and delete
           their accounts if desired.
         </p>
-
-        {/* <h3>TECH STACK & LIBRARIES</h3> */}
-        <ul>
+        <ul className="from-left">
           {techStack.map((tech, index) => (
             <li key={index}>{tech}</li>
           ))}
         </ul>
-        {/* <h3>TEAM</h3> */}
-        <CardsContainer id="contact">
+        <CardsContainer id="contact"  className="from-bottom">
           {contactInfo.map((contact, index) => (
             <Card key={index}>
               <Front>
@@ -116,9 +113,9 @@ export const AboutUs = () => {
 };
 
 const Container = styled.div`
-  background-color: var(--color-darkgreen);
+  background-color: var(--color-white);
   height: 100%;
-  color: white;
+  color: var(--color-darkgrey);
   min-height: 100vh;
 `;
 const ContactContainer = styled.div`
@@ -130,17 +127,7 @@ const ContactContainer = styled.div`
   margin: auto;
   padding: 150px 10px;
   text-align: center;
-  animation: slideDown 1.5s ease-in-out;
-  @keyframes slideDown {
-    0% {
-      transform: translateY(-300%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
+
   @media all and (min-width: 744px) {
   }
   a {
@@ -162,7 +149,7 @@ const ContactContainer = styled.div`
     li {
       font-size: 16px;
       padding: 2px 6px;
-      color: var(--color-darkgreen);
+      color: var(--color-white);
       background-color: var(--color-gold);
     }
   }

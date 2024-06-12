@@ -18,7 +18,7 @@ import {
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { BookingContext } from "../Booking/BookingContext";
 
-export const Register = () => {
+export const Register = ({ height = '100vh' }) => {
   const navigate = useNavigate();
   const { bookingDetails } = useContext(BookingContext);
   const [name, setName] = useState("");
@@ -85,7 +85,7 @@ export const Register = () => {
   };
 
   return (
-    <Container>
+    <Container height={height}>
       <Form onSubmit={handleSubmit}>
         <h2>CREATE YOUR ACCOUNT</h2>
         {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}

@@ -47,6 +47,8 @@ const SubBookingContainer = styled.div`
   width: 100%;
   font-weight: 700;
   padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ButtonContainer = styled.div`

@@ -9,34 +9,64 @@ import guest from "../../assets/guest.png";
 
 const Container = styled.div`
   background-color: #44564c;
-  height: 100vh;
+  color: white;
   display: flex;
-  flex-direction: row;
+  height: auto;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
-  padding: 20% 10%;
-  h4 {
-    margin: 0;
+  padding: 20% 5% 36% 5%;
+  h4{
+    margin:0;
+  }
+  @media all and (min-width: 744px) {
+    height: 100vh;
+    min-height: 768px;
+    padding: 20% 10%;
+  }
+  @media all and (min-width: 1025px) {
+    flex-direction: row;
   }
 `;
 
 const SummaryContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
-  margin-top: 50px;
+  width: auto;
+  margin-top:100px;
+  margin-bottom:20px;
+  padding: 16px 24px 40px 40px;
   background: white;
-  color: black;
-  padding: 30px 40px 70px 50px;
-  margin-right: 100px;
-`;
+  color:  black;
+  h2{
+    font-size: 1.2em;
+  }
+  @media all and (min-width: 744px) {
+    padding: 20px 32px 40px 50px;
+    margin-top: 50px;
+    h2{
+      font-size: 1.5em;
+    }
+  }
+  @media all and (min-width: 1025px) {
+    width: 40%;
+    margin-top:50px;
+    margin-right: 100px;
+    padding: 30px 32px 60px 50px;
+  }
+`
 
 const TextBox = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 6px;
-`;
+  @media all and (min-width: 744px) {
+
+  }
+  @media all and (min-width: 1025px) {
+
+  }
+`
 
 export const BookingConfirm = ({ guests }) => {
   const location = useLocation();
@@ -79,7 +109,7 @@ export const BookingConfirm = ({ guests }) => {
           Guest: {guests}
         </TextBox>
       </SummaryContainer>
-      <Register />
+      <Register height="30vh"/>
     </Container>
   );
 };

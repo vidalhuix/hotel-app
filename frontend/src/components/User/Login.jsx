@@ -18,7 +18,7 @@ import {
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "./AuthContext";
 
-export const Login = () => {
+export const Login = ({ height = '100vh' }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useAuth();
@@ -73,7 +73,7 @@ export const Login = () => {
   };
 
   return (
-    <Container>
+    <Container height={height}>
       <Form onSubmit={handleSubmit}>
         <h2>LOG IN TO YOUR ACCOUNT</h2>
         <FormGroup>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   background-color: #44564c;
-  height: 100vh;
+  height: ${(props) => props.height};
   display: flex;
   justify-content: center;
   align-items: center;

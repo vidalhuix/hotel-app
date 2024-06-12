@@ -31,7 +31,6 @@ export const Login = () => {
   useEffect(() => {
     if (location.state && location.state.successMessage) {
       setSuccessMessage(location.state.successMessage);
-      // Clear the state to prevent the message from showing again on reload
       navigate(location.pathname, { replace: true, state: {} });
     }
   }, [location.state, navigate]);

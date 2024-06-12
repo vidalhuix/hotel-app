@@ -6,7 +6,7 @@ export const BookingProvider = ({ children }) => {
   const [bookingDetails, setBookingDetails] = useState({
     checkinDate: null,
     checkoutDate: null,
-    guests: 1,
+    guests: null,
   });
 
   return (

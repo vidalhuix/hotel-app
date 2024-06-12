@@ -17,7 +17,7 @@ import { AboutUs } from "./components/About";
 import { BookingConfirm } from "./components/Booking/BookingConfirm";
 import { RoomResults } from "./components/Booking/RoomResults";
 import { BookingSection } from "./components/Booking/BookingSection";
-import { BookingProvider } from "./components/Booking/BookingContext"; // Import BookingProvider
+import { BookingProvider } from "./components/Booking/BookingContext";
 
 export const App = () => {
   const [rooms, setRooms] = useState([]);
@@ -44,7 +44,6 @@ export const App = () => {
       <AuthProvider>
         <BookingProvider>
           {" "}
-          {/* Add BookingProvider here */}
           <Nav />
           <Routes>
             <Route path="/" element={<MainPage onSearch={onSearch} />} />

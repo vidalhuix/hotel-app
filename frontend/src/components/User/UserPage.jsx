@@ -60,7 +60,7 @@ const SectionDivider = styled.div`
 `;
 
 export const UserPage = () => {
-  const { bookingDetails } = useContext(BookingContext); // Destructure bookingDetails directly
+  const { bookingDetails } = useContext(BookingContext);
   const navigate = useNavigate();
   const { accessToken, logout } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
@@ -133,7 +133,7 @@ export const UserPage = () => {
     <Container style={{ marginTop: "30px" }}>
       <Content>
         <Heading>BOOKING INFORMATION</Heading>
-        {bookingDetails && ( // Check if bookingDetails is not null or undefined
+        {bookingDetails && ( 
           <UserInfoContainer>
             <div
               style={{

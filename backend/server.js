@@ -54,6 +54,16 @@ const RoomStatus = mongoose.model("Roomstatus", {
   status: Number,
 });
 
+//Booking model
+const Bookings = mongoose.model("Bookings",{
+  userId: String,
+  roomId: Number,
+  checkinDate: Date,
+  checkoutDate: Date,
+  guests: Number,
+  price: Number,
+})
+
 // Defines the port the app will run on. Defaults to 8080, but can be overridden
 // when starting the server. Example command to overwrite PORT env variable value:
 // PORT=9000 npm start
@@ -390,6 +400,31 @@ app.delete("/users/:userId", async (req, res) => {
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+//Endpoint to save user's booking information
+app.post('/booking', async (req, res) => {
+  try {
+    const { userId, roomId, checkinDate, checkoutDate, guests, price } = req.body;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    const booking = new Bookings({
+      userId,
+      roomId,
+      checkinDate,
+      checkoutDate,
+      guests,
+      price,
+    });
+    await booking.save();
+    res.send({ message: 'Booking created successfully', booking });
+  } catch (error) {
+    console.error("Error creating booking:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });

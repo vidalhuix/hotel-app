@@ -16,12 +16,15 @@ export const AboutUs = () => {
     "Authentication",
     "Express.js",
     "React Hooks",
+    "Responsiveness",
+    "Web Accessibility",
     "Styled Components",
     "Splidejs",
     "React Router",
     "Hash Link",
     "React Icons",
     "REST API",
+    "Unsplash"
     ];
   const contactInfo = [
     {

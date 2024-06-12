@@ -13,13 +13,12 @@ import { Reviews } from "./components/Reviews";
 import { Footer } from "./components/Footer/Footer";
 import { BackToTopButton } from "./components/BackToTopButton";
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
-import { AboutUs } from "./components/About";
 import { BookingConfirm } from "./components/Booking/BookingConfirm";
-import { RoomResults } from "./components/Booking/RoomResults";
 import { BookingSection } from "./components/Booking/BookingSection";
 import { BookingProvider } from "./components/Booking/BookingContext";
 import { RoomResults } from './components/Booking/RoomResults';
 import { AboutUs } from "./components/About";
+import { ConferenceEvent } from './components/ConferenceEvent';
 
 export const App = () => {
   const [rooms, setRooms] = useState([]);
@@ -62,6 +61,7 @@ export const App = () => {
               element={<BookingConfirm guests={guests} />}
             />
             <Route path="/user-details" element={<UserPage />} />
+            <Route path="/conference-event" element={<ConferenceEvent />} />
           </Routes>
         </BookingProvider>
       </AuthProvider>

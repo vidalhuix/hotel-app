@@ -429,6 +429,29 @@ app.post('/booking', async (req, res) => {
   }
 });
 
+//Endpoint to get user's booking information
+app.get('/users/:userId/bookings', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    
+    const userBookings = await Bookings.find({
+      $and: [
+        {userId: { $eq: userId } },
+      ]
+    });
+
+    res.status(200).json(userBookings);
+  } catch (error) {
+    console.error("Error fetching user bookings:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

@@ -24,31 +24,29 @@ export const AboutUs = () => {
     "Hash Link",
     "React Icons",
     "REST API",
-    "Unsplash"
-    ];
+    "Unsplash",
+  ];
   const contactInfo = [
     {
       name: "Arnau Vidal",
       linkedin: "https://www.linkedin.com/in/arnau-vidal-4266a940/",
       github: "https://github.com/vidalhuix",
       portfolio: "https://arnaus-react-portafolio.netlify.app/",
-      imgSrc:
-        "https://arnaus-react-portafolio.netlify.app/assets/profile_pic-DhLhf60m.jpg",
+      imgSrc: "/src/assets/Portrait-Arnau.jpg",
     },
     {
       name: "Cornelia Dahlin",
       linkedin: "https://www.linkedin.com/in/cornelia-dahlin-940684295/",
       github: "https://github.com/lunek1",
       portfolio: "https://wondrous-sorbet-b71db8.netlify.app/",
-      imgSrc:
-        "https://media.licdn.com/dms/image/D4D03AQEHAtt3SlUKOQ/profile-displayphoto-shrink_800_800/0/1697014709384?e=1718236800&v=beta&t=Ikjt59Bq8qp6FoKDNJzLA2St8PS4ECaZKGMNb60D4OI",
+      imgSrc: "/src/assets/Portrait-Cornelia.jpg",
     },
     {
       name: "Jing Huang",
       linkedin: "https://www.linkedin.com/in/jinghuangjh/",
       github: "https://github.com/jingh999",
       portfolio: "https://jinghuang.netlify.app/",
-      imgSrc: "https://jinghuang.netlify.app/assets/portrait.jpg",
+      imgSrc: "/src/assets/Portrait-Jing.jpg",
     },
   ];
 
@@ -80,7 +78,7 @@ export const AboutUs = () => {
             <li key={index}>{tech}</li>
           ))}
         </ul>
-        <CardsContainer id="contact"  className="from-bottom">
+        <CardsContainer id="contact" className="from-bottom">
           {contactInfo.map((contact, index) => (
             <Card key={index}>
               <Front>
@@ -153,7 +151,7 @@ const ContactContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content: center;
     gap: 4px;
     padding: 0;
     li {

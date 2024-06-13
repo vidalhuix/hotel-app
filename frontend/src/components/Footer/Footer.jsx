@@ -11,20 +11,27 @@ import smile03 from "../../assets/smile-3.svg";
 export const Footer = () => {
   return (
     <StyledFooter>
-      <StyledLogo href="/">
+      <StyledLogo href="/" title="home page">
         <img src={hotelLogo} alt="Logo Hotel Itaca" />
       </StyledLogo>
       <FooterBody>
         <ListWrapper>
-          <a href="/events-meetings">Events & Meeting</a>
-          <a href="/hotelrooms">Hotel Rooms</a>
-          <a href="/about">About</a>
+          <a href="/events-meetings" title="conference & events">
+            Conference & Events
+          </a>
+          <a href="/hotelrooms" title="hotel rooms">
+            Hotel Rooms
+          </a>
+          <a href="/about" title="about us">
+            About
+          </a>
         </ListWrapper>
         <NewsLetterContainer>
           <h3>NEWSLETTER</h3>
           <NewsLetter>
-            <input type="Your email address" placeholder="E-mail" />
-            <button>Subscribe</button>
+            <label htmlFor="newsletter-email"></label>
+            <input id="newsletter-email" type="email" placeholder="E-mail" aria-label="Your email address" />
+            <button type="button">Subscribe</button>
           </NewsLetter>
           <h5>Get montly news, stay updated.</h5>
         </NewsLetterContainer>
@@ -54,14 +61,14 @@ export const Footer = () => {
               Via del Mare 123 <br />
               Itaca - 80050
             </p>
-            <a href="tel:+12-345-✿678-❖90✦">+12-345-✿678-❖90✦</a>
+            <a href="tel:+1234567890">+12-345-678-90</a>
             <a href="mailto:info@sastaholm.se">info@sunsidehotel.me</a>
           </ContactTextWrapper>
         </ContactWrapper>
       </FooterBody>
       <ContactIconWrapper>
         <ContactIcon
-          link='https://arnaus-react-portafolio.netlify.app/'
+          link="https://arnaus-react-portafolio.netlify.app/"
           imgSrc={smile01}
           altText="Arnaus's contact icon"
           labelFor="contact-arnau"
@@ -69,7 +76,7 @@ export const Footer = () => {
           target="_blank"
         />
         <ContactIcon
-          link='https://wondrous-sorbet-b71db8.netlify.app/'
+          link="https://wondrous-sorbet-b71db8.netlify.app/"
           imgSrc={smile02}
           altText="Cornelia's contact icon"
           labelFor="contact-cornelia"
@@ -77,7 +84,7 @@ export const Footer = () => {
           target="_blank"
         />
         <ContactIcon
-          link='https://jinghuang.netlify.app/'
+          link="https://jinghuang.netlify.app/"
           imgSrc={smile03}
           altText="Jings's contact icon"
           labelFor="contact-jing"

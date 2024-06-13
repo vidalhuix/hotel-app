@@ -85,14 +85,14 @@ const ContactLink = styled.a`
 const IconImage = styled.img`
   width: 30px;
   height: 40px;
-  margin: 10px; /* Space between image and label */
+  margin: 10px;
   margin-bottom: 5px;
   filter: invert(100%);
   transition: transform 250ms ease-in;
 
   &:hover {
 
-      brightness(90%) contrast(83%); /* Change color on hover */
+      brightness(90%) contrast(83%);
     transform: rotate(360deg);
   }
 `;

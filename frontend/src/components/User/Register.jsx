@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
@@ -16,11 +16,9 @@ import {
   SuccessMessage,
 } from "./UserStyledComponents";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { BookingContext } from "../Booking/BookingContext";
 
-export const Register = ({ height = '100vh' }) => {
+export const Register = ({ height = "100vh" }) => {
   const navigate = useNavigate();
-  const { bookingDetails } = useContext(BookingContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,40 +54,13 @@ export const Register = ({ height = '100vh' }) => {
       });
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
 
       if (response.ok) {
         setSuccessMessage(
           "Account created successfully. You can now proceed to log in."
         );
         setErrorMessage("");
-        
-        const { roomId, guests, checkinDate, checkoutDate } = bookingDetails;
-
-        if (roomId && checkinDate)
-        {
-          // Create a booking
-          const bookingResponse = await fetch("https://sunside-hotel.onrender.com/booking", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userId: data.id, roomId, guests, checkinDate, checkoutDate }),
-          });
-
-          //change room status
-          /* const bookingResult = await fetch("https://sunside-hotel.onrender.com/hotelrooms/book", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ roomId, checkinDate, checkoutDate }),
-          }); */
-
-          setSuccessMessage(
-            "Account created successfully and booking confirmed. You can now log in to check booking details."
-          );
-        }
 
         navigate("/login", {
           state: {
@@ -113,8 +84,6 @@ export const Register = ({ height = '100vh' }) => {
     <Container height={height}>
       <Form onSubmit={handleSubmit}>
         <h2>CREATE YOUR ACCOUNT</h2>
-        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <FormGroup>
           <Label htmlFor="name">Name:</Label>
           <Input
@@ -154,6 +123,8 @@ export const Register = ({ height = '100vh' }) => {
             />
           </InputWrapper>
         </FormGroup>
+        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <Button type="submit">Register</Button>
         <SmallText>
           <BoldText>Already have an account?</BoldText>

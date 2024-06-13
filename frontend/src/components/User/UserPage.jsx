@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { BookingContext } from "../Booking/BookingContext";
 import { useAuth } from "./AuthContext";
 import {
   Container,
@@ -63,7 +62,6 @@ const NoBookingsMessage = styled.div`
 `;
 
 export const UserPage = ({ height = '100vh' }) => {
-  const { bookingDetails } = useContext(BookingContext); // Not used
   const navigate = useNavigate();
   const { accessToken, logout } = useAuth();
   const [userDetails, setUserDetails] = useState(null);

@@ -182,7 +182,7 @@ export const Nav = () => {
             <NavLink to="/hotelrooms">Rooms</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/About">About</NavLink>
+            <NavLink to="/about">About</NavLink>
           </NavItem>
         </NavList>
         <DropdownIcon

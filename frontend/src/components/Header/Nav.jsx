@@ -48,7 +48,7 @@ const NavList = styled.ul`
     color: var(--color-darkgreen); /* Text color white */
     text-decoration: none;
     padding: 10px 0;
-    font-size: 1rem;
+    font-size: 16px;
     @media (min-width: 1000px) {
       margin-right: auto;
     }
@@ -107,6 +107,7 @@ const Button = styled.button`
   padding: 10px 20px;
   background-color: #48544c;
   color: white;
+  font-size: 16px;
   border: none;
   border-radius: 20px;
   cursor: pointer;

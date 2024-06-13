@@ -29,6 +29,7 @@ export const Login = ({ height = '100vh' }) => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { setUser, bookingDetails } = useContext(BookingContext);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (location.state && location.state.successMessage) {
@@ -51,7 +52,6 @@ export const Login = ({ height = '100vh' }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const response = await fetch("https://sunside-hotel.onrender.com/login", {
         method: "POST",
@@ -60,11 +60,15 @@ export const Login = ({ height = '100vh' }) => {
         },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await response.json();
-      console.log(data) //there is no id but only accessToken
+      console.log(data)
+      
       if (response.ok) {
-    
-        //setUser(data);
+        setSuccessMessage(
+          " log in successfully. "
+        );
+        setErrorMessage("");
         
         const { roomId, guests, checkinDate, checkoutDate } = bookingDetails;
 
@@ -76,7 +80,7 @@ export const Login = ({ height = '100vh' }) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ userId: data.id, roomId, guests, checkinDate, checkoutDate }),
+            body: JSON.stringify({ userId: data.userId, roomId, guests, checkinDate, checkoutDate }),
           });
           
           setSuccessMessage(

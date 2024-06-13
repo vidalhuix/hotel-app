@@ -50,14 +50,6 @@ const BlackStyledLink = styled(StyledLink)`
   }
 `;
 
-const SectionDivider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #ccc;
-  margin-top: 15px;
-  margin-bottom: 15px;
-`;
-
 const NoBookingsMessage = styled.div`
   margin-bottom: 20px; 
 `;
@@ -200,7 +192,6 @@ export const UserPage = ({ height = '100vh' }) => {
                 Click here to cancel your booking
               </BlackStyledLink>
             </div>
-            
           </UserInfoContainer>
         ))
         ):(
@@ -216,7 +207,6 @@ export const UserPage = ({ height = '100vh' }) => {
             </UserDetails>
         </UserInfoContainer>
                
-      
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button
           $delete

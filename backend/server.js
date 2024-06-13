@@ -243,7 +243,7 @@ app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, r
     });
 
     if (availableRooms.length > 0) {
-      const Roomsdata = availableRooms.map(status => {
+      const roomsdata = availableRooms.map(status => {
         const room = rooms.find(r => r.id === status.roomId);
         return {
           ...room._doc,
@@ -251,9 +251,9 @@ app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, r
           date: status.date
         };
       });
-      res.json(Roomsdata);
+      res.json(roomsdata);
     } else {
-      res.status(404).json({ error: "No rooms foundd" });
+      res.status(404).json([]);
     }
   } catch (error) {
     console.error("Error:", error);
@@ -282,7 +282,6 @@ app.post("/hotelrooms/booking/check-availability", async (req, res) => {
             {date: { $eq: date } }
           ]
         });
-
         if (roomStatusDoc.status === 0)
         {
           break;

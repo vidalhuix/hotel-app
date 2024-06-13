@@ -16,7 +16,7 @@ export const Footer = () => {
       </StyledLogo>
       <FooterBody>
         <ListWrapper>
-          <a href="/events&meetings">Events & Meeting</a>
+          <a href="conference-event">Events & Meeting</a>
           <a href="/hotelrooms">Hotel Rooms</a>
           <a href="/about">About</a>
         </ListWrapper>

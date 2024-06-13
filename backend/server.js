@@ -232,7 +232,6 @@ app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, r
     const guest = parseInt(req.params.guestamount);
 
     const rooms = await Hotelrooms.find({ capacity: { $gte: guest } });
-    console.log("Found rooms with sufficient capacity:", rooms);
 
     const roomIds = rooms.map(room => room.id);
     const availableRooms = await RoomStatus.find({
@@ -301,32 +300,58 @@ app.post("/hotelrooms/booking/check-availability", async (req, res) => {
   }
 });
 
-// Endpoint for change room status from 1 to 0 or 0 to 1
-/* app.post('/hotelrooms/book', async (req, res) => {
-  const { roomId, date } = req.body;
-  const roomStatus = await RoomStatus.findOne({ roomId, date });
+// Endpoint for change room status from 1 to 0 
+app.post('/hotelrooms/book', async (req, res) => {
+  const { roomId, checkinDate, checkoutDate } = req.body;
 
-  if (roomStatus && roomStatus.status === 1) {
-    roomStatus.status = 0;
-    await roomStatus.save();
-    res.status(200).json({ message: "Room booked successfully", status: roomStatus });
-  } else {
-    res.status(400).json({ message: "Room is already booked or does not exist" });
+  try {
+    for (let date = new Date(checkinDate); date < new Date(checkoutDate); date.setDate(date.getDate() + 1)) {
+      const roomStatus = await RoomStatus.findOne({
+        $and: [
+          {roomId: { $eq: roomId }},
+          {date: { $eq: date } }
+        ]
+      });
+      
+      if (roomStatus && roomStatus.status === 1) {
+        roomStatus.status = 0;
+        await roomStatus.save();
+      }
+    };
+
+    res.status(200).json({ message: "Room status updated", roomId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred while updating the room status" });
   }
 });
 
+// Endpoint for change room status from 0 to 1
 app.post('/hotelrooms/cancel', async (req, res) => {
-  const { roomId, date } = req.body;
-  const roomStatus = await RoomStatus.findOne({ roomId, date });
+  const { roomId, checkinDate, checkoutDate } = req.body;
 
-  if (roomStatus && roomStatus.status === 0) {
-    roomStatus.status = 1;
-    await roomStatus.save();
-    res.status(200).json({ message: "Booking cancelled successfully", status: roomStatus });
-  } else {
-    res.status(400).json({ message: "Room is not booked or does not exist" });
+  try {
+    // Find and update room statuses in the specified date range
+    for (let date = new Date(checkinDate); date < new Date(checkoutDate); date.setDate(date.getDate() + 1)) {
+      const roomStatus = await RoomStatus.findOne({
+        $and: [
+          {roomId: { $eq: roomId }},
+          {date: { $eq: date } }
+        ]
+      });
+      
+      if (roomStatus && roomStatus.status === 0) {
+        roomStatus.status = 1;
+        await roomStatus.save();
+      }
+    };
+
+    res.status(200).json({ message: "Room status updated", roomId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred while updating the room status" });
   }
-}); */
+});
 
 // Registration endpoint to create a new user
 app.post("/users", async (req, res) => {

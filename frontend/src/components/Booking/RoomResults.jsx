@@ -67,7 +67,7 @@ export const RoomResults = ({ rooms, checkinDate }) => {
   }; 
 
   return (
-    <Container>
+  <Container>  
       {filteredRooms.map((room) => (
           <Grid>
             <GridItemImg>

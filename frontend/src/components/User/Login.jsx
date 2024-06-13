@@ -49,7 +49,6 @@ export const Login = ({ height = "100vh" }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const response = await fetch("https://sunside-hotel.onrender.com/login", {
         method: "POST",
@@ -58,8 +57,9 @@ export const Login = ({ height = "100vh" }) => {
         },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await response.json();
-      console.log(data); 
+      console.log(data); //there is no id but only accessToken
       if (response.ok) {
         login(data.accessToken);
         navigate("/user-details", {

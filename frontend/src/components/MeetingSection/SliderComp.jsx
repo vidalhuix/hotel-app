@@ -4,6 +4,7 @@ import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 // Default theme
 import "@splidejs/react-splide/css";
 // import '@splidejs/react-splide/css/sea-green';
+import slide01 from "../../assets/01-slide.jpg";
 
 //See Splidejs.com documentation
 export const SliderComp = () => {
@@ -55,7 +56,7 @@ export const SliderComp = () => {
       >
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/src/assets/01-slide.jpg"
+            imgSrc={slide01}
             imgAlt="Dinner table"
             title="Dinner & Breakfast"
             description="Indulge in a gourmet dinner featuring exquisite cuisine, elegant ambiance, and exceptional service."

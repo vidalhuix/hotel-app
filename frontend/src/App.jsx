@@ -8,6 +8,7 @@ import { UserPage } from "./components/User/UserPage";
 import { Roomspage } from "./components/Rooms/Roomspage";
 import ScrollToTop from "./components/ScrollToTop"; //this component makes all pages start from the top
 import { BookingConfirm } from "./components/Booking/BookingConfirm";
+import { BookingProvider } from "./components/Booking/BookingContext";
 import { RoomResults } from './components/Booking/RoomResults';
 import { AboutUs } from "./components/About";
 import { ConferenceEvent } from './components/ConferenceEvent';
@@ -19,7 +20,6 @@ export const App = () => {
   const [guests, setGuests] = useState(1);
 
   const onSearch = (date, guests) => {
-    console.log({ date });
     fetch(
       `https://sunside-hotel.onrender.com/hotelrooms/booking/date/${date}/guestamount/${guests}`
     )
@@ -36,6 +36,7 @@ export const App = () => {
     <Router>
       <ScrollToTop />
       <AuthProvider>
+        <BookingProvider>
           {" "}
           <Nav />
           <Routes>
@@ -55,6 +56,7 @@ export const App = () => {
             <Route path="/user-details" element={<UserPage />} />
             <Route path="/conference-event" element={<ConferenceEvent />} />
           </Routes>
+        </BookingProvider>
       </AuthProvider>
     </Router>
   );

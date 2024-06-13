@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { Register } from "../User/Register";
+import { BookingContext } from "./BookingContext";
 import exit from "../../assets/exit.png";
 import enter from "../../assets/enter.png";
 import guest from "../../assets/guest.png";
@@ -65,6 +66,11 @@ export const BookingConfirm = ({ guests }) => {
   const location = useLocation();
   const { successMessage, roomType, checkinDate, checkoutDate, roomId } =
     location.state || {};
+  const { setBookingDetails } = useContext(BookingContext);
+
+  useEffect(() => {
+    setBookingDetails({ checkinDate, checkoutDate, guests, roomType, roomId });
+  }, [checkinDate, checkoutDate, guests, roomType, roomId, setBookingDetails]);
 
   return (
     <Container>

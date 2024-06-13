@@ -41,7 +41,6 @@ export const RoomResults = ({ rooms, checkinDate }) => {
 
   const handleBookingSubmit = (e, roomType) => {
     e.preventDefault();
-    console.log(roomType)
 
     fetch("https://sunside-hotel.onrender.com/hotelrooms/booking/check-availability", {
       method: "POST",
@@ -52,7 +51,6 @@ export const RoomResults = ({ rooms, checkinDate }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Available room id:", data.availableRoomId, roomType );
         navigate("/bookingconfirm", {
           state: {
             successMessage: "Room is available under this period. Please confirm your booking details and register your account.",

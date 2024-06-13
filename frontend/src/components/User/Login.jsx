@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   Container,
   Form,
-  StyledH4,
   FormGroup,
   Label,
   InputWrapper,
@@ -18,8 +17,9 @@ import {
 } from "./UserStyledComponents";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "./AuthContext";
+import { BookingContext } from "../Booking/BookingContext";
 
-export const Login = ({ height = "100vh" }) => {
+export const Login = ({ height = '100vh' }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useAuth();
@@ -28,6 +28,8 @@ export const Login = ({ height = "100vh" }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const { setUser, bookingDetails } = useContext(BookingContext);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (location.state && location.state.successMessage) {
@@ -60,14 +62,36 @@ export const Login = ({ height = "100vh" }) => {
       });
 
       const data = await response.json();
-      console.log(data); //there is no id but only accessToken
+      
       if (response.ok) {
+        setSuccessMessage(
+          " log in successfully. "
+        );
+        setErrorMessage("");
+        
+        const { roomId, guests, checkinDate, checkoutDate } = bookingDetails;
+
+        if (roomId && checkinDate)
+        {
+          // Create a booking
+          const bookingResponse = await fetch("https://sunside-hotel.onrender.com/booking", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId: data.userId, roomId, guests, checkinDate, checkoutDate }),
+          });
+          
+          setSuccessMessage(
+            "Log in successfully and booking confirmed."
+          );
+        }
+
         login(data.accessToken);
         navigate("/user-details", {
           state: {
-            successMessage: "Logged in successfully.",
-          },
-        });
+            successMessage:
+              "Your room is booked successfully.",}});
       } else {
         setError("Invalid email or password");
       }
@@ -80,7 +104,7 @@ export const Login = ({ height = "100vh" }) => {
   return (
     <Container height={height}>
       <Form onSubmit={handleSubmit}>
-        <StyledH4>LOG IN TO YOUR ACCOUNT</StyledH4>
+        <h2>LOG IN TO YOUR ACCOUNT</h2>
         <FormGroup>
           <Label htmlFor="email">Email:</Label>
           <Input
@@ -89,7 +113,7 @@ export const Login = ({ height = "100vh" }) => {
             value={email}
             onChange={handleEmailChange}
             placeholder="Enter your email address"
-            maxLength={30}
+            maxLength={254}
           />
         </FormGroup>
         <FormGroup>

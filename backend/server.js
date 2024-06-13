@@ -301,6 +301,33 @@ app.post("/hotelrooms/booking/check-availability", async (req, res) => {
   }
 });
 
+// Endpoint for change room status from 1 to 0 or 0 to 1
+/* app.post('/hotelrooms/book', async (req, res) => {
+  const { roomId, date } = req.body;
+  const roomStatus = await RoomStatus.findOne({ roomId, date });
+
+  if (roomStatus && roomStatus.status === 1) {
+    roomStatus.status = 0;
+    await roomStatus.save();
+    res.status(200).json({ message: "Room booked successfully", status: roomStatus });
+  } else {
+    res.status(400).json({ message: "Room is already booked or does not exist" });
+  }
+});
+
+app.post('/hotelrooms/cancel', async (req, res) => {
+  const { roomId, date } = req.body;
+  const roomStatus = await RoomStatus.findOne({ roomId, date });
+
+  if (roomStatus && roomStatus.status === 0) {
+    roomStatus.status = 1;
+    await roomStatus.save();
+    res.status(200).json({ message: "Booking cancelled successfully", status: roomStatus });
+  } else {
+    res.status(400).json({ message: "Room is not booked or does not exist" });
+  }
+}); */
+
 // Registration endpoint to create a new user
 app.post("/users", async (req, res) => {
   try {
@@ -360,7 +387,7 @@ app.post("/login", async (req, res) => {
   }
 
   const accessToken = user.accessToken;
-  res.status(200).json({ accessToken });
+  res.status(200).json({ accessToken, userId: user._id });
 });
 
 // Fetch user details, including user ID (needed to delete user)

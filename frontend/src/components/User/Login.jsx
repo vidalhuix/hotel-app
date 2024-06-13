@@ -81,7 +81,16 @@ export const Login = ({ height = '100vh' }) => {
             },
             body: JSON.stringify({ userId: data.userId, roomId, guests, checkinDate, checkoutDate }),
           });
-          
+
+          //change room status
+          const bookingResult = await fetch("https://sunside-hotel.onrender.com/hotelrooms/book", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ roomId, checkinDate, checkoutDate }),
+          });
+
           setSuccessMessage(
             "Log in successfully and booking confirmed."
           );

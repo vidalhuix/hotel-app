@@ -31,10 +31,10 @@ export const RoomResults = ({ rooms, checkinDate }) => {
 
   const filteredRooms = filterRoomsByType(rooms);
 
-  if (filteredRooms.length === 0) {
+  if (!rooms || rooms.length === 0 || filteredRooms.length === 0) {
     return (
       <Container>
-      <p>No rooms available for the selected date and guest amount.</p>
+      <p>No rooms available for the selected date and guest amount. Please choose another date or room.</p>
       </Container>
     );
   }

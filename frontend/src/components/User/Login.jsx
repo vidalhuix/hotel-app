@@ -88,7 +88,7 @@ export const Login = ({ height = "100vh" }) => {
             value={email}
             onChange={handleEmailChange}
             placeholder="Enter your email address"
-            maxLength={254}
+            maxLength={30}
           />
         </FormGroup>
         <FormGroup>

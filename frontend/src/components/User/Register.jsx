@@ -92,7 +92,7 @@ export const Register = ({ height = "100vh" }) => {
             value={name}
             onChange={handleNameChange}
             placeholder="Enter your full name"
-            maxLength={100}
+            maxLength={30}
           />
         </FormGroup>
         <FormGroup>
@@ -103,7 +103,7 @@ export const Register = ({ height = "100vh" }) => {
             value={email}
             onChange={handleEmailChange}
             placeholder="Enter your email address"
-            maxLength={254}
+            maxLength={30}
           />
         </FormGroup>
         <FormGroup>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   Container,
@@ -17,6 +17,7 @@ import {
 } from "./UserStyledComponents";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "./AuthContext";
+import { BookingContext } from "../Booking/BookingContext";
 
 export const Login = ({ height = '100vh' }) => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export const Login = ({ height = '100vh' }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const { setUser, bookingDetails } = useContext(BookingContext);
 
   useEffect(() => {
     if (location.state && location.state.successMessage) {
@@ -58,11 +60,35 @@ export const Login = ({ height = '100vh' }) => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+      const data = await response.json();
+      console.log(data) //there is no id but only accessToken
       if (response.ok) {
-        const data = await response.json();
+    
+        //setUser(data);
+        
+        const { roomId, guests, checkinDate, checkoutDate } = bookingDetails;
+
+        if (roomId && checkinDate)
+        {
+          // Create a booking
+          const bookingResponse = await fetch("https://sunside-hotel.onrender.com/booking", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId: data.id, roomId, guests, checkinDate, checkoutDate }),
+          });
+          
+          setSuccessMessage(
+            "Log in successfully and booking confirmed."
+          );
+        }
+
         login(data.accessToken);
-        navigate("/user-details");
+        navigate("/user-details", {
+          state: {
+            successMessage:
+              "Your room is booked successfully.",}});
       } else {
         setError("Invalid email or password");
       }

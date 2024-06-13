@@ -60,12 +60,6 @@ const TextBox = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 6px;
-  @media all and (min-width: 744px) {
-
-  }
-  @media all and (min-width: 1025px) {
-
-  }
 `
 
 export const BookingConfirm = ({ guests }) => {

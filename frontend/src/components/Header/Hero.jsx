@@ -33,7 +33,7 @@ const TextOverlayContainer = styled.div`
 `;
 
 const TextOverlay = styled.div`
-  color: #ffffff24;
+  color: #ffffff;
   font-size: 40px;
   line-height: 44px;
   font-weight: 700;

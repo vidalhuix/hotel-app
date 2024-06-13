@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
   Container,
   Form,
+  StyledH4,
   FormGroup,
   Label,
   InputWrapper,
@@ -79,7 +80,7 @@ export const Login = ({ height = "100vh" }) => {
   return (
     <Container height={height}>
       <Form onSubmit={handleSubmit}>
-        <h2>LOG IN TO YOUR ACCOUNT</h2>
+        <StyledH4>LOG IN TO YOUR ACCOUNT</StyledH4>
         <FormGroup>
           <Label htmlFor="email">Email:</Label>
           <Input

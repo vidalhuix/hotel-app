@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Container,
   Form,
+  StyledH4,
   FormGroup,
   Label,
   InputWrapper,
@@ -83,7 +84,7 @@ export const Register = ({ height = "100vh" }) => {
   return (
     <Container height={height}>
       <Form onSubmit={handleSubmit}>
-        <h2>CREATE YOUR ACCOUNT</h2>
+        <StyledH4>CREATE YOUR ACCOUNT</StyledH4>
         <FormGroup>
           <Label htmlFor="name">Name:</Label>
           <Input

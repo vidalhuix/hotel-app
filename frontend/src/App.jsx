@@ -43,7 +43,7 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<MainPage onSearch={onSearch} />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dining" element={<AboutUs />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/register" element={<Register />} />
             <Route path="/hotelrooms" element={<Roomspage />} />
             <Route

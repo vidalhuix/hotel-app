@@ -200,7 +200,7 @@ export const UserPage = ({ height = '100vh' }) => {
                 Click here to cancel your booking
               </BlackStyledLink>
             </div>
-            <SectionDivider />
+            
           </UserInfoContainer>
         ))
         ):(

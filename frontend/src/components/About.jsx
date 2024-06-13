@@ -59,7 +59,7 @@ export const AboutUs = () => {
   return (
     <Container>
       <ContactContainer>
-        <h1 className="from-left">Final Project</h1>
+        <h2 className="from-left">Final Project</h2>
         <p className="from-right">
           This full-stack application, is the last project at{" "}
           <a href="https://www.technigo.io/web-development-boot-camp">
@@ -129,6 +129,16 @@ const ContactContainer = styled.div`
   text-align: center;
   @media all and (min-width: 744px) {
   }
+  h2 {
+    font-size: 30px;
+    line-height: 44px;
+    font-weight: 700;
+    font-family: "Apercu", sans-serif;
+    @media (min-width: 1000px) {
+      font-size: 40px;
+    }
+  }
+
   a {
     text-decoration: none;
     color: var(--color-gold);
@@ -136,6 +146,7 @@ const ContactContainer = styled.div`
   p {
     max-width: 700px;
     text-align: left;
+    text-align: center;
   }
   ul {
     list-style-type: none;

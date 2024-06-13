@@ -91,7 +91,7 @@ export const ConferenceEvent = () => {
       <Hero>
         <div>
           <h2 className="from-top">Conferences & Events at Sunside</h2>
-          <p  className="from-bottom">
+          <p className="from-bottom">
             Experience exceptional conferences and events at Sunside. We cater
             to corporate meetings, family celebrations, and grand weddings. Let
             us create memorable experiences in an elegant and professional
@@ -151,19 +151,19 @@ const EventsContainer = styled.div`
 const Hero = styled.div`
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 450px;
   display: flex;
   color: var(--color-white);
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  
+
   > img {
     transform-origin: bottom;
     width: 100%;
     object-fit: cover;
     margin-bottom: 50px;
-    
+
     animation: fade-in linear;
     animation-timeline: view();
   }
@@ -188,18 +188,20 @@ const Hero = styled.div`
     margin: auto;
     bottom: 100px;
     h2 {
-      font-size: 40px;
+      font-size: 30px;
+      margin: 0 5px;
+      text-align: center;
       line-height: 44px;
       font-weight: 700;
       font-family: "Apercu", sans-serif;
+      @media (min-width: 1000px) {
+        font-size: 40px;
       }
+    }
     p {
       animation: slideTop 1.5s ease-in-out;
-    text-align: center;
+      text-align: center;
     }
-    }
-
-
   }
 `;
 

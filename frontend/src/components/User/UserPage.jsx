@@ -1,9 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { BookingContext } from "../Booking/BookingContext";
 import { useAuth } from "./AuthContext";
 import {
   Container,
+  StyledH4,
   Button,
   StyledLink,
   ErrorMessage,
@@ -45,22 +45,16 @@ const StyledImage = styled.img`
 
 const BlackStyledLink = styled(StyledLink)`
   color: black;
-
   &:hover {
     color: #d3af97;
   }
 `;
 
-const SectionDivider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #ccc;
-  margin-top: 15px;
-  margin-bottom: 15px;
+const NoBookingsMessage = styled.div`
+  margin-bottom: 20px;
 `;
 
-export const UserPage = ({ height = '100vh' }) => {
-  const { bookingDetails } = useContext(BookingContext); // Not used
+export const UserPage = ({ height = "100vh" }) => {
   const navigate = useNavigate();
   const { accessToken, logout } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
@@ -98,7 +92,7 @@ export const UserPage = ({ height = '100vh' }) => {
               Authorization: accessToken,
             },
           }
-        )
+        );
         const bookings = await bookingsResponse.json();
         setBookings(bookings);
       } else {
@@ -145,66 +139,77 @@ export const UserPage = ({ height = '100vh' }) => {
   return (
     <Container height={height} style={{ marginTop: "30px" }}>
       <Content>
-        <Heading>BOOKING INFORMATION</Heading>
-        {bookings && bookings.map((booking) => ( 
-          <UserInfoContainer>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                marginBottom: "10px",
-              }}
-            >
-              <UserDetails
+        <StyledH4>BOOKING INFORMATION</StyledH4>
+        {bookings && bookings.length > 0 ? (
+          bookings.map((booking) => (
+            <UserInfoContainer key={booking.id}>
+              <div
                 style={{
                   display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  marginRight: "15px",
+                  flexDirection: "row",
+                  marginBottom: "10px",
                 }}
               >
-                <StyledImage src={enter} alt="Check-in" />
-                <b>Check-in:</b>
-                <div>{new Date(booking.checkinDate).toLocaleDateString("sv-SE")}</div>
-              </UserDetails>
-              <UserDetails
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  marginRight: "15px",
-                }}
-              >
-                <StyledImage src={exit} alt="Check-out" />
-                <b>Check-out:</b>
-                <div>{new Date(booking.checkoutDate).toLocaleDateString("sv-SE")}</div>
-              </UserDetails>
-              <UserDetails
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <StyledImage src={guest} alt="Guests" />
-                <b>Guests:</b>
-                <div>{booking.guests}</div>
-              </UserDetails>
-            </div>
-            <div style={{ textAlign: "center", marginTop: "10px" }}>
-              <BlackStyledLink to="/active-booking">
-                Click here to cancel your booking
-              </BlackStyledLink>
-            </div>
-            <SectionDivider />
-            <UserDetails>
-              <b>Name:</b> {userDetails ? userDetails.name : ""}
-            </UserDetails>
-            <UserDetails>
-              <b>Email:</b> {userDetails ? userDetails.email : ""}
-            </UserDetails>
-          </UserInfoContainer>
-        ))}
+                <UserDetails
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    marginRight: "15px",
+                  }}
+                >
+                  <StyledImage src={enter} alt="Check-in" />
+                  <b>Check-in:</b>
+                  <div>
+                    {new Date(booking.checkinDate).toLocaleDateString("sv-SE")}
+                  </div>
+                </UserDetails>
+                <UserDetails
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    marginRight: "15px",
+                  }}
+                >
+                  <StyledImage src={exit} alt="Check-out" />
+                  <b>Check-out:</b>
+                  <div>
+                    {new Date(booking.checkoutDate).toLocaleDateString("sv-SE")}
+                  </div>
+                </UserDetails>
+                <UserDetails
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <StyledImage src={guest} alt="Guests" />
+                  <b>Guests:</b>
+                  <div>{booking.guests}</div>
+                </UserDetails>
+              </div>
+              <div style={{ textAlign: "center", marginTop: "10px" }}>
+                <BlackStyledLink to="/active-booking">
+                  Click here to cancel your booking
+                </BlackStyledLink>
+              </div>
+            </UserInfoContainer>
+          ))
+        ) : (
+          <NoBookingsMessage>No active bookings.</NoBookingsMessage>
+        )}
+
+        <UserInfoContainer>
+          <UserDetails>
+            <b>Name:</b> {userDetails ? userDetails.name : ""}
+          </UserDetails>
+          <UserDetails>
+            <b>Email:</b> {userDetails ? userDetails.email : ""}
+          </UserDetails>
+        </UserInfoContainer>
+
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button
           $delete

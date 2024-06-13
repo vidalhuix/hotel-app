@@ -12,11 +12,15 @@ export const Footer = () => {
   return (
     <StyledFooter>
       <StyledLogo href="/">
-        <img src={hotelLogo} alt="Logo Hotel Itaca" />
+        <img
+          src={hotelLogo}
+          alt="Logo Hotel Itaca"
+          style={{ width: "250px", height: "auto" }}
+        />
       </StyledLogo>
       <FooterBody>
         <ListWrapper>
-          <a href="/events-meetings">Events & Meeting</a>
+          <a href="conference-event">Events & Meeting</a>
           <a href="/hotelrooms">Hotel Rooms</a>
           <a href="/about">About</a>
         </ListWrapper>
@@ -61,7 +65,7 @@ export const Footer = () => {
       </FooterBody>
       <ContactIconWrapper>
         <ContactIcon
-          link='https://arnaus-react-portafolio.netlify.app/'
+          link="https://arnaus-react-portafolio.netlify.app/"
           imgSrc={smile01}
           altText="Arnaus's contact icon"
           labelFor="contact-arnau"
@@ -69,7 +73,7 @@ export const Footer = () => {
           target="_blank"
         />
         <ContactIcon
-          link='https://wondrous-sorbet-b71db8.netlify.app/'
+          link="https://wondrous-sorbet-b71db8.netlify.app/"
           imgSrc={smile02}
           altText="Cornelia's contact icon"
           labelFor="contact-cornelia"
@@ -77,7 +81,7 @@ export const Footer = () => {
           target="_blank"
         />
         <ContactIcon
-          link='https://jinghuang.netlify.app/'
+          link="https://jinghuang.netlify.app/"
           imgSrc={smile03}
           altText="Jings's contact icon"
           labelFor="contact-jing"
@@ -96,7 +100,7 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 0 50px 0;
+  padding: 20px 0 50px 0;
   background-color: #44554b;
   color: rgb(255, 255, 255);
   width: 100%;

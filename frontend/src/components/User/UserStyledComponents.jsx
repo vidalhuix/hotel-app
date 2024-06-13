@@ -19,6 +19,12 @@ export const Form = styled.form`
   align-items: center;
 `;
 
+export const StyledH4 = styled.h4`
+  font-size: 24px;
+  line-height: 1.5;
+  text-align: center;
+`;
+
 export const FormGroup = styled.div`
   margin-bottom: 1rem;
   display: grid;

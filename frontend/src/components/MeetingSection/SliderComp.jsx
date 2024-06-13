@@ -4,6 +4,11 @@ import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 // Default theme
 import "@splidejs/react-splide/css";
 // import '@splidejs/react-splide/css/sea-green';
+import slide01 from "../../assets/01-slide.jpg";
+import slide02 from "../../assets/02-slide.jpg";
+import slide03 from "../../assets/03-slide.jpg";
+import slide04 from "../../assets/04-slide.jpg";
+import slide05 from "../../assets/05-slide.jpg";
 
 //See Splidejs.com documentation
 export const SliderComp = () => {
@@ -55,7 +60,7 @@ export const SliderComp = () => {
       >
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/src/assets/01-slide.jpg"
+            imgSrc={slide01}
             imgAlt="Dinner table"
             title="Dinner & Breakfast"
             description="Indulge in a gourmet dinner featuring exquisite cuisine, elegant ambiance, and exceptional service."
@@ -65,7 +70,7 @@ export const SliderComp = () => {
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/src/assets/02-slide.jpg"
+            imgSrc={slide02}
             imgAlt="Corporate Meetings"
             title="Corporate Meetings"
             description="Celebrate your special day with elegant decor and exceptional service in our grand ballroom."
@@ -75,7 +80,7 @@ export const SliderComp = () => {
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/src/assets/03-slide.jpg"
+            imgSrc={slide03}
             imgAlt="Conferences"
             title="Conferences"
             description="Host large-scale conferences with advanced audiovisual equipment and flexible seating arrangements."
@@ -85,7 +90,7 @@ export const SliderComp = () => {
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/src/assets/04-slide.jpg"
+            imgSrc={slide04}
             imgAlt="Family Reunions"
             title="Family Reunions"
             description="Reconnect with loved ones in a spacious venue offering activities for all ages."
@@ -95,7 +100,7 @@ export const SliderComp = () => {
         </SplideSlide>
         <SplideSlide>
           <SlideContentBox
-            imgSrc="/src/assets/05-slide.jpg"
+            imgSrc={slide05}
             imgAlt="Dinner table"
             title="Yoga Retreats"
             description="Relax and rejuvenate with guided yoga sessions and wellness activities in serene surroundings."

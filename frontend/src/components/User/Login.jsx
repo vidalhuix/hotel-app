@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
   Container,
   Form,
+  StyledH4,
   FormGroup,
   Label,
   InputWrapper,
@@ -18,7 +19,7 @@ import {
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "./AuthContext";
 
-export const Login = ({ height = '100vh' }) => {
+export const Login = ({ height = "100vh" }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useAuth();
@@ -49,7 +50,6 @@ export const Login = ({ height = '100vh' }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const response = await fetch("https://sunside-hotel.onrender.com/login", {
         method: "POST",
@@ -59,10 +59,15 @@ export const Login = ({ height = '100vh' }) => {
         body: JSON.stringify({ email, password }),
       });
 
+      const data = await response.json();
+      console.log(data); //there is no id but only accessToken
       if (response.ok) {
-        const data = await response.json();
         login(data.accessToken);
-        navigate("/user-details");
+        navigate("/user-details", {
+          state: {
+            successMessage: "Logged in successfully.",
+          },
+        });
       } else {
         setError("Invalid email or password");
       }
@@ -75,7 +80,7 @@ export const Login = ({ height = '100vh' }) => {
   return (
     <Container height={height}>
       <Form onSubmit={handleSubmit}>
-        <h2>LOG IN TO YOUR ACCOUNT</h2>
+        <StyledH4>LOG IN TO YOUR ACCOUNT</StyledH4>
         <FormGroup>
           <Label htmlFor="email">Email:</Label>
           <Input
@@ -84,7 +89,7 @@ export const Login = ({ height = '100vh' }) => {
             value={email}
             onChange={handleEmailChange}
             placeholder="Enter your email address"
-            maxLength={254}
+            maxLength={30}
           />
         </FormGroup>
         <FormGroup>

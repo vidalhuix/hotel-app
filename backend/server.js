@@ -65,8 +65,6 @@ const Bookings = mongoose.model("Bookings",{
 })
 
 // Defines the port the app will run on. Defaults to 8080, but can be overridden
-// when starting the server. Example command to overwrite PORT env variable value:
-// PORT=9000 npm start
 const port = process.env.PORT || 8080;
 const app = express();
 
@@ -113,6 +111,8 @@ if (+process.env.RESET_DB) {
       console.error("Error seeding database:", error);
     }
   };
+
+  // Generate the room-status array
 
   // const createRoomStatusArray = async() => {
   //   function generateDateArray(startDateStr, endDateStr) {
@@ -171,7 +171,6 @@ app.use((req, res, next) => {
   }
 });
 
-// Start defining your routes here
 // http://localhost:8080/
 app.get("/", (req, res) => {
   const endpoints = expressListEndpoints(app);
@@ -210,7 +209,7 @@ app.get("/hotelrooms/status/date/:date", async (req, res) => {
     const availableRooms = await RoomStatus.find({
       $and: [
         { date: { $eq: date } },
-        //{"status": { $eq: 1 }}
+        //{"status": { $eq: 1 }} if hope to show only available rooms
       ],
     });
 

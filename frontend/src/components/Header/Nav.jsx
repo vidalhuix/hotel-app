@@ -175,32 +175,44 @@ export const Nav = () => {
   return (
     <NavContainer>
       <NavLeft>
-        <NavList $show={showNavList}>
+        <NavList $show={showNavList} aria-label="Primary Navigation">
           <NavItem>
-            <NavLink to="/conference-event">Conference & Event</NavLink>
+            <NavLink
+              to="/conference-event"
+              aria-label="Visit Conference and Event page"
+            >
+              Conference & Event
+            </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/hotelrooms">Rooms</NavLink>
+            <NavLink to="/hotelrooms" aria-label="Explore Hotel Rooms">
+              Rooms
+            </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/about" aria-label="Learn About Us">
+              About
+            </NavLink>
           </NavItem>
         </NavList>
         <DropdownIcon
           onClick={toggleNavList}
           $flipped={isIconFlipped ? 1 : 0}
+          aria-label="Toggle Navigation List"
         />{" "}
       </NavLeft>
       <Logo>
-        <Link to="/">
-          <img src={logo} alt="Logo" />
+        <Link to="/" aria-label="Home">
+          <img src={logo} alt="Home" />
         </Link>
       </Logo>
       <NavRight>
-        <HashLink smooth to='/#booking-section'>
-          <Button>Book</Button>
+        <HashLink smooth to="/#booking-section">
+          <Button aria-label="Book a Room">Book</Button>
         </HashLink>
-        <Button onClick={handleLoginClick}>Log In</Button>
+        <Button onClick={handleLoginClick} aria-label="Log In">
+          Log In
+        </Button>
       </NavRight>
     </NavContainer>
   );

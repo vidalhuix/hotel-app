@@ -6,12 +6,12 @@ export const MeetingSection = () => {
       <MeetinHeaderText>
         <h6>DISCOVER SUNSIDE</h6>
         <h3>MEETINGS & EVENTS</h3>
-        <h7>
+        <Paragraph>
           A business meeting can be highly productive. We offer a setting
           conducive to making crucial decisions, with ample space for when it's
           time to celebrate successes. The sequence of events is entirely your
           choice.
-        </h7>
+        </Paragraph>
       </MeetinHeaderText>
     </ContainerMeeting>
   );
@@ -45,10 +45,12 @@ const ContainerMeeting = styled.div`
       font-size: 70px;
     }
   }
+`;
 
-  h7 {
-    font-size: 18px;
-  }
+const Paragraph = styled.p`
+  font-size: 18px;
+  line-height: 1.6;
+  margin-top: 10px;
 `;
 
 const MeetinHeaderText = styled.div`

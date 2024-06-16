@@ -64,6 +64,7 @@ export const Hero = () => {
       <HeroVideoContainer>
         <HeroVideo autoPlay loop muted>
           <source src={heroVideo} type="video/mp4" />
+          <track kind="captions" srcLang="en" label="English captions" />
         </HeroVideo>
       </HeroVideoContainer>
       <TextOverlayContainer id="booking-section">

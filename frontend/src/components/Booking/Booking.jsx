@@ -183,7 +183,7 @@ export const Booking = ({ onSearch }) => {
       <SubBookingContainer>
         <SelectTitle htmlFor="guests">Number of guests:</SelectTitle>
         <SelectBox
-          id="guest"
+          id="guests"
           value={guests}
           onChange={(e) => setGuests(e.target.value)}
           required

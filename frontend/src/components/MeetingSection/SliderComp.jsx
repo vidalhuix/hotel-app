@@ -21,14 +21,14 @@ export const SliderComp = () => {
           perPage: 3,
           perMove: 1,
           gap: 10,
-          arrows: 'slider',
+          arrows: "slider",
           // autoplay: false,
           // interval: 5000,
           // pauseOnHover: true,
           // fixedWidth: "25rem",
           // heightRatio: 1,
           speed: 600,
-          pagination: 'slider', // 'slider' or false
+          pagination: "slider", // 'slider' or false
 
           focus: "center",
           padding: { left: "2rem", right: "2rem" },
@@ -38,24 +38,24 @@ export const SliderComp = () => {
             1200: {
               // Tablet
               perPage: 3,
-              gap: '4vw',
+              gap: "4vw",
             },
             991: {
               // Tablet
               perPage: 2,
-              gap: '4vw',
+              gap: "4vw",
             },
             767: {
               // Mobile Landscape
               perPage: 2,
-              gap: '4vw',
+              gap: "4vw",
             },
             479: {
               // Mobile Portrait
               perPage: 1,
-              gap: '4vw',
-            }
-          }
+              gap: "4vw",
+            },
+          },
         }}
       >
         <SplideSlide>
@@ -64,7 +64,7 @@ export const SliderComp = () => {
             imgAlt="Dinner table"
             title="Dinner & Breakfast"
             description="Indulge in a gourmet dinner featuring exquisite cuisine, elegant ambiance, and exceptional service."
-            // linkText="See more"
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -74,7 +74,7 @@ export const SliderComp = () => {
             imgAlt="Corporate Meetings"
             title="Corporate Meetings"
             description="Celebrate your special day with elegant decor and exceptional service in our grand ballroom."
-            // linkText="See more"
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -84,7 +84,7 @@ export const SliderComp = () => {
             imgAlt="Conferences"
             title="Conferences"
             description="Host large-scale conferences with advanced audiovisual equipment and flexible seating arrangements."
-            // linkText="See more"
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -94,7 +94,7 @@ export const SliderComp = () => {
             imgAlt="Family Reunions"
             title="Family Reunions"
             description="Reconnect with loved ones in a spacious venue offering activities for all ages."
-            // linkText="See more"
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -104,7 +104,7 @@ export const SliderComp = () => {
             imgAlt="Dinner table"
             title="Yoga Retreats"
             description="Relax and rejuvenate with guided yoga sessions and wellness activities in serene surroundings."
-            // linkText="See more"
+            linkText="See more"
             linkHref="#"
           />
         </SplideSlide>
@@ -133,15 +133,15 @@ const SplideContainer = styled.div`
   }
 
   .splide__track {
-  height: 400px;
-  @media (min-width: 700px) and(max-width: 1200px) {
-    height: 500px;
+    height: 400px;
+    @media (min-width: 700px) and(max-width: 1200px) {
+      height: 500px;
+    }
+    @media (min-width: 700px) and(max-width: 1200px) {
+      height: 500px;
+    }
+    @media (min-width: 1501px) {
+      height: 700px;
+    }
   }
-  @media (min-width: 700px) and(max-width: 1200px) {
-    height: 500px;
-  }
-  @media (min-width: 1501px) {
-    height: 700px;
-  }
-}
 `;

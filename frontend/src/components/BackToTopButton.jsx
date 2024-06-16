@@ -25,8 +25,12 @@ export const BackToTopButton = () => {
   };
 
   return (
-    <StyledButton onClick={scrollToTop} isVisible={isVisible}>
-      <ArrowUp></ArrowUp>
+    <StyledButton
+      onClick={scrollToTop}
+      isVisible={isVisible}
+      aria-label="Scroll to top"
+    >
+      <ArrowUp />
     </StyledButton>
   );
 };

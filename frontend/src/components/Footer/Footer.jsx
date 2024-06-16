@@ -25,12 +25,14 @@ export const Footer = () => {
           <a href="/about">About</a>
         </ListWrapper>
         <NewsLetterContainer>
-          <h3>NEWSLETTER</h3>
+          <NewsletterHeading>NEWSLETTER</NewsletterHeading>
           <NewsLetter>
-            <input type="Your email address" placeholder="E-mail" />
+            <input type="email" placeholder="E-mail" />
             <button>Subscribe</button>
           </NewsLetter>
-          <h5>Get montly news, stay updated.</h5>
+          <NewsletterSubtitle>
+            Get monthly news, stay updated.
+          </NewsletterSubtitle>
         </NewsLetterContainer>
         <ContactWrapper>
           <ContactIconWrapper>
@@ -170,15 +172,17 @@ const NewsLetterContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 20px;
-  h3 {
-    font-size: 1rem;
-    font-weight: normal;
-    margin: 10px 0 10px 0;
-  }
-  h5 {
-    font-weight: 100;
-    margin: 10px 0 10px 0;
-  }
+`;
+
+const NewsletterHeading = styled.h2`
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 10px 0;
+`;
+
+const NewsletterSubtitle = styled.p`
+  font-weight: 100;
+  margin: 10px 0;
 `;
 
 const NewsLetter = styled.div`

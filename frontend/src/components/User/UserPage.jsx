@@ -45,18 +45,13 @@ const StyledImage = styled.img`
 
 const BlackStyledLink = styled(StyledLink)`
   color: black;
-
   &:hover {
     color: #d3af97;
   }
 `;
 
-const SectionDivider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #ccc;
-  margin-top: 15px;
-  margin-bottom: 15px;
+const NoBookingsMessage = styled.div`
+  margin-bottom: 20px; 
 `;
 
 export const UserPage = ({ height = '100vh' }) => {
@@ -146,8 +141,9 @@ export const UserPage = ({ height = '100vh' }) => {
     <Container height={height} style={{ marginTop: "30px" }}>
       <Content>
         <Heading>BOOKING INFORMATION</Heading>
-        {bookings && bookings.map((booking) => ( 
-          <UserInfoContainer>
+        {bookings && bookings.length > 0 ? (
+         bookings.map((booking) => ( 
+          <UserInfoContainer key={booking.id}>
             <div
               style={{
                 display: "flex",
@@ -196,15 +192,21 @@ export const UserPage = ({ height = '100vh' }) => {
                 Click here to cancel your booking
               </BlackStyledLink>
             </div>
-            <SectionDivider />
+          </UserInfoContainer>
+        ))
+        ):(
+          <NoBookingsMessage>No active bookings.</NoBookingsMessage>  
+        )}  
+
+        <UserInfoContainer>
             <UserDetails>
               <b>Name:</b> {userDetails ? userDetails.name : ""}
             </UserDetails>
             <UserDetails>
               <b>Email:</b> {userDetails ? userDetails.email : ""}
             </UserDetails>
-          </UserInfoContainer>
-        ))}
+        </UserInfoContainer>
+               
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button
           $delete

@@ -79,7 +79,7 @@ export const ConferenceEvent = () => {
         </div>
         <p>{event.description}</p>
         <p>Facilities: {event.facilities.join(", ")}.</p>
-        <HashLink smooth to="/About#contact">
+        <HashLink smooth to="/about#contact">
           <p>Contact us for more information.</p>
         </HashLink>
       </EventDetails>

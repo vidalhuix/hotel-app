@@ -31,17 +31,16 @@ export const RoomResults = ({ rooms, checkinDate }) => {
 
   const filteredRooms = filterRoomsByType(rooms);
 
-  if (filteredRooms.length === 0) {
+  if (!rooms || rooms.length === 0 || filteredRooms.length === 0) {
     return (
       <Container>
-      <p>No rooms available for the selected date and guest amount.</p>
+      <p>No rooms available for the selected date and guest amount. Please choose another date or room.</p>
       </Container>
     );
   }
 
   const handleBookingSubmit = (e, roomType) => {
     e.preventDefault();
-    console.log(roomType)
 
     fetch("https://sunside-hotel.onrender.com/hotelrooms/booking/check-availability", {
       method: "POST",
@@ -52,7 +51,6 @@ export const RoomResults = ({ rooms, checkinDate }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Available room id:", data.availableRoomId, roomType );
         navigate("/bookingconfirm", {
           state: {
             successMessage: "Room is available under this period. Please confirm your booking details and register your account.",
@@ -69,7 +67,7 @@ export const RoomResults = ({ rooms, checkinDate }) => {
   }; 
 
   return (
-    <Container>
+  <Container>  
       {filteredRooms.map((room) => (
           <Grid>
             <GridItemImg>

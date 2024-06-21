@@ -65,8 +65,6 @@ const Bookings = mongoose.model("Bookings",{
 })
 
 // Defines the port the app will run on. Defaults to 8080, but can be overridden
-// when starting the server. Example command to overwrite PORT env variable value:
-// PORT=9000 npm start
 const port = process.env.PORT || 8080;
 const app = express();
 
@@ -113,6 +111,8 @@ if (+process.env.RESET_DB) {
       console.error("Error seeding database:", error);
     }
   };
+
+  // Generate the room-status array
 
   // const createRoomStatusArray = async() => {
   //   function generateDateArray(startDateStr, endDateStr) {
@@ -171,7 +171,6 @@ app.use((req, res, next) => {
   }
 });
 
-// Start defining your routes here
 // http://localhost:8080/
 app.get("/", (req, res) => {
   const endpoints = expressListEndpoints(app);
@@ -210,7 +209,7 @@ app.get("/hotelrooms/status/date/:date", async (req, res) => {
     const availableRooms = await RoomStatus.find({
       $and: [
         { date: { $eq: date } },
-        //{"status": { $eq: 1 }}
+        //{"status": { $eq: 1 }} if hope to show only available rooms
       ],
     });
 
@@ -232,7 +231,6 @@ app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, r
     const guest = parseInt(req.params.guestamount);
 
     const rooms = await Hotelrooms.find({ capacity: { $gte: guest } });
-    console.log("Found rooms with sufficient capacity:", rooms);
 
     const roomIds = rooms.map(room => room.id);
     const availableRooms = await RoomStatus.find({
@@ -244,7 +242,7 @@ app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, r
     });
 
     if (availableRooms.length > 0) {
-      const Roomsdata = availableRooms.map(status => {
+      const roomsdata = availableRooms.map(status => {
         const room = rooms.find(r => r.id === status.roomId);
         return {
           ...room._doc,
@@ -252,9 +250,9 @@ app.get("/hotelrooms/booking/date/:date/guestamount/:guestamount", async (req, r
           date: status.date
         };
       });
-      res.json(Roomsdata);
+      res.json(roomsdata);
     } else {
-      res.status(404).json({ error: "No rooms foundd" });
+      res.status(404).json([]);
     }
   } catch (error) {
     console.error("Error:", error);
@@ -283,7 +281,6 @@ app.post("/hotelrooms/booking/check-availability", async (req, res) => {
             {date: { $eq: date } }
           ]
         });
-
         if (roomStatusDoc.status === 0)
         {
           break;
@@ -298,6 +295,59 @@ app.post("/hotelrooms/booking/check-availability", async (req, res) => {
   } catch (error) {
     console.error("Failed to check availability:", error);
     res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+});
+
+// Endpoint for change room status from 1 to 0 
+app.post('/hotelrooms/book', async (req, res) => {
+  const { roomId, checkinDate, checkoutDate } = req.body;
+
+  try {
+    for (let date = new Date(checkinDate); date < new Date(checkoutDate); date.setDate(date.getDate() + 1)) {
+      const roomStatus = await RoomStatus.findOne({
+        $and: [
+          {roomId: { $eq: roomId }},
+          {date: { $eq: date } }
+        ]
+      });
+      
+      if (roomStatus && roomStatus.status === 1) {
+        roomStatus.status = 0;
+        await roomStatus.save();
+      }
+    };
+
+    res.status(200).json({ message: "Room status updated", roomId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred while updating the room status" });
+  }
+});
+
+// Endpoint for change room status from 0 to 1
+app.post('/hotelrooms/cancel', async (req, res) => {
+  const { roomId, checkinDate, checkoutDate } = req.body;
+
+  try {
+    // Find and update room statuses in the specified date range
+    for (let date = new Date(checkinDate); date < new Date(checkoutDate); date.setDate(date.getDate() + 1)) {
+      const roomStatus = await RoomStatus.findOne({
+        $and: [
+          {roomId: { $eq: roomId }},
+          {date: { $eq: date } }
+        ]
+      });
+      
+      if (roomStatus && roomStatus.status === 0) {
+        roomStatus.status = 1;
+        await roomStatus.save();
+      }
+    };
+
+    res.status(200).json({ message: "Room status updated", roomId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred while updating the room status" });
   }
 });
 
@@ -360,7 +410,7 @@ app.post("/login", async (req, res) => {
   }
 
   const accessToken = user.accessToken;
-  res.status(200).json({ accessToken });
+  res.status(200).json({ accessToken, userId: user._id });
 });
 
 // Fetch user details, including user ID (needed to delete user)

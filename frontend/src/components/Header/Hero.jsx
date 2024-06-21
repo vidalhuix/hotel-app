@@ -33,11 +33,12 @@ const TextOverlayContainer = styled.div`
 `;
 
 const TextOverlay = styled.div`
-  color: #ffffff24;
+  color: #ffffff;
   font-size: 40px;
   line-height: 44px;
   font-weight: 700;
   font-family: "Apercu", sans-serif;
+  white-space: pre-wrap;
   animation: slideDown 1.5s ease-in-out;
   @keyframes slideDown {
     0% {
@@ -50,7 +51,6 @@ const TextOverlay = styled.div`
     }
   }
   @media all and (min-width: 744px) {
-
   }
   @media all and (min-width: 1024px) {
     font-size: 72px;
@@ -62,15 +62,17 @@ export const Hero = () => {
   return (
     <>
       <HeroVideoContainer>
-        <HeroVideo autoPlay loop muted >
+        <HeroVideo autoPlay loop muted>
           <source src={heroVideo} type="video/mp4" />
+          <track kind="captions" srcLang="en" label="English captions" />
         </HeroVideo>
       </HeroVideoContainer>
       <TextOverlayContainer id="booking-section">
-        <TextOverlay >
-          WELCOME TO <br /> THE SUNSIDE HOTEL
+        <TextOverlay>
+          {`WELCOME TO
+THE SUNSIDE HOTEL`}
         </TextOverlay>
-      </TextOverlayContainer >
+      </TextOverlayContainer>
     </>
   );
 };

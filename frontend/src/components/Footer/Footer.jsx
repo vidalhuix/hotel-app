@@ -11,24 +11,27 @@ import smile03 from "../../assets/smile-3.svg";
 export const Footer = () => {
   return (
     <StyledFooter>
-      <StyledLogo href="/">
-        <img
-          src={hotelLogo}
-          alt="Logo Hotel Itaca"
-          style={{ width: "250px", height: "auto" }}
-        />
+      <StyledLogo href="/" title="home page">
+        <img src={hotelLogo} alt="Logo Hotel Itaca" />
       </StyledLogo>
       <FooterBody>
         <ListWrapper>
-          <a href="conference-event">Events & Meeting</a>
-          <a href="/hotelrooms">Hotel Rooms</a>
-          <a href="/about">About</a>
+          <a href="/events-meetings" title="conference & events">
+            Conference & Events
+          </a>
+          <a href="/hotelrooms" title="hotel rooms">
+            Hotel Rooms
+          </a>
+          <a href="/about" title="about us">
+            About
+          </a>
         </ListWrapper>
         <NewsLetterContainer>
           <NewsletterHeading>NEWSLETTER</NewsletterHeading>
           <NewsLetter>
-            <input type="email" placeholder="E-mail" />
-            <button>Subscribe</button>
+            <label htmlFor="newsletter-email"></label>
+            <input id="newsletter-email" type="email" placeholder="E-mail" aria-label="Your email address" />
+            <button type="button">Subscribe</button>
           </NewsLetter>
           <NewsletterSubtitle>
             Get monthly news, stay updated.
@@ -60,7 +63,7 @@ export const Footer = () => {
               Via del Mare 123 <br />
               Itaca - 80050
             </p>
-            <a href="tel:+12-345-✿678-❖90✦">+12-345-✿678-❖90✦</a>
+            <a href="tel:+1234567890">+12-345-678-90</a>
             <a href="mailto:info@sastaholm.se">info@sunsidehotel.me</a>
           </ContactTextWrapper>
         </ContactWrapper>

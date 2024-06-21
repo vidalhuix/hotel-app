@@ -88,7 +88,7 @@ export const Roomspage = () => {
         <p>{room.description}</p>
         <p>Facilities: {room.facilities.join(", ")}.</p>
         <HashLink smooth to="/#booking-section">
-          <Button>Book</Button>
+          <Button type="button">Book</Button>
         </HashLink>
       </RoomDetails>
     );
@@ -98,33 +98,33 @@ export const Roomspage = () => {
     <RoomsContainer>
       <h2  className="from-right">Our Rooms</h2>
       <Grid className="from-bottom">
-        <RoomsSlide images={standardImages} />
+        <RoomsSlide images={standardImages} altText="Standard Room"/>
         <GridItem>
           <div>
             <h3>Standard</h3>
             {expandedRoom === "Standard" && renderRoomDetails("Standard")}
-            <ReadMoreButton onClick={() => toggleRoomDetails("Standard")}>
+            <ReadMoreButton type="button" onClick={() => toggleRoomDetails("Standard")}>
               {expandedRoom === "Standard" ? "Read less" : "Read more"}
             </ReadMoreButton>
           </div>
         </GridItem>
-        <RoomsSlide images={premiumImages} />
+        <RoomsSlide images={premiumImages} altText="Premium Suite" />
         <GridItem className="shift-left">
           <div>
             <h3>Premium Suite</h3>
             {expandedRoom === "Premium Suite" &&
               renderRoomDetails("Premium Suite")}
-            <ReadMoreButton onClick={() => toggleRoomDetails("Premium Suite")}>
+            <ReadMoreButton type="button" onClick={() => toggleRoomDetails("Premium Suite")}>
               {expandedRoom === "Premium Suite" ? "Read less" : "Read more"}
             </ReadMoreButton>
           </div>
         </GridItem>
-        <RoomsSlide images={luxuryImages} />
+        <RoomsSlide images={luxuryImages}  altText="Luxury Room" />
         <GridItem>
           <div>
             <h3>Luxury</h3>
             {expandedRoom === "Luxury" && renderRoomDetails("Luxury")}
-            <ReadMoreButton onClick={() => toggleRoomDetails("Luxury")}>
+            <ReadMoreButton type="button" onClick={() => toggleRoomDetails("Luxury")}>
               {expandedRoom === "Luxury" ? "Read less" : "Read more"}
             </ReadMoreButton>
           </div>

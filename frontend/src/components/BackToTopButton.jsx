@@ -28,9 +28,12 @@ export const BackToTopButton = () => {
     <StyledButton
       onClick={scrollToTop}
       isVisible={isVisible}
-      aria-label="Scroll to top"
+      aria-label="Back to top"
+      accessKey="t"
+      role="button"
+      tabIndex={isVisible ? 0 : -1} // Only tabbable when visible
     >
-      <ArrowUp />
+      <ArrowUp></ArrowUp>
     </StyledButton>
   );
 };

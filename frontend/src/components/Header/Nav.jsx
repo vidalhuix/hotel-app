@@ -210,9 +210,7 @@ export const Nav = () => {
         <HashLink smooth to="/#booking-section">
           <Button aria-label="Book a Room">Book</Button>
         </HashLink>
-        <Button onClick={handleLoginClick} aria-label="Log In">
-          Log In
-        </Button>
+        <Button onClick={handleLoginClick} >Log In</Button>
       </NavRight>
     </NavContainer>
   );

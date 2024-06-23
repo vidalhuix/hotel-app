@@ -155,6 +155,7 @@ export const UserPage = ({ height = '100vh' }) => {
         console.log('Booking canceled successfully:', result);
         setSuccessMessage("Your booking is canceled successfully.");
         setBookingDetails({});
+        setBookings();
       } else {
         console.error('Failed to cancel booking:', cancelBookingResult.statusText);
         setSuccessMessage("Failed to cancel booking. Please try again.");
@@ -215,11 +216,6 @@ export const UserPage = ({ height = '100vh' }) => {
                 <div>{booking.guests}</div>
               </UserDetails>
             </div>
-            {/* <div style={{ textAlign: "center", marginTop: "10px" }}>
-              <BlackStyledLink to="/active-booking">
-                Click here to cancel your booking
-              </BlackStyledLink>
-            </div> */}
             <div style={{ textAlign: "center", marginTop: "10px", color: "black" }}>
               <BlackStyledLink onClick={() => handleCancelBooking(booking._id)}>
                 Click here to cancel your booking
@@ -229,7 +225,7 @@ export const UserPage = ({ height = '100vh' }) => {
           </UserInfoContainer>
         ))
         ):(
-          <NoBookingsMessage>No active bookings.</NoBookingsMessage>  
+          <NoBookingsMessage><p>{successMessage}</p> No active bookings. </NoBookingsMessage>  
         )}  
 
         <UserInfoContainer>

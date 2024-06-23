@@ -77,7 +77,7 @@ export const BookingConfirm = ({ guests }) => {
       <SummaryContainer>
         <h2>BOOKING SUMMARY</h2>
         <p>{successMessage}</p>
-        <h4>Room type: {roomType}</h4>
+        <h3>Room type: {roomType}</h3>
         <TextBox>
           <img
             src={enter}

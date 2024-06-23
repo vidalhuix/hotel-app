@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom"; 
-import { RoomsSlide } from '../Rooms/RoomsSlide';
 
 export const RoomResults = ({ rooms, checkinDate }) => {
   const navigate = useNavigate();
@@ -126,6 +125,9 @@ const Container = styled.div`
   margin-top: 100px;
   padding-bottom: 100px;
   gap:40px;
+  p{
+    color: white;
+  }
   @media all and (min-width: 744px) {
     padding-top:0px;
   }

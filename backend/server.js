@@ -276,13 +276,22 @@ app.post('/hotelrooms/book', async (req, res) => {
   }
 });
 
-// Endpoint for change room status from 0 to 1
+// Endpoint for deleting the given booking and changing the given room status from 0 to 1 for the given period
 app.post('/hotelrooms/cancel', async (req, res) => {
-  const { roomId, checkinDate, checkoutDate } = req.body;
+  const { bookingId, roomId, checkinDate, checkoutDate } = req.body;
+ 
 
   try {
+    // Delete the booking
+    const deletedBooking = await Bookings.findByIdAndDelete(bookingId);
+
+    if (!deletedBooking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
     // Find and update room statuses in the specified date range
     for (let date = new Date(checkinDate); date < new Date(checkoutDate); date.setDate(date.getDate() + 1)) {
+
       const roomStatus = await RoomStatus.findOne({
         $and: [
           {roomId: { $eq: roomId }},

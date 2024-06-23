@@ -55,12 +55,13 @@ const NoBookingsMessage = styled.div`
 `;
 
 export const UserPage = ({ height = '100vh' }) => {
-  const { bookingDetails } = useContext(BookingContext); // Not used
   const navigate = useNavigate();
+  const { bookingDetails, setBookingDetails } = useContext(BookingContext);
   const { accessToken, logout } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
   const [error, setError] = useState("");
   const [bookings, setBookings] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (accessToken) {
@@ -137,6 +138,33 @@ export const UserPage = ({ height = '100vh' }) => {
     }
   };
 
+  const handleCancelBooking = async (bookingId) => {
+    const { roomId, checkinDate, checkoutDate } = bookingDetails;
+    //Cancel a booking and change room status
+    try {
+      const cancelBookingResult = await fetch("https://sunside-hotel.onrender.com/hotelrooms/cancel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bookingId, roomId, checkinDate, checkoutDate }),
+      });
+
+      if (cancelBookingResult.ok) {
+        const result = await cancelBookingResult.json();
+        console.log('Booking canceled successfully:', result);
+        setSuccessMessage("Your booking is canceled successfully.");
+        setBookingDetails({});
+      } else {
+        console.error('Failed to cancel booking:', cancelBookingResult.statusText);
+        setSuccessMessage("Failed to cancel booking. Please try again.");
+      }
+    } catch (error) {
+      console.error('Error canceling booking:', error);
+      setSuccessMessage("An error occurred while canceling the booking. Please try again.");
+    }
+  }
+
   return (
     <Container height={height} style={{ marginTop: "30px" }}>
       <Content>
@@ -187,10 +215,16 @@ export const UserPage = ({ height = '100vh' }) => {
                 <div>{booking.guests}</div>
               </UserDetails>
             </div>
-            <div style={{ textAlign: "center", marginTop: "10px" }}>
+            {/* <div style={{ textAlign: "center", marginTop: "10px" }}>
               <BlackStyledLink to="/active-booking">
                 Click here to cancel your booking
               </BlackStyledLink>
+            </div> */}
+            <div style={{ textAlign: "center", marginTop: "10px", color: "black" }}>
+              <BlackStyledLink onClick={() => handleCancelBooking(booking._id)}>
+                Click here to cancel your booking
+              </BlackStyledLink>
+              <p>{successMessage}</p>
             </div>
           </UserInfoContainer>
         ))

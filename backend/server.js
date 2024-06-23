@@ -279,7 +279,6 @@ app.post('/hotelrooms/book', async (req, res) => {
 // Endpoint for deleting the given booking and changing the given room status from 0 to 1 for the given period
 app.post('/hotelrooms/cancel', async (req, res) => {
   const { bookingId, roomId, checkinDate, checkoutDate } = req.body;
- 
 
   try {
     // Delete the booking

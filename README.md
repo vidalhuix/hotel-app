@@ -15,4 +15,4 @@ Even though we are really proud and happy of what we have achived on this last t
 
 Frontend [here](https://sunside-hotel.netlify.app/)
 
-Backend [here](https://sunside-hotel.netlify.app/)
+Backend [here](https://sunside-hotel.onrender.com/)

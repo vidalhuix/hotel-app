@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import standardRoom1 from "/src/assets/room-standard.jpg";
-import standardRoom2 from "/src/assets/room-standard2.jpg";
-import standardRoom3 from "/src/assets/room-standard3.jpg";
+// import standardRoom2 from "/src/assets/room-standard2.jpg";
+// import standardRoom3 from "/src/assets/room-standard3.jpg";
 import premiumRoom1 from "/src/assets/room-premium.jpg";
-import premiumRoom2 from "/src/assets/room-premium2.jpg";
-import premiumRoom3 from "/src/assets/room-premium3.jpg";
+// import premiumRoom2 from "/src/assets/room-premium2.jpg";
+// import premiumRoom3 from "/src/assets/room-premium3.jpg";
 import luxuryRoom1 from "/src/assets/room-luxury.jpg";
-import luxuryRoom2 from "/src/assets/room-luxury2.jpg";
-import luxuryRoom3 from "/src/assets/room-luxury3.jpg";
+// import luxuryRoom2 from "/src/assets/room-luxury2.jpg";
+// import luxuryRoom3 from "/src/assets/room-luxury3.jpg";
 import { Footer } from "../Footer/Footer.jsx";
 import { BackToTopButton } from "../BackToTopButton.jsx";
-import { RoomsSlide } from "./RoomsSlide.jsx";
+// To activate slide remove komments
+// import { RoomsSlide } from "./RoomsSlide.jsx";
 import { HashLink } from "react-router-hash-link";
 
 export const Roomspage = () => {
-  const standardImages = [standardRoom1, standardRoom2, standardRoom3];
-  const premiumImages = [premiumRoom1, premiumRoom2, premiumRoom3];
-  const luxuryImages = [luxuryRoom1, luxuryRoom2, luxuryRoom3];
+  // To activate slide remove komments
+  // const standardImages = [standardRoom1, standardRoom2, standardRoom3];
+  // const premiumImages = [premiumRoom1, premiumRoom2, premiumRoom3];
+  // const luxuryImages = [luxuryRoom1, luxuryRoom2, luxuryRoom3];
 
   const roomData = [
     {
@@ -88,7 +90,7 @@ export const Roomspage = () => {
         <p>{room.description}</p>
         <p>Facilities: {room.facilities.join(", ")}.</p>
         <HashLink smooth to="/#booking-section">
-          <Button>Book</Button>
+          <Button type="al" aria-label="Go to the booking section" >Book</Button>
         </HashLink>
       </RoomDetails>
     );
@@ -96,35 +98,38 @@ export const Roomspage = () => {
 
   return (
     <RoomsContainer>
-      <h2  className="from-right">Our Rooms</h2>
+      <h2 className="from-right">Our Rooms</h2>
       <Grid className="from-bottom">
-        <RoomsSlide images={standardImages} />
+        <img src={standardRoom1} alt="Standard room" />
+        {/* <RoomsSlide images={standardImages} /> */}
         <GridItem>
           <div>
             <h3>Standard</h3>
             {expandedRoom === "Standard" && renderRoomDetails("Standard")}
-            <ReadMoreButton onClick={() => toggleRoomDetails("Standard")}>
+            <ReadMoreButton type="text" aria-label="read more about our standard rooms" onClick={() => toggleRoomDetails("Standard")}>
               {expandedRoom === "Standard" ? "Read less" : "Read more"}
             </ReadMoreButton>
           </div>
         </GridItem>
-        <RoomsSlide images={premiumImages} />
+        <img src={premiumRoom1} alt="Standard room" />
+        {/* <RoomsSlide images={premiumImages} /> */}
         <GridItem className="shift-left">
           <div>
             <h3>Premium Suite</h3>
             {expandedRoom === "Premium Suite" &&
               renderRoomDetails("Premium Suite")}
-            <ReadMoreButton onClick={() => toggleRoomDetails("Premium Suite")}>
+            <ReadMoreButton type="text" aria-label="read more about our premium suite rooms" onClick={() => toggleRoomDetails("Premium Suite")}>
               {expandedRoom === "Premium Suite" ? "Read less" : "Read more"}
             </ReadMoreButton>
           </div>
         </GridItem>
-        <RoomsSlide images={luxuryImages} />
+        <img src={luxuryRoom1} alt="Luxury Room" />
+        {/* <RoomsSlide images={luxuryImages} /> */}
         <GridItem>
           <div>
             <h3>Luxury</h3>
             {expandedRoom === "Luxury" && renderRoomDetails("Luxury")}
-            <ReadMoreButton onClick={() => toggleRoomDetails("Luxury")}>
+            <ReadMoreButton type="text" aria-label="read more about our luxury rooms"  onClick={() => toggleRoomDetails("Luxury")}>
               {expandedRoom === "Luxury" ? "Read less" : "Read more"}
             </ReadMoreButton>
           </div>
@@ -137,7 +142,7 @@ export const Roomspage = () => {
 };
 
 const RoomsContainer = styled.div`
-  background-color:var(--color-darkgreen);
+  background-color: var(--color-darkgreen);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,6 +165,12 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: 1fr auto 1fr auto 1fr auto;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   @media (min-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);

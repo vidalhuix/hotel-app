@@ -199,7 +199,7 @@ export const Nav = () => {
         <HashLink smooth to='/#booking-section'>
           <Button>Book</Button>
         </HashLink>
-        <Button onClick={handleLoginClick}>Log In</Button>
+        <Button type="button" onClick={handleLoginClick}>Log In</Button>
       </NavRight>
     </NavContainer>
   );

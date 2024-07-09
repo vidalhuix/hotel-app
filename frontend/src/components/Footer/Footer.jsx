@@ -11,38 +11,55 @@ import smile03 from "../../assets/smile-3.svg";
 export const Footer = () => {
   return (
     <StyledFooter>
-      <StyledLogo href="/">
+      <StyledLogo href="/" aria-label="go to home page">
         <img src={hotelLogo} alt="Logo Hotel Itaca" />
       </StyledLogo>
       <FooterBody>
         <ListWrapper>
-          <a href="/events&meetings">Events & Meeting</a>
-          <a href="/hotelrooms">Hotel Rooms</a>
-          <a href="/about">About</a>
+          <a
+            href="/events&meetings"
+            aria-label="go to events and meetings page"
+          >
+            Events & Meeting
+          </a>
+          <a href="/hotelrooms" aria-label="go to hotel rooms page">
+            Hotel Rooms
+          </a>
+          <a href="/about" aria-label="go and read about us">
+            About
+          </a>
         </ListWrapper>
-        <NewsLetterContainer>
+        <NewsLetterContainer aria-label="subscribe to our news letter">
           <h3>NEWSLETTER</h3>
           <NewsLetter>
             <input type="Your email address" placeholder="E-mail" />
-            <button>Subscribe</button>
+            <button type="button" aria-label="Subscribe button">
+              Subscribe
+            </button>
           </NewsLetter>
           <h5>Get montly news, stay updated.</h5>
         </NewsLetterContainer>
         <ContactWrapper>
           <ContactIconWrapper>
             <FindUsLink
+              type="text"
+              aria-label="our facebook link"
               link="https://www.facebook.com/"
               imgSrc={fbLogo}
               altText="Facebooks icon"
               target="_blank"
             />
             <FindUsLink
+              type="text"
+              aria-label="our instagram link"
               link="https://www.instagram.com/"
               imgSrc={insLogo}
               altText="Instagram icon"
               target="_blank"
             />
             <FindUsLink
+              type="text"
+              aria-label="google maps location link"
               link="https://www.google.se/maps/place/Ithaca/@38.4019904,20.6084027,12z/data=!3m1!4b1!4m6!3m5!1s0x135d952249df9f5f:0x6acd8d9ffb56445a!8m2!3d38.4284603!4d20.6764877!16zL20vMGdtZzg?entry=ttu"
               imgSrc={goLogo}
               altText="Google maps icon"
@@ -54,31 +71,34 @@ export const Footer = () => {
               Via del Mare 123 <br />
               Itaca - 80050
             </p>
-            <a href="tel:+12-345-✿678-❖90✦">+12-345-✿678-❖90✦</a>
-            <a href="mailto:info@sastaholm.se">info@sunsidehotel.me</a>
+            <a href="tel:+12-345-✿678-❖90✦" aria-label="contact telephon">+12-345-✿678-❖90✦</a>
+            <a href="mailto:info@sastaholm.se" aria-label="contact e-mail">info@sunsidehotel.me</a>
           </ContactTextWrapper>
         </ContactWrapper>
       </FooterBody>
       <ContactIconWrapper>
         <ContactIcon
-          link='https://arnaus-react-portafolio.netlify.app/'
+          link="https://arnaus-react-portafolio.netlify.app/"
           imgSrc={smile01}
+          aria-label="to Arnau's portfolio"
           altText="Arnaus's contact icon"
           labelFor="contact-arnau"
           label="Arnau"
           target="_blank"
         />
         <ContactIcon
-          link='https://wondrous-sorbet-b71db8.netlify.app/'
+          link="https://wondrous-sorbet-b71db8.netlify.app/"
           imgSrc={smile02}
+          aria-label="to Cornelia's portfolio"
           altText="Cornelia's contact icon"
           labelFor="contact-cornelia"
           label="Cornelia"
           target="_blank"
         />
         <ContactIcon
-          link='https://jinghuang.netlify.app/'
+          link="https://jinghuang.netlify.app/"
           imgSrc={smile03}
+          aria-label="to Jing's portfolio"
           altText="Jings's contact icon"
           labelFor="contact-jing"
           label="Jing"

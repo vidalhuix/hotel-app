@@ -20,7 +20,7 @@ import { BookingContext } from "../Booking/BookingContext";
 
 export const Register = ({ height = '100vh' }) => {
   const navigate = useNavigate();
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails, setBookingDetails } = useContext(BookingContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -76,9 +76,20 @@ export const Register = ({ height = '100vh' }) => {
             body: JSON.stringify({ userId: data.id, roomId, guests, checkinDate, checkoutDate }),
           });
 
+          //change room status
+          const bookingResult = await fetch("https://sunside-hotel.onrender.com/hotelrooms/book", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ roomId, checkinDate, checkoutDate }),
+          });
+
           setSuccessMessage(
             "Account created successfully and booking confirmed. You can now log in to check booking details."
           );
+
+          setBookingDetails({});
         }
 
         navigate("/login", {

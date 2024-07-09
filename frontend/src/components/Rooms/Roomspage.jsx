@@ -147,14 +147,17 @@ const RoomsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 130px;
 
   h2 {
     color: var(--color-white);
-    font-size: 40px;
+    font-size: 30px;
     line-height: 44px;
     font-weight: 700;
     font-family: "Apercu", sans-serif;
+    @media (min-width: 1000px) {
+      font-size: 40px;
+    }
   }
 `;
 

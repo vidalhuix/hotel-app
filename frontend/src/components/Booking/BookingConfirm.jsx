@@ -16,8 +16,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20% 5% 36% 5%;
-  h4{
-    margin:0;
+  h4 {
+    margin: 0;
   }
   @media all and (min-width: 744px) {
     height: 100vh;
@@ -33,40 +33,34 @@ const SummaryContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
-  margin-top:100px;
-  margin-bottom:20px;
+  margin-top: 100px;
+  margin-bottom: 20px;
   padding: 16px 24px 40px 40px;
   background: white;
-  color:  black;
-  h2{
+  color: black;
+  h2 {
     font-size: 1.2em;
   }
   @media all and (min-width: 744px) {
     padding: 20px 32px 40px 50px;
     margin-top: 50px;
-    h2{
+    h2 {
       font-size: 1.5em;
     }
   }
   @media all and (min-width: 1025px) {
     width: 40%;
-    margin-top:50px;
+    margin-top: 50px;
     margin-right: 100px;
     padding: 30px 32px 60px 50px;
   }
-`
+`;
 
 const TextBox = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 6px;
-  @media all and (min-width: 744px) {
-
-  }
-  @media all and (min-width: 1025px) {
-
-  }
-`
+`;
 
 export const BookingConfirm = ({ guests }) => {
   const location = useLocation();
@@ -83,7 +77,7 @@ export const BookingConfirm = ({ guests }) => {
       <SummaryContainer>
         <h2>BOOKING SUMMARY</h2>
         <p>{successMessage}</p>
-        <h4>Room type: {roomType}</h4>
+        <h3>Room type: {roomType}</h3>
         <TextBox>
           <img
             src={enter}
@@ -106,7 +100,7 @@ export const BookingConfirm = ({ guests }) => {
             alt="Guests"
             style={{ marginRight: "10px", width: "30px", height: "30px" }}
           />
-          Guest: {guests}
+          Guests: {guests}
         </TextBox>
       </SummaryContainer>
       <Register height="30vh" />

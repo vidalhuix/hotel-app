@@ -1,13 +1,18 @@
 # Final Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This full-stack application, is the last project at Technigo' Spring 2024 Web Development Bootcamp,
+this is a realistic simulation of an imaginary hotel.
+It enables users to book one of the available rooms based on their selected arrival and departure dates.
+To complete a booking, users must register or log in if they already have an account.
+Once logged in, users can view their registered bookings and delete their accounts if desired.
 
 ## The problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+Although we have learned a lot during the boot camp, we are still fairly junior developers. This final project has been a valuable challenge, allowing us to demonstrate the new skills and work methodologies we have acquired in web development. We still have much room to grow, both on the frontend and especially on the backend, where the logic and code can be particularly challenging when the results are not immediately visible.
+Even though we are really proud and happy of what we have achived on this last three weeks. 
 
 ## View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+Frontend [here](https://sunside-hotel.netlify.app/)
+
+Backend [here](https://sunside-hotel.onrender.com/)

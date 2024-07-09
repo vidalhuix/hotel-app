@@ -45,27 +45,23 @@ const StyledImage = styled.img`
 
 const BlackStyledLink = styled(StyledLink)`
   color: black;
-
   &:hover {
     color: #d3af97;
   }
 `;
 
-const SectionDivider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #ccc;
-  margin-top: 15px;
-  margin-bottom: 15px;
+const NoBookingsMessage = styled.div`
+  margin-bottom: 20px; 
 `;
 
 export const UserPage = ({ height = '100vh' }) => {
-  const { bookingDetails } = useContext(BookingContext); // Not used
   const navigate = useNavigate();
+  const { bookingDetails, setBookingDetails } = useContext(BookingContext);
   const { accessToken, logout } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
   const [error, setError] = useState("");
   const [bookings, setBookings] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (accessToken) {
@@ -142,12 +138,41 @@ export const UserPage = ({ height = '100vh' }) => {
     }
   };
 
+  const handleCancelBooking = async (bookingId) => {
+    const { roomId, checkinDate, checkoutDate } = bookingDetails;
+    //Cancel a booking and change room status
+    try {
+      const cancelBookingResult = await fetch("https://sunside-hotel.onrender.com/hotelrooms/cancel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bookingId, roomId, checkinDate, checkoutDate }),
+      });
+
+      if (cancelBookingResult.ok) {
+        const result = await cancelBookingResult.json();
+        console.log('Booking canceled successfully:', result);
+        setSuccessMessage("Your booking is canceled successfully.");
+        setBookingDetails({});
+        setBookings();
+      } else {
+        console.error('Failed to cancel booking:', cancelBookingResult.statusText);
+        setSuccessMessage("Failed to cancel booking. Please try again.");
+      }
+    } catch (error) {
+      console.error('Error canceling booking:', error);
+      setSuccessMessage("An error occurred while canceling the booking. Please try again.");
+    }
+  }
+
   return (
     <Container height={height} style={{ marginTop: "30px" }}>
       <Content>
         <Heading>BOOKING INFORMATION</Heading>
-        {bookings && bookings.map((booking) => ( 
-          <UserInfoContainer>
+        {bookings && bookings.length > 0 ? (
+         bookings.map((booking) => ( 
+          <UserInfoContainer key={booking.id}>
             <div
               style={{
                 display: "flex",
@@ -191,20 +216,27 @@ export const UserPage = ({ height = '100vh' }) => {
                 <div>{booking.guests}</div>
               </UserDetails>
             </div>
-            <div style={{ textAlign: "center", marginTop: "10px" }}>
-              <BlackStyledLink to="/active-booking">
+            <div style={{ textAlign: "center", marginTop: "10px", color: "black" }}>
+              <BlackStyledLink onClick={() => handleCancelBooking(booking._id)}>
                 Click here to cancel your booking
               </BlackStyledLink>
+              <p>{successMessage}</p>
             </div>
-            <SectionDivider />
+          </UserInfoContainer>
+        ))
+        ):(
+          <NoBookingsMessage><p>{successMessage}</p> No active bookings. </NoBookingsMessage>  
+        )}  
+
+        <UserInfoContainer>
             <UserDetails>
               <b>Name:</b> {userDetails ? userDetails.name : ""}
             </UserDetails>
             <UserDetails>
               <b>Email:</b> {userDetails ? userDetails.email : ""}
             </UserDetails>
-          </UserInfoContainer>
-        ))}
+        </UserInfoContainer>
+               
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button
           $delete

@@ -37,7 +37,9 @@ export const Footer = () => {
               Subscribe
             </button>
           </NewsLetter>
-          <h5>Get montly news, stay updated.</h5>
+          <NewsletterSubtitle>
+            Get monthly news, stay updated.
+          </NewsletterSubtitle>
         </NewsLetterContainer>
         <ContactWrapper>
           <ContactIconWrapper>
@@ -116,7 +118,7 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 0 50px 0;
+  padding: 20px 0 50px 0;
   background-color: #44554b;
   color: rgb(255, 255, 255);
   width: 100%;
@@ -186,15 +188,17 @@ const NewsLetterContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 20px;
-  h3 {
-    font-size: 1rem;
-    font-weight: normal;
-    margin: 10px 0 10px 0;
-  }
-  h5 {
-    font-weight: 100;
-    margin: 10px 0 10px 0;
-  }
+`;
+
+const NewsletterHeading = styled.h2`
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 10px 0;
+`;
+
+const NewsletterSubtitle = styled.p`
+  font-weight: 100;
+  margin: 10px 0;
 `;
 
 const NewsLetter = styled.div`

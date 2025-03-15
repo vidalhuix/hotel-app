@@ -80,7 +80,7 @@ export const Footer = () => {
       </FooterBody>
       <ContactIconWrapper>
         <ContactIcon
-          link="https://arnaus-react-portafolio.netlify.app/"
+          link="https://arnauvidal-webdeveloper-portfolio.netlify.app/"
           imgSrc={smile01}
           aria-label="to Arnau's portfolio"
           altText="Arnaus's contact icon"

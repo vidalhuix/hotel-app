@@ -31,7 +31,7 @@ export const AboutUs = () => {
       name: "Arnau Vidal",
       linkedin: "https://www.linkedin.com/in/arnau-vidal-4266a940/",
       github: "https://github.com/vidalhuix",
-      portfolio: "https://arnaus-react-portafolio.netlify.app/",
+      portfolio: "https://arnauvidal-webdeveloper-portfolio.netlify.app/",
       imgSrc: "/src/assets/Portrait-Arnau.jpg",
     },
     {

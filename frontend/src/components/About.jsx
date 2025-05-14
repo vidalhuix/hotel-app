@@ -3,6 +3,9 @@ import LinkedInLogo from "/src/assets/logo-linkedin.svg";
 import GithubLogo from "/src/assets/logo-github.svg";
 import { LoadingSpinner } from "./LoadingSpinner.jsx";
 import styled from "styled-components";
+import PortraitArnau from "/src/assets/Portrait-Arnau.jpg";
+import PortraitCornelia from "/src/assets/Portrait-Cornelia.jpg";
+import PortraitJing from "/src/assets/Portrait-Jing.jpg";
 
 export const AboutUs = () => {
   const techStack = [
@@ -32,21 +35,21 @@ export const AboutUs = () => {
       linkedin: "https://www.linkedin.com/in/arnau-vidal-4266a940/",
       github: "https://github.com/vidalhuix",
       portfolio: "https://arnauvidal-webdeveloper-portfolio.netlify.app/",
-      imgSrc: "/src/assets/Portrait-Arnau.jpg",
+      imgSrc: PortraitArnau,
     },
     {
       name: "Cornelia Dahlin",
       linkedin: "https://www.linkedin.com/in/cornelia-dahlin-940684295/",
       github: "https://github.com/lunek1",
       portfolio: "https://wondrous-sorbet-b71db8.netlify.app/",
-      imgSrc: "/src/assets/Portrait-Cornelia.jpg",
+      imgSrc: PortraitCornelia,
     },
     {
       name: "Jing Huang",
       linkedin: "https://www.linkedin.com/in/jinghuangjh/",
       github: "https://github.com/jingh999",
       portfolio: "https://jinghuang.netlify.app/",
-      imgSrc: "/src/assets/Portrait-Jing.jpg",
+      imgSrc: PortraitJing,
     },
   ];
 
@@ -214,6 +217,7 @@ const Back = styled.div`
   background-color: white;
   color: var(--color-darkgreen);
   border-radius: 50%;
+  border: 1px solid;
   box-shadow: 17px 32px 13px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
